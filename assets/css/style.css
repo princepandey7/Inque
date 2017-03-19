@@ -1,0 +1,512 @@
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,900);*/
+ 
+ 
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+ 
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+ 
+body {
+    line-height:16px;
+    /*font-family: 'Roboto Slab', serif;*/
+    font-family: 'Lucida Grande', 'Open Sans', sans-serif;
+    color:#676767;
+    background-color:transparent!important;
+    font-size: 12px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-smoothing: subpixel-antialiased;
+    padding-bottom: 40px;
+    overflow-x:hidden;
+}
+body{     
+    background-image: url(../images/bg-01.png)!important;
+    background-repeat: repeat;
+    background-size: initial;}
+ 
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+button, a{ outline: none!important; text-decoration: none!important;}
+nav ul {
+    list-style:none;
+}
+ 
+blockquote, q {
+    quotes:none;
+}
+ 
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+ 
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+ 
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+ 
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+ 
+del {
+    text-decoration: line-through;
+}
+ 
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+ 
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+ 
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #e1eec3;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+
+/* end */
+
+html, body {margin:0;padding:0;height:100%}
+body{ margin: 0; padding: 0  }
+
+.padding0{ padding-right: 0px!important; padding-left: 0px!important }
+.responsive-img{ width: 100%; height: auto; }
+.fixed-menu{position: fixed;top: 0;width: 100%;background: #fff; }
+.main-wrapper .container{ position: absolute; right: 0; left: 0; top: 0; max-width: 700px; }
+.main-wrapper .container img{ margin-left: auto;; margin-right: auto; display: block; margin-top: 100px; }
+.main-wrapper .container h4{ color: #ffffff; font-size: 35px; text-transform: uppercase;text-align: center;
+margin-top: 100px;font-family: 'bebas_neuebold'; letter-spacing: 3px;}
+.clear0{ clear: both; }
+.clear15{ clear: both; height: 15px; }
+.pl0{ padding-left: 0px!important; }
+.pr0{ padding-right: 0px!important }
+.textcontainer{ padding: 60px 0px; }
+.textcontainer h6{ font-size: 45px; text-align: center;text-transform: uppercase; letter-spacing: 4px;
+color: #323232;font-family: 'bebas_neuebold'; }
+.textcontainer p{ font-size: 16px; text-align: center; color:#323232; margin-top: 5px;font-family: 'latoregular'; }
+
+.container-fluid{ padding-left: 0px!important; padding-right: 0px!important; }
+
+.contactForm {padding: 100px 0px; background:#292929; margin-top: -4px;}
+.contactForm h1{ text-transform: uppercase; text-align: left; color: #ffffff; 
+  margin-left: 15px;font-family: 'bebas_neuebold'; font-size: 35px; margin-bottom: 10px;  letter-spacing: 2px;}
+.contactForm p{ font-size: 12px; text-align: center; color: #ffffff }
+.contactForm a{ color: #ffffff; }
+.contactForm input, .contactForm select{ height: 34px }
+
+.contactForm input, .contactForm textarea, .contactForm select{ background: #ffffff; border: 1px solid #ffffff; float: left; 
+  margin-right: 0px; width: 100%; margin-bottom: 15px; border-radius: 0px; padding: 0px 5px;
+color: #323232}
+
+.contactForm button{ border: 1px solid #ffffff; background: transparent; color: #ffffff; 
+  padding: 4px 6px;font-family: 'bebas_neuebold';padding: 8px 30px 6px 30px; border-radius: 0px;
+  transition: all 0.3s ease 0s; font-size: 16px; letter-spacing: 2px;}
+ .contactForm button:hover{ background: #ffffff; color:#292929;  } 
+
+footer{ padding: 20px 0px; color: #b2b2b2; font-size: 12px;background:#292929; border-top: 1px solid #f2f2f2; }
+footer a{ color: #b2b2b2;font-family: 'latoregular'; font-size: 12px;   }
+footer a:hover{ color: #ffffff;font-family: 'latoregular'; font-size: 12px;  }
+footer a span{ color: #ffffff }
+
+.contactForm img{/* margin-left: auto; margin-right: auto;display: block;*/ margin-bottom: 20px; }
+.contactForm p, .contactForm a{color: #ffffff;font-family: 'latoregular'; font-size: 16px;
+text-align: left;margin-bottom: 10px;}
+.contactForm a:hover{ color: #b2b2b2 }
+
+.kithcheBathroom{ position: absolute; width: 300px; left: 0; right: 0; background: #ffffff;
+text-align: center; margin-left: auto; margin-right: auto;display: block;
+    bottom: -13px;padding: 20px 40px;-webkit-box-shadow: 0px 7px 23px 1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 7px 23px 1px rgba(0,0,0,0.75);
+box-shadow: 0px 7px 23px 1px rgba(0,0,0,0.75);}
+
+.kithcheBathroom a{font-family: 'bebas_neuebold'; border: 1px solid #323232; color: #323232; 
+font-size: 18px; background: transparent;padding: 8px 30px 6px 30px; margin-top: 15px;transition: all 0.3s ease 0s; letter-spacing: 2px;}
+.kithcheBathroom a:hover{ background: #323232; color: #ffffff }
+.kithcheBathroom  a{ color: #323232; }
+.kithcheBathroom  a:hover{ color: #ffffff; }
+
+.kithcheBathroom h2{ color: #323232; text-transform: uppercase; font-family: 'bebas_neuebold'; font-size: 60px;
+border-bottom: 1px solid #323232;letter-spacing: 3px; margin-bottom: 30px;}
+.kithcheBathroom h2::first-letter{ color: #00e0d1; }
+.inPage .logo { margin-top: 27px!important;  }
+.inPage h4{ margin-top: 45px!important; }
+
+
+.margin-top100{ margin-top: 100px; }
+#myCarousel .carousel-caption{ right: 10%; left: 10%; }
+
+.tmpContainer{ background-color: #ffffff; top: -14px!important }
+.carousel-control{ width: 5%!important; top: 40%!important; background-image: none!important; }
+.carousel-caption{ top: 30%; }
+.carousel-caption h3{ font-family: 'bebas_neuebold'; font-size: 65px; color: #ffffff; 
+text-shadow: 2px 2px #000;  text-transform: uppercase; letter-spacing: 5px}
+.carousel-caption p{font-family: 'latoregular'; font-size: 16px; color: #ffffff; letter-spacing: 1px;}
+.logo img {  margin: auto; z-index: 999;position: absolute;left: 0;right: 0; max-width: 160px; top: 20px;}
+
+.explore {  margin: auto; z-index: 999; position: absolute; left: 0;right: 0;  bottom: -10px;
+ max-width: 160px; text-align: center;}
+.explore li:first-child{ height: 60px; border-right: 1px solid #ffffff; width: 1px; margin: 0 auto }
+.explore li { list-style: none; }
+.explore li:nth-child(2){ margin-bottom: 20px }
+.explore .btn{ background: #565656; color: #ffffff; border: 1px solid #ffffff;  
+font-family: 'bebas_neuebold'; font-size: 18px;
+line-height:18px; border-radius:0px; letter-spacing: 5px; padding: 8px 20px 4px; }
+.explore .btn:hover{ background: #00e0d1; color: #ffffff }
+.navbar .navbar-brand{ height: auto; padding: 4px 153px 4px 0px;}
+
+.navbar ul li a{ font-family: 'latoregular'; font-size: 16px; color: #323232;}
+.navbar ul li.active a{color:#07a89d;background-image: url("../images/active-menu-bg-image.png");  background-repeat: no-repeat;
+    background-position: center; background-color: transparent;  }
+.navbar ul li a:hover{ color:#07a89d;background-image: url("../images/active-menu-bg-image.png");  background-repeat: no-repeat;
+    background-position: center; background-color: transparent;  }
+
+.menubar{height: 100px; width: 100%; border-top: 3px solid #07a89d;
+-moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4); background: #ffffff}
+.menubar .navbar-nav{ margin-top: 27px; }
+.menubar .nav>li{ margin-left: 35px; }
+.menubar.fixed{ position: fixed;z-index: 9 }
+
+.kitchenBlock{ background-image: url("../images/kitchen-bg.png"); height: 678px; width: 100%;
+ background-repeat:no-repeat; background-position: right; }
+#kitchen-carausal { margin-top: 50px; }
+#kitchen-carausal .carousel-indicators{ left: 10%; bottom: 0px; }
+#kitchen-carausal .carousel-indicators li ,#bathroom-carausal .carousel-indicators li{ border-radius: 0px; 
+    background: #323232; border: 1px solid #323232; }
+#kitchen-carausal .carousel-indicators .active, #bathroom-carausal .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; }
+
+.kitchenContainer .kitchenAbsolute{ border: 4px solid #00e0d1 ; 
+    border-left: 32px solid rgba(10,241,225, 0.6);
+height: 210px; width: 370px; position: absolute; bottom: 27%;left: 46%;}
+.kitchenContainer { position: relative; width: 100%; height: 100%;}
+.kitchenAbsolute h4{ font-family: 'bebas_neuebold'; font-size: 60px; color: #323232; margin-left: 30px;
+ margin-bottom: 0px; margin-top: 40px; letter-spacing: 2px;}
+.kitchenAbsolute h4::first-letter{ color: #00e0d1; }
+.kitchenAbsolute hr{ margin-top: 0px; margin-bottom: 0px; width: 155px; border-color: #323232;
+ margin-left: 30px; }
+.kitchenAbsolute p{  font-family: 'latoregular'; font-size: 14px; color: #323232; font-weight: bold;
+margin-left: 30px; margin-top: 20px; margin-bottom: 0px;}
+.kitchenAbsolute a{  font-family: 'latoregular'; font-size: 12px; color: #323232; font-weight: bold;
+margin-left: 30px; font-style: italic; }
+.kitchenAbsolute a:hover {color:#00e0d1; text-decoration: underline!important;}
+
+.bathroomBlock{ background-image: url("../images/bathroom-bg.png"); height: 678px; width: 100%;
+ background-repeat:no-repeat; background-position: left; }
+
+.bathroomBlock .kitchenAbsolute{ border: 4px solid #00e0d1 ; border-right: 32px solid rgba(10,241,225, 0.6);
+height: 200px; width: 350px; position: absolute; bottom: 30%;left: 24%;}
+#bathroom-carausal .carousel-indicators{ left: 90%; bottom: 0px; }
+.bathroomBlock .kitchenAbsolute hr{width: 210px;}
+
+.furnitureOffice { margin-bottom: 100px; }
+.furnitureFitting{background-image: url("../images/Furniture-fittings-bg.png"); height: 303px; width: 100%;
+ background-repeat:no-repeat; background-position: right; padding: 20px 45px;}
+.officeFurniture{background-image: url("../images/office-Furniture-bg.png"); height: 303px; width: 100%;
+ background-repeat:no-repeat; background-position: left; padding: 20px 45px; }
+
+.furnitureOffice h3{ font-family: 'bebas_neuebold'; font-size: 60px; color: #323232; margin-left: 30px;
+ margin-bottom: 0px; margin-top: 40px; letter-spacing: 2px;}
+.furnitureOffice h3::first-letter{ color: #065b55; }
+   
+.furnitureOffice p{  font-family: 'latoregular'; font-size: 14px; color: #323232; font-weight: bold;
+margin-left: 30px; margin-top: 0px; margin-bottom: 10px;}
+
+.furnitureOffice a{  font-family: 'latoregular'; font-size: 13px; color: #323232; font-weight: bold;
+margin-left: 30px; font-style: italic; }
+.furnitureOffice a:hover {color:#00e0d1; text-decoration: underline!important;}
+.officeFurniture { padding: 20px 10px; }
+.bgcolor{ background: #00e0d1 }
+
+.solutionForsmart{ background: #00e0d1; padding: 170px 30px;}
+.solutionForsmart h1{  font-family: 'bebas_neuebold'; font-size: 36px; color: #323232;
+ margin-bottom: 0px; margin-top: 40px; letter-spacing: 2px; }
+.solutionForsmart hr{ border-color: #323232;width: 365px;  }
+.solutionForsmart p{font-family: 'latoregular'; font-size: 15px; color: #323232;
+margin-top: 0px; margin-bottom: 10px; max-width: 400px;}
+
+.solutionForsmart a{  font-family: 'latoregular'; font-size: 14px; color: #323232; font-weight: bold; font-style: italic; }
+.solutionForsmart a:hover {color:#065b55; text-decoration: underline!important;}
+
+.gallery, .event { padding: 30px 0px;  }
+.gallery .title, .event .title{ font-family: 'bebas_neuebold'; font-size: 60px; color: #323232; margin-left: 30px;
+ margin-bottom: 0px; margin-top: 0px; letter-spacing: 2px; text-align: center; line-height: 40px;}
+.gallery .title::first-letter, .event .title::first-letter{ color: #00e0d1; }
+.gallery .caption{ position: absolute; width: 96.6%; bottom: 7px;
+ background: rgba(10,241,225, 0.6); padding: 5px 15px; color: #323232; font-family: 'latoregular'; 
+ font-size: 14px; display: none; }
+.gallery .title hr, .event .title hr{ width: 140px; margin: 20px auto!important }
+.gallery li a:hover .caption{ display: block; }
+.gallery .btn{ border: 1px solid #323232; color: #323232; text-align: center; border-radius: 0px;
+  font-family: 'bebas_neuebold'; font-size: 18px;-webkit-transition: width 2s; /* Safari */
+    transition: width 2s; padding: 4px 25px; letter-spacing: 4px;}
+.gallery .btn:hover{ background:#00e0d1; color: #ffffff;border: 1px solid #00e0d1;  }
+hr{ margin-top: 0px!important; border-color: #323232!important; text-align: center;}
+.eventInner ul li{ list-style: none; font-family: 'latoregular'; font-size: 16px; color: #323232;
+float: left;width: 100%; height: auto;  }
+.eventInner ul{ position: relative; float: left; clear: both; }
+.eventInner ul li.row{  margin-left: 0px!important; }
+.eventInner ul li b{ font-family: 'latoregular'; font-size: 16px; color: #323232; }
+.eventInner { background: #e1e1e1; width: 100%; float: left; height: auto; padding: 20px;}
+
+.eventInner hr{ margin: 10px 0px!important; border-color: #b4b4b4!important}
+.pastEvent { background: #b4b4b4;width: 100%; float: left; height: auto; padding: 20px; min-height: 438px; }
+#pastevent-carausal .carousel-indicators{ left: 96%; bottom: -23px; }
+#pastevent-carausal .carousel-indicators li{ border-radius: 0px; height: 12px; width: 12px;
+    background: #323232; border: 1px solid #323232; }
+#pastevent-carausal .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; }
+.pastEvent p{ font-family: 'latoregular'; font-size: 15px; color: #323232; font-weight: 600; 
+margin-top: 0px; margin-bottom: 6px; }
+
+.event .btn{ border: 1px solid #323232; color: #323232; text-align: center; border-radius: 0px;
+  font-family: 'bebas_neuebold'; font-size: 20px;-webkit-transition: width 2s; /* Safari */
+    transition: width 2s; padding: 4px 25px; letter-spacing: 2px;}
+.event .btn:hover{ background:#00e0d1; color: #ffffff;border: 1px solid #00e0d1;  }
+
+.footer{ background: #e9e5e4;  }
+.footer h5{ font-family: 'bebas_neuebold'; font-size: 26px; color: #222222; margin-top: 60px; }
+.footer hr{ border-color: #b4b4b4!important; width: 160px; float: left;}
+.footer p{ font-family: 'latoregular'; font-size: 15px; color: #323232; 
+margin-top: 0px; margin-bottom: 6px; }
+.footer .btn{ border: 1px solid #323232; color: #323232; text-align: center; border-radius: 0px;
+  font-family: 'bebas_neuebold'; font-size: 21px;-webkit-transition: width 2s; /* Safari */
+    transition: width 2s; padding: 4px 25px; margin-top: 20px; letter-spacing: 2px;}
+.footer .btn:hover{ background:#00e0d1; color: #ffffff;border: 1px solid #00e0d1;  }
+footer{ border-top: 4px solid #00e0d1; background: #323232; padding: 20px 0px 10px 0px; }
+footer img{ margin-left: auto;margin-right: auto; display: block; }
+footer hr{ width: 100%!important ; margin-top: 40px!important; margin-bottom: 10px }
+footer p{font-family: 'latoregular'; font-size: 12px!important; color: #b2b2b2!important; }
+footer a{color: #b2b2b2; margin: 0px 5px}
+footer .social a{ width: 20px; }
+footer .social{ text-align: right; }
+footer .social a{ float: right; }
+footer .social img{ float: right!important; display: inline!important;  }
+
+
+#slider {width:500px;top:200px;position:fixed; cursor: pointer; z-index: 9999}
+#header {width:333px;height:430px;position:absolute;right:0;border:1px solid #d8d8d8;margin-left:0px;
+padding:20px 20px;border-radius:3px;box-shadow:0 0 8px gray;background:#ffffff;}
+#sidebar {position:absolute;top:140px;left:113px;box-shadow:0 0 8px gray}
+#sidebar1 {position:absolute;top:140px;left:113px;box-shadow:0 0 8px gray}
+#header input {margin-top:10px;padding:6px;width:100%;font-size:15px;
+border-radius:2px;border:1px solid #98d0f1;font-family: 'latoregular';}
+#header textarea {margin-top:10px;padding:6px;width:100%;font-size:15px;
+border-radius:2px;border:1px solid #98d0f1; font-family: 'latoregular';}
+#header h1{ font-family: 'bebas_neuebold'; font-size: 20px; letter-spacing: 2px; 
+text-transform: uppercase; margin-top: 5px; }
+#header button{ border: 1px solid #98d0f1; color: #98d0f1; text-align: center; border-radius: 0px;
+  font-family: 'latoregular'; font-size: 16px;-webkit-transition: width 2s; /* Safari */
+    transition: width 2s;  margin-top: 10px; float: right; background: #ffffff; padding: 4px 25px;}
+.galleryCarousel{ max-width: 650px; margin: 100px auto; color: #323232; }
+.galleryCarousel .caption{ max-width: 600px; float: left; margin-top: 30px; }
+.galleryCarousel .item{ border: 3px solid #323232; }
+.galleryCarousel .carousel-indicators{ left: 96%; bottom: 42px; }
+.galleryCarousel .carousel-indicators li{ border-radius: 0px; height: 12px; width: 12px;
+    background: #323232; border: 1px solid #323232; }
+.galleryCarousel .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; margin: 1px; }
+.galleryCarousel p b{ font-family: 'latoregular'; font-size: 15px; color: #323232; font-weight: bold; 
+margin-top: 0px; margin-bottom: 6px; }
+
+.weare{ margin: 100px 0px; }
+.vision-mission{ position: relative; }
+.vision-mission .container{ color: #ffffff; position: absolute;top: 0; left: 0; right:0;bottom: 0; float: left; }
+.vision-mission .container p{ max-width: 50%; font-family: 'latoregular'; font-size: 15px; }
+.vision-mission .container h5{ margin-top: 7%;}
+h5{ color:#000000!important; font-family: 'bebas_neuebold'!important; font-size: 26px!important;letter-spacing: 1px;}
+h5.white{color: #ffffff!important; }
+
+.distributor{ padding-bottom: 50px; }
+.find-contact ul li:first-child div{ margin-bottom: 0px; }
+.find-contact ul li:first-child{background: #323232; padding: 20px 30px; }
+.find-contact ul li:first-child p{ color: #ffffff; font-weight: 600;}
+.find-contact ul li{ background: #ffffff; list-style: none; float: left;width: 25%;font-family: 'latoregular'!important; padding: 20px 15px; color: #000;}
+.find-contact ul li form input{ width: 100%; margin: 10px 0px; height: 34px; padding: 0px 5px; }
+.find-contact ul li form input[type="button"] {border: 1px solid #ffffff; color: #ffffff; text-align: center; border-radius: 0px;
+  font-family: 'bebas_neuebold'; font-size: 20px;-webkit-transition: width 2s; /* Safari */
+    transition: width 2s; padding: 4px 25px; letter-spacing: 2px; background: transparent; max-width: 120px;}
+    .find-contact ul li form input[type="button"]:hover{ border: 1px solid #323232; color: #323232; background: #ffffff; }
+.find-contact ul li span{ display: block; }
+.find-contact ul li div{ margin-bottom: 60px; }
+.find-contact ul li div p{ margin-bottom: 20px; }
+.banner{ position: relative; }
+.banner h6{ font-family: 'bebas_neuebold'!important; font-size: 45px; position: absolute;
+left: 0; right: 0; color: #ffffff; width: 100%; text-align: center; top: 45%}
+.pastEvent hr{ border-color: #ffffff!important; margin: 20px 0px!important; }
+.fancybox-skin{ background: #00e0d1!important }
+
+.career .career-inner{ background: #292929; padding: 40px 50px 40px 115px; color: #ffffff; min-height: 874px;}
+.career .contactForm{ padding: 15px 0px }
+.contact .contact-inner{ background: #292929; padding: 40px 114px 50px 50px; color: #ffffff; }
+.contact-add{ padding: 60px 114px; }
+.contact-add h2{ text-transform: uppercase;font-family: 'latoregular'; font-size: 18px; color: #292929;  }
+.contact-add h2 span{ display: block;text-transform: lowercase; line-height: 23px; margin-bottom: 30px;
+ font-weight: 600 }
+.contact-add span{ display: block;font-family: 'latoregular'; font-size: 16px; color: #292929;  }
+.contact-add p.firstp{ padding-top: 20px; margin: 0px; }
+.contact-add p span{ display: table-cell; min-width: 200px }
+.img-black{ background: #323232; width: 100%; min-height: 300px; }
+
+
+.product-block{ padding-top: 40px; }
+.menu-list ul li{ list-style: none; border-left: 4px solid #323232!important; border: 1px solid #323232;
+padding: 8px 10px; margin-bottom: 3px; background: #f3f3f3; position: relative;}
+.menu-list ul li.active{background: rgba(0,224,209, 0.9); border: 1px solid #00e0d1; border-left: 4px solid #00a094!important}
+.menu-list ul li a{ color: #323232; font-size: 15px; }
+.menu-list ul li.active a{ color: #ffffff; }
+.rt-sec .heading{ position: relative; padding-right: 155px; border-bottom: 1px solid #323232; padding-bottom: 20px;
+margin-bottom: 20px;}
+.heading h2{color: #323232!important;font-family: 'bebas_neuebold'!important;font-size: 26px!important;letter-spacing: 1px;
+margin-bottom: 0px; }
+.heading h4 {font-family: 'bebas_neuebold';font-size: 60px;color: #323232;margin-bottom: 0px;letter-spacing: 2px;
+margin-top: 0px; margin-bottom: 15px;}
+.heading h4::first-letter{ color: #00e0d1; }
+.heading p{ margin: 0; }
+.heading .link{ position: absolute;  right: 0; bottom: 15px;}
+.link a { display: inline-block; font-size: 13px; color:#323232;}
+.link a .fa{ font-size: 11px; vertical-align:baseline; margin-right: 2px; }
+.link a.active{ color:#00e0d1 }
+
+.block ul li{ border: 1px solid  #323232; display: block; list-style: none; 
+    background: #ffffff; padding: 10px; margin-bottom: 30px;}
+.block ul li span.title{ font-family: 'latoregular'; font-size: 16px; 
+font-weight: 600; color: #323232}
+.block ul li span{ display: block; margin-bottom: 15px;color: #323232; font-size: 14px; }
+.block ul li span b{ display: block; }
+.block ul li img{ width: 100%; }
+
+.block ul li div{ position: relative; width: 100%; height: 100% }
+.block ul li div:hover::before{ background: rgba(0,224,209, 0.4); content:""; position: absolute;
+left:0; right: 0; top: 0; bottom: 0}
+.pagination { float: right;margin-top: 0px!important; }
+.pagination li{ margin-left: 2px; }
+.pagination > li > a{padding: 2px 6px!important; font-size: 11px; margin-left: 2px!important;
+    background: #a4a4a4!important; color: #ffffff!important }
+.pagination > li:first-child a{ background: #323232!important; border-radius: 0px;}
+.pagination > li:last-child a{ background: #323232!important; border-radius: 0px;}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{ 
+    background-color: #00e0d1!important;border-color: #00e0d1!important; }
+.title-band{ background:#e3e3e3; padding: 8px 10px; color: #323232;font-family: 'latoregular'; 
+font-size: 16px; font-weight: 600; letter-spacing: 1px; width: 100%; margin-bottom: 15px; display: block;}
+
+.descr .right-sec span{ display: block; margin-bottom: 15px;color: #323232; font-size: 14px; }
+.descr .right-sec span b{ display: block; }
+.descr .right-sec span.title{ font-family: 'latoregular'; font-size: 16px; 
+font-weight: 600; color: #323232}
+.descr .right-sec{ float: left; position: relative; }
+.descr .left-sec{ float: right; position: relative; }
+.descr .left-sec img{ border: 1px solid #323232; }
+.descr .right-sec span span{ margin-bottom: 0px; }
+.img-block b{ font-family: 'latoregular'; font-size: 14px;color: #323232;margin-bottom: 8px; display: block;
+margin-left: 15px;}
+.img-block img{ border: 1px solid #323232;}
+.img-block{ margin: 20px 0px; }
+
+#enquiryForm .modal-content{ border:4px solid #00e0d1; }
+#enquiryForm .modal-content .modal-title{font-family: 'bebas_neuebold'!important;
+font-size: 26px!important; color: #323232;}
+#enquiryForm .modal-content input{ width: 100%; height: 32px; margin-bottom: 5px; 
+    border:1px solid rgba(0,0,0,0.5);border-radius: 2px;box-shadow: 0 0 5px rgba(0,0,0,0.2) inset; padding: 0px 10px; font-size: 14px;}
+
+#enquiryForm .modal-content .submit {border: 1px solid #323232;background: transparent;color: #323232;
+    font-family: 'bebas_neuebold'; padding: 6px 30px 4px 30px;border-radius: 0px;
+    transition: all 0.3s ease 0s;font-size: 16px;letter-spacing: 2px; margin-bottom: 10px;}
+
+#enquiryForm .modal-content .modal-header{ border-bottom: 1px solid #323232;margin: 0px 15px;
+    padding: 30px 0px 0px 0px;}
+
+@media screen and (max-width: 480px) {
+
+.main-wrapper .container h4{ font-size: 23px; margin-top: 19px; }
+.main-wrapper .container img{ width: 38%; margin-top: 0px; }
+.textcontainer h6{ font-size: 27px; }
+.contactForm form { margin-left: -15px; }
+.contactForm h1{ margin-left: 0px; }
+.contactForm{ padding: 50px 0px; }
+.kithcheBathroom{ position: relative;margin-bottom: 30px; margin-top: 10px}
+.mpl0{ padding-left: 0px; }
+.mpr0{ padding-right: 0px; }
+.navbar .navbar-brand{padding: 4px 53px 4px 0px;}
+.navbar-toggle{ background-color: #323232!important; margin-top: 30px!important; }
+#navbarCollapse{ background: #ffffff;position: relative;z-index: 999; }
+.menubar > .container{ background: #ffffff }
+.navbar ul li.active a{ background-position: 30px; }
+.menubar{position: fixed;top: 0;z-index: 999;}
+.navbar-brand > img{ width: 80% }
+#myCarousel{ margin-top: 92px; }
+.logo, .explore{ display: none; }
+#myCarousel .carousel-caption{ top: -13px; }
+.carousel-caption h3{ font-size: 21px; }
+.kitchenContainer .kitchenAbsolute{ left: 4%;bottom: 70px; width: 92%}
+.furnitureFitting, .officeFurniture{ background-position: center; }
+.furnitureOffice h3{ margin-left: 0px; font-size: 40px; }
+.furnitureOffice p, .furnitureOffice a{ margin-left: 0px }
+.solutionForsmart{ padding: 30px; }
+#kitchen-carausal , #bathroom-carausal{padding-left: 0px;padding-right: 0px;}
+.furnitureOffice {padding-left: 0px!important;padding-right: 0px!important;}
+.footer .col-sm-6 img{ width: 100%; margin: 10px 0px; }
+.carousel-control.right{ right: 25px!important; }
+.solutionForsmart hr{ width: 285px;  }
+.career .career-inner{ padding: 40px 50px 40px 35px; }
+.career-inner .contactForm form{ margin-left: 0px; }
+.contact-add{ padding:30px; }
+.contact-add p span{ display: block; }
+.galleryCarousel .carousel-indicators{ bottom: 109px; }
+.banner h6{ top: 36%; font-size: 27px; }
+.vision-mission .responsive-img{ width: auto; }
+.vision-mission .container p{ max-width: 100%; }
+.weare{ margin: 10px 0px; }
+.find-contact ul li{ width: 100%; }
+}
+
