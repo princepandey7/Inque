@@ -32,7 +32,7 @@ class ProductsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','ChangeStatus'),
+				'actions'=>array('create','update','ChangeStatus','GetSubCatDetails'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -218,5 +218,17 @@ class ProductsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionGetSubCatDetails(){
+		if( !empty($_POST['cat_id'])){
+			$objSubCategories = SubCategories::getActiveSubCategory($_POST['cat_id']);
+			echo CJSON::encode(array(
+                                  'status' => "success",
+                                  'update' => $objSubCategories,
+                                  ));
+               Yii::app()->end();
+		}
+
 	}
 }

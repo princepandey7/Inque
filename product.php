@@ -1,233 +1,186 @@
-<?php 
+<?php
+ob_start();
+require_once("db.php");
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
-include_once('header.php') ?>
-            <div class="kitchenBlock">
-                <div class="container kitchenContainer">
-                    <div id="kitchen-carausal" class="carousel slide col-sm-6" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#kitchen-carausal" data-slide-to="0" class="active"></li>
-                            <li data-target="#kitchen-carausal" data-slide-to="1"></li>
-                            <li data-target="#kitchen-carausal" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="assets/images/kitchen-banner.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/kitchen-banner.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/kitchen-banner.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="kitchenAbsolute">
-                        <h4>KITCHEN</h4>
-                        <hr/>
-                        <p>Design Your Dream Kitchen with Us</p>
-                        <a href="#">view more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="bathroomBlock">
-                <div class="container kitchenContainer">
-                    <div id="bathroom-carausal" class="carousel slide col-sm-6 pull-right" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#bathroom-carausal" data-slide-to="0" class="active"></li>
-                            <li data-target="#bathroom-carausal" data-slide-to="1"></li>
-                            <li data-target="#bathroom-carausal" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="assets/images/bathroom-banner.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/bathroom-banner.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/bathroom-banner.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="kitchenAbsolute">
-                        <h4>BATHROOM</h4>
-                        <hr/>
-                        <p>Fittings Accessories</p>
-                        <a href="#">view more</a>
-                    </div>
-                </div>
-            </div> <!-- /bathroomBlock -->
-
-            <div class="container furnitureOffice">
-               <div class="col-sm-6">
-                   <div class="furnitureFitting">
-                       <h3>furniture fitting</h3>
-                       <p>Hardware and Accessories <br/> and Equipemnt Fittings</p>
-                       <a href="#">view more</a>
-                   </div>
-               </div>
-               <div class="col-sm-6">
-                   <div class="officeFurniture">
-                        <h3>office furniture</h3>
-                       <p>Keyboard Drawers and<br/> Fitting Accessories</p>
-                       <a href="#">view more</a>
-                   </div>
-               </div>
+include_once('header.php');
+?>
+            <div class="container-fluid banner margin-top100">
+                <img src="assets/images/top-banner.jpg" class="responsive-img">
+                <h6>solution for smart spaces</h6>
             </div>
             <div class="clear0"></div>
-            <div class="col-sm-12 padding0 bgcolor">
-                <div class="col-sm-6 padding0">
-                    <img src="assets/images/about-section.png" class="responsive-img">
-                </div>
-                <div class="col-sm-6 padding0">
-                    <div class="solutionForsmart">
-                        <h1>solution For smart spaces</h1>
-                        <hr/>
-                        <p>
-                            INQUE, one of the fastest growing hardware brand in India has been able to make a mark with its impressive product range and a wide spread reach across the country. With an understanding of the unique demands of the modern designs, INQUE has been able to introduce efficient solutions to fulfill such requirements.
-                        </p>
-                        <p>
-                            INQUE in India, started its journey from selling door hardware in 2007 and now has successfully managed to grow exponentially with about 225 employees.
-                        </p>
-                        <a href="#">view more</a>
+            <div class="container product-block">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="menu-list">
+                            <?php
+                                // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
+                            $current_cat = urlencode($_GET['cat']);
+                                $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
+                                $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
+
+                                while($rowCategory = $CategoryQuery->fetch()){
+                            ?>
+                            <div class="heading">
+                                <h2>products /</h2>
+                                <h4><?php echo $rowCategory['categories_name']?></h4>
+                            </div>
+                            <ul>
+                                <?php 
+                                    $strActiveTitle = '';
+                                    $strActiveDesc = '';
+                                    while($rowSubCategory = $SubCategoryQuery->fetch()){ 
+                                        $strActiveClass = '';
+                                        if(isset($_GET['subid']) && ( $_GET['subid'] == $rowSubCategory['sub_categories_id'] ) ){
+                                            $strActiveClass = 'active';
+                                            $strActiveTitle = $rowSubCategory['sub_categories_name'];
+                                            $strActiveDesc = $rowSubCategory['sub_categories_description'];
+                                        }
+                                    ?>
+                                    <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat=1&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
+                                <?php } ?>
+                            </ul>
+                            <?php 
+                                }
+                            ?>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="clear0"></div>
-            <div class="container gallery">
-                <div class="title">Gallery</div>
-                <ul class="grid effect-2" id="grid1">
-                    <li><a href="#"><img src="assets/images/gallery/01.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
+                    <div class="col-sm-9 rt-sec">
+                        <?php
+                             $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 LIMIT 0,5");
+                        ?>
+                        <div class="heading">
+                            <h2><?php echo $strActiveTitle; ?></h2>
+                            <p>
+                                <?php echo $strActiveDesc; ?>
+                            </p>
+                            <div class="link">
+                                <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
+                                <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                            </div>
                         </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/02.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
+                        <div class="row block">
+                            <div class="col-sm-4">
+                                <ul>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                    <li>
+                                        <span class="title">EVA Slim Box Standard Drawer</span>
+                                        <span>
+                                            <b>Available Size -</b>
+                                            400/450/500/550/600/650/700
+                                        </span>
+                                        <span>
+                                            <b>Finish - </b>
+                                            White &amp; Grey
+                                        </span>
+                                        <span>
+                                            <b>Height - </b>
+                                            Drawer sides height 95mm
+                                        </span>
+                                        <div><img src="assets/images/06.png" /><div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/03.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/04.png">
-                    <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/05.png"></a></li>
-                    <li><a href="#"><img src="assets/images/gallery/06.png"></a></li>
-                </ul>
-                <div class="clear0"></div>
-                <div class="col-sm-12" style="text-align:center"><a href="#" class="btn">view more</a></div>
-            </div>
-            <div class="clear0"></div>
-            <div class="container event">
-                <div class="title">Event <hr/></div>
-                <div class="col-sm-5">
-                    <div class="eventInner">
-                        <h5>upcoming events</h5>
-                        <ul>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Event</b></div> 
-                                <div class="col-sm-8 pl0">Live Space India 2016</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Date</b></div>
-                                <div class="col-sm-8 pl0"> 23rd December 2016</div></li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0">Be the first to know about the products, store events and other discount information</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0">Comment Building, Bandra West, Mumbai,
-                                Maharashtra
-                            </li>
+                        <ul class="pagination">
+                            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                         </ul>
-                        <div class="clear0"></div>
-                        <hr/>
-                        <ul>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Event</b></div> 
-                                <div class="col-sm-8 pl0">Live Space India 2016</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Date</b></div>
-                                <div class="col-sm-8 pl0"> 23rd December 2016</div></li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0">Be the first to know about the products, store events and other discount information</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0">Comment Building, Bandra West, Mumbai,
-                                Maharashtra
-                            </li>
-                        </ul>
-                        
                     </div>
                 </div>
-                <div class="col-sm-7 pl0">
-                    <div class="pastEvent">
-                        <h5>past events</h5>
-                        <p>Furniture India 2016</p>
-                        <p>9th Feb 2016</p>
-                        <div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#pastevent-carausal" data-slide-to="0" class="active"></li>
-                            <li data-target="#pastevent-carausal" data-slide-to="1"></li>
-                            <li data-target="#pastevent-carausal" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="assets/images/past-event-img.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/past-event-img.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/past-event-img.png" alt="">
-                            </div>
-                        </div>
-                        <div class="clear15"></div>
-                        </div>
-                   </div>
-                </div>
-                <div class="clear15"></div>
-                <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
             </div>
             <div class="clear15"></div>
             <div class="container-fluid footer">
-                <div class="container">
-                    <div class="col-sm-6">
-                        <h5>Product catalogue</h5>
-                        <hr/>
-                        <div class="clear0"></div>
-                        <p>Be the first to know about the products, store events and other discount information</p>
-                        <a href="" class="btn">Download</a>
-                    </div>
-                    <div class="col-sm-6">
-                        <img src="assets/images/bro-img.png">
-                    </div>
-                </div>
                 <div class="clear0"></div>
                 <?php include_once('footer.php') ?>
             </div>
@@ -304,12 +257,12 @@ include_once('header.php') ?>
             }
             }
         </script>
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             $('#portfolio').click(function(e){
               e.preventDefault();
               //var href = $(this).attr('href');
               $('.kitchenBlock').slideUp('fast');
             });
-        </script>
+        </script> -->
     </body>
 </html>

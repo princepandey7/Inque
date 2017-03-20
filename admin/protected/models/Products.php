@@ -38,7 +38,7 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, size', 'required'),
+			array('title, size, categories_id, subcategories_id', 'required'),
 			array('product_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('title, finish, height, material', 'length', 'max'=>100),
 			array('size', 'length', 'max'=>10),
@@ -51,7 +51,7 @@ class Products extends CActiveRecord
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, size, finish, height, material, features, product_main_image, product_thum_image, kit_package_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('id, categories_id, subcategories_id, title, size, finish, height, material, features, product_main_image, product_thum_image, kit_package_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 

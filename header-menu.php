@@ -33,7 +33,7 @@
                                         $strAddSpanTag = '<span class="sr-only">(current)</span>';
                                     }
                                 ?>
-                                <a class="nav-link" href="<?php echo $strIndexUrl ?>.php"><?php echo $strMenu; ?></a>
+                                <a class="nav-link" href="<?php echo DIR .''. $strIndexUrl; ?>"><?php echo $strMenu; ?></a>
                             </li>        
                 <?php    }
                 ?>

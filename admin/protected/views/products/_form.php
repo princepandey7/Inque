@@ -27,6 +27,24 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'categories_id', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php
+
+							echo $form->dropDownList($model, 'categories_id', CHtml::listData(Categories::getActiveCategory(), 'categories_id', 'categories_name'), array('prompt' => '--Select Category Type--', 'class' => 'form-control')); ?>
+						<?php echo $form->error($model,'categories_id'); ?>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'subcategories_id', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php
+							echo $form->dropDownList($model, 'subcategories_id', array(), array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
+						<?php echo $form->error($model,'subcategories_id'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'size', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php echo $form->textField($model,'size',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12')); ?>
@@ -98,3 +116,35 @@
 	    </div>
   </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on('change','#Products_categories_id', function(){
+			var strCatId = $(this).find('option:selected').val();
+			if( strCatId != ''){
+				$.ajax({
+	                type: "POST",
+	                dataType: "json",
+	                data: {cat_id: strCatId},
+	                url: "<?php echo Yii::app()->baseUrl; ?>/products/getSubCatDetails/",
+	                success: function(data) {
+	                    if(data.status =="success"){
+	                    	$("#Products_subcategories_id").empty();
+	                    	var items="";
+							$.each(data.update, function(index, item)
+							{
+								items += "<option "+ item.categories_id +" >" + item.sub_categories_name + "</option>";
+							});
+
+							$("#Products_subcategories_id").html(items);
+	                    }
+	                }
+	            });
+			} else {
+				$("#Products_subcategories_id").empty();
+				$("#Products_subcategories_id").html("<option value=''>--Select Sub Category Type--</option>");
+			}
+		})
+	});
+
+</script>
