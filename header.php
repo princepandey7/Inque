@@ -48,6 +48,10 @@
             $strFixedUrl = '';
             $arrUrlData = end(explode('/',$_SERVER['REQUEST_URI']));
             $strGetUrl = current(explode('.',$arrUrlData));
+
+            if( empty($strGetUrl)){
+                $strGetUrl = 'index';   
+            }
             if( $strGetUrl == 'index'){
         ?>
         <div class="container-fluid ">
@@ -62,4 +66,4 @@
             ?>
             <div class="menubar <?php echo $strFixedUrl ?>">
                 <?php include_once('header-menu.php') ?>
-            </div><!-- / Menubar  -->
+            </div>

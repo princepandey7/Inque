@@ -16,12 +16,15 @@
                 $strFixedUrl = '';
                 $arrUrlData = end(explode('/',$_SERVER['REQUEST_URI']));
                 $strGetUrl = current(explode('.',$arrUrlData));
-                $arrMenuList = array( 'index' => 'Home', 'product' => 'Products', 'overview' => 'Overview', 'gallery' => 'Gallery', 'event' => 'Events', 'career' => 'Careers', 'contact' => 'Contacts');
+                $arrMenuList = array( 'index' => 'Home', 'product?cat=1&subid=1' => 'Products', 'overview' => 'Overview', 'gallery' => 'Gallery', 'event' => 'Events', 'career' => 'Careers', 'contact' => 'Contacts');
             ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php
                     foreach ($arrMenuList as $strIndexUrl => $strMenu) { 
                             $strActiveClass = '';
+                            if(empty($strGetUrl) ){
+                                $strGetUrl = 'index';
+                            }
                             if($strGetUrl == $strIndexUrl){
                                 $strActiveClass = 'active';
                             }
