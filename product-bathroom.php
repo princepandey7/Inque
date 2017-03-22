@@ -78,115 +78,105 @@
                                 <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                             </div>
                         </div>
-                        <div class="row block">
-                            <div class="col-sm-4">
-                                <ul>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <ul>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <ul>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                    <li>
-                                        <span class="title">EVA Slim Box Standard Drawer</span>
-                                        <span>
-                                            <b>Available Size -</b>
-                                            400/450/500/550/600/650/700
-                                        </span>
-                                        <span>
-                                            <b>Finish - </b>
-                                            White &amp; Grey
-                                        </span>
-                                        <span>
-                                            <b>Height - </b>
-                                            Drawer sides height 95mm
-                                        </span>
-                                        <div><img src="assets/images/06.png" /><div>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="block">
+                            <ul>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                                <li>
+                                    <span class="title">EVA Slim Box Standard Drawer</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <div><img src="assets/images/06.png" /><div>
+                                </li>
+                            </ul>
                         </div>
                         <ul class="pagination">
                             <li><a href="#"><i class="fa fa-angle-left"></i></a></li>

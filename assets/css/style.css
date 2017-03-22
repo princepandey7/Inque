@@ -418,8 +418,9 @@ margin-top: 0px; margin-bottom: 15px;}
 .link a .fa{ font-size: 11px; vertical-align:baseline; margin-right: 2px; }
 .link a.active{ color:#00e0d1 }
 
-.block ul li{ border: 1px solid  #323232; display: block; list-style: none; 
-    background: #ffffff; padding: 10px; margin-bottom: 30px;}
+.block ul{ width: 100%; }
+.block ul li{ border: 1px solid  #323232; display: inline-block; list-style: none; 
+    background: #ffffff; padding: 10px; margin-bottom: 30px; width: 30.33%; margin-right: 23px;}
 .block ul li span.title{ font-family: 'latoregular'; font-size: 16px; 
 font-weight: 600; color: #323232}
 .block ul li span{ display: block; margin-bottom: 15px;color: #323232; font-size: 14px; }
@@ -508,5 +509,6 @@ font-size: 26px!important; color: #323232;}
 .vision-mission .container p{ max-width: 100%; }
 .weare{ margin: 10px 0px; }
 .find-contact ul li{ width: 100%; }
+.block ul li{ width: 100%; }
 }
 
