@@ -94,7 +94,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                                 <li>
                                     <span class="title">EVA Slim Box Standard Drawer</span>
@@ -110,7 +110,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                             
                                 <li>
@@ -127,7 +127,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                                 <li>
                                     <span class="title">EVA Slim Box Standard Drawer</span>
@@ -143,7 +143,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                                 <li>
                                     <span class="title">EVA Slim Box Standard Drawer</span>
@@ -159,7 +159,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                                 <li>
                                     <span class="title">EVA Slim Box Standard Drawer</span>
@@ -175,7 +175,7 @@
                                         <b>Height - </b>
                                         Drawer sides height 95mm
                                     </span>
-                                    <div><img src="assets/images/06.png" /><div>
+                                    <div><img src="assets/images/Product_Details_page_img.jpg" /><div>
                                 </li>
                             </ul>
                         </div>
