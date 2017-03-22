@@ -27,11 +27,11 @@ include_once('header.php') ?>
                                 <div class="col-sm-8 pl0"><?php echo date('d F Y', strtotime($rowPro['event_start_date'])); ?></div></li>
                             <li class="row">
                                 <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0"><?php echo $rowPro['event_description']; ?></div>
+                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_description'], 0, 150) ; ?></div>
                             </li>
                             <li class="row">
                                 <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0"><?php echo $rowPro['event_evenue']; ?>
+                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_evenue'], 0, 150) ; ?>
                             </li>
                         </ul>
                         <div class="clear0"></div>
@@ -81,15 +81,8 @@ include_once('header.php') ?>
                                     </div>
                                 <?php } ?>
                                 
-
-                                <!-- <div class="item">
-                                    <img src="assets/images/past-event-img.png" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="assets/images/past-event-img.png" alt="">
-                                </div> -->
                             </div>
-                            <?php } ?>
+                            <?php } else { echo "No Image";} ?>
                         <div class="clear15"></div>
 
                         </div>

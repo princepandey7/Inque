@@ -3,17 +3,17 @@ ob_start();
 require_once("db.php");
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
-            
             <div class="container gallery margin-top100">
                 <div class="title">Gallery</div>
-
                 <?php
-                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT 0,5");
+                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT 0,3");
                 ?>
-                <ul class="grid effect-2" id="grid1">
-                    <?php while($rowPro = $GalleryQuery->fetch()){ ?>
-                    <li>
-                        <a href="assets/images/gallery/01.png" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/<?php echo $rowPro['gallery_thumnail_image']; ?>">
+                <ul class="grid effect-2 imageGalleryMainBox" id="grid1">
+                    <?php 
+                    while($rowPro = $GalleryQuery->fetch()){ 
+                    ?>
+                    <li class="galleryMainImage">
+                        <a href="assets/images/gallery/<?php echo $rowPro['gallery_main_image']; ?>" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/<?php echo $rowPro['gallery_thumnail_image']; ?>">
                         <div class="caption">
                             <b><?php echo $rowPro['gallery_title']; ?></b>
                             <p><?php echo $rowPro['gallery_description']; ?></p>
@@ -21,29 +21,9 @@ include_once('header.php') ?>
                         </a>
                     </li>
                     <?php } ?>
-                    <!-- <li><a href="#"><img src="assets/images/gallery/02.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/03.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/04.png">
-                    <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/05.png"></a></li>
-                    <li><a href="#"><img src="assets/images/gallery/06.png"></a></li> -->
                 </ul>
                 <div class="clear0"></div>
-                <div class="col-sm-12" style="text-align:center"><a href="#" class="btn">view more</a></div>
+                <div class="col-sm-12" style="text-align:center"><a class="btn" id="galleryViewMore">view more</a></div>
             </div>
             <div class="clear0"></div>
             
@@ -114,23 +94,41 @@ include_once('header.php') ?>
             });
         </script>
         <script>
-            new AnimOnScroll( document.getElementById( 'grid1' ), {
-                minDuration : 0.4,
-                maxDuration : 0.7,
-                viewportFactor : 0.2
-            } );
+            $(function(){
+                loadImageGallery();
+                $(document).on('click', '#galleryViewMore', function(){
+                    var countTotalGallery = $(".imageGalleryMainBox").children("li").length;
+
+                    jQuery.ajax({
+                        url: "loadGallery.php",
+                        type: "post",
+                        data: {"gallery_count" : countTotalGallery},
+                        success: function(data) {
+                            $('.imageGalleryMainBox').find("li:last").after(data);
+                            loadImageGallery();
+                        }
+                    });
+                })
+            });
         </script>
         <script type="text/javascript">
+            function loadImageGallery(){
+                new AnimOnScroll( document.getElementById( 'grid1' ), {
+                    minDuration : 0.4,
+                    maxDuration : 0.7,
+                    viewportFactor : 0.2
+                });
+            }
             /*
             ------------------------------------------------------------
             Function to activate form button to open the slider.
             ------------------------------------------------------------
             */
             function open_panel() {
-            slideIt();
-            var a = document.getElementById("sidebar");
-            a.setAttribute("id", "sidebar1");
-            a.setAttribute("onclick", "close_panel()");
+                slideIt();
+                var a = document.getElementById("sidebar");
+                a.setAttribute("id", "sidebar1");
+                a.setAttribute("onclick", "close_panel()");
             }
             /*
             ------------------------------------------------------------
@@ -138,11 +136,11 @@ include_once('header.php') ?>
             ------------------------------------------------------------
             */
             function slideIt() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = 0;
-            if (parseInt(slidingDiv.style.right) < stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) + 2 + "px";
-            setTimeout(slideIt, 1);
+                var slidingDiv = document.getElementById("slider");
+                var stopPosition = 0;
+                if (parseInt(slidingDiv.style.right) < stopPosition) {
+                slidingDiv.style.right = parseInt(slidingDiv.style.right) + 2 + "px";
+                setTimeout(slideIt, 1);
             }
             }
             /*
@@ -151,10 +149,10 @@ include_once('header.php') ?>
             ------------------------------------------------------------
             */
             function close_panel() {
-            slideIn();
-            a = document.getElementById("sidebar1");
-            a.setAttribute("id", "sidebar");
-            a.setAttribute("onclick", "open_panel()");
+                slideIn();
+                a = document.getElementById("sidebar1");
+                a.setAttribute("id", "sidebar");
+                a.setAttribute("onclick", "open_panel()");
             }
             /*
             ------------------------------------------------------------
@@ -162,12 +160,12 @@ include_once('header.php') ?>
             ------------------------------------------------------------
             */
             function slideIn() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = -342;
-            if (parseInt(slidingDiv.style.right) > stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) - 2 + "px";
-            setTimeout(slideIn, 1);
-            }
+                var slidingDiv = document.getElementById("slider");
+                var stopPosition = -342;
+                if (parseInt(slidingDiv.style.right) > stopPosition) {
+                    slidingDiv.style.right = parseInt(slidingDiv.style.right) - 2 + "px";
+                    setTimeout(slideIn, 1);
+                }
             }
         </script>
         <script>
