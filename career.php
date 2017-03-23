@@ -56,7 +56,7 @@ require_once("db.php");
         $connection->InsertQuery("careers_mail",$insetQuery);
 
         //mail
-        $to_email= "careersjesons@gmail.com";
+        $to_email= "contact@m9creative.com";
         //email body
         $message_body = "Name : ".$name."\r\n\r\nEmail : ".$email."\r\n\r\nPhone Number : ". $phone."\r\n\r\nCity : ". $city."\r\n\r\nState : ". $state."\r\n\r\nCountry : ".$country."\r\n\r\nMessage : ".$message;
 

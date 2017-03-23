@@ -1,3 +1,9 @@
+<script type='text/javascript'>
+    $(window).load(function(){
+        $('#loader-overlay').fadeOut(900);
+        $("html").css("overflow","visible");
+    });
+    </script>
  <footer>
     <img src="assets/images/footer-logo.png">
     <div class="clear0"></div>

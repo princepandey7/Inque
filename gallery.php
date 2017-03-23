@@ -97,15 +97,21 @@ include_once('header.php') ?>
             $(function(){
                 loadImageGallery();
                 $(document).on('click', '#galleryViewMore', function(){
+                    $("#loader-overlay").show();
                     var countTotalGallery = $(".imageGalleryMainBox").children("li").length;
-
+                    var This = $(this);
                     jQuery.ajax({
                         url: "loadGallery.php",
                         type: "post",
                         data: {"gallery_count" : countTotalGallery},
                         success: function(data) {
-                            $('.imageGalleryMainBox').find("li:last").after(data);
-                            loadImageGallery();
+                            if( data != ''){
+                                $('.imageGalleryMainBox').find("li:last").after(data);
+                                loadImageGallery();
+                            } else {
+                                This.hide();
+                            }
+                            $("#loader-overlay").hide();
                         }
                     });
                 })

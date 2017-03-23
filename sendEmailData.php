@@ -21,7 +21,7 @@ if(!empty($_POST))
 
 	$connection->InsertQuery("contact_us",$insetQuery);
 
-	$to = "admin@gmail.com";
+	$to = "contact@m9creative.com";
 	$subject = "User contact details";
 
 	$message = " <html>

@@ -43,6 +43,7 @@
     </head>
 
     <body>
+    <div id="loader-overlay"><img src="assets/images/loader.gif" alt="Loading" /></div>
         <?php
             $strGetUrl = '';
             $strFixedUrl = '';

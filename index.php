@@ -1,4 +1,5 @@
-<?php 
+<?php
+require_once("db.php");
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
             <div class="kitchenBlock">
@@ -104,36 +105,25 @@ include_once('header.php') ?>
             <div class="clear0"></div>
             <div class="container gallery">
                 <div class="title">Gallery</div>
+                <?php
+                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT 0,6");
+                ?>
                 <ul class="grid effect-2" id="grid1">
-                    <li><a href="#"><img src="assets/images/gallery/01.png">
+                    <?php 
+                        while($rowPro = $GalleryQuery->fetch()){ 
+                    ?>
+                    <li>
+                        <a href="assets/images/gallery/<?php echo $rowPro['gallery_main_image']; ?>" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/<?php echo $rowPro['gallery_thumnail_image']; ?>">
                         <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
+                            <b><?php echo $rowPro['gallery_title']; ?></b>
+                            <p><?php echo $rowPro['gallery_description']; ?></p>
                         </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/02.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/03.png">
-                        <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/04.png">
-                    <div class="caption">
-                            <b>Lorem ipsum</b>
-                            <p>This is simply dummy text</p>
-                        </div>
-                    </a></li>
-                    <li><a href="#"><img src="assets/images/gallery/05.png"></a></li>
-                    <li><a href="#"><img src="assets/images/gallery/06.png"></a></li>
+                        </a>
+                    </li>
+                    <?php } ?>
                 </ul>
                 <div class="clear0"></div>
-                <div class="col-sm-12" style="text-align:center"><a href="#" class="btn">view more</a></div>
+                <div class="col-sm-12" style="text-align:center"><a href="<?php echo DIR .'gallery' ?>" class="btn">view more</a></div>
             </div>
             <div class="clear0"></div>
             <div class="container event">
@@ -141,78 +131,85 @@ include_once('header.php') ?>
                 <div class="col-sm-5">
                     <div class="eventInner">
                         <h5>upcoming events</h5>
+                <?php
+                    $curDate = date("Y-m-d");
+                    $EventCurrentQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date > '$curDate' LIMIT 0,2");
+                    $EventPastQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date < '$curDate' LIMIT 0,1");
+
+                    $strCount = 1;
+                    while($rowPro = $EventCurrentQuery->fetch()){
+                ?>
                         <ul>
                             <li>
                                 <div class="col-sm-4 pl0"><b>Event</b></div> 
-                                <div class="col-sm-8 pl0">Live Space India 2016</div>
+                                <div class="col-sm-8 pl0"><?php echo $rowPro['event_title']; ?></div>
                             </li>
                             <li>
                                 <div class="col-sm-4 pl0"><b>Date</b></div>
-                                <div class="col-sm-8 pl0"> 23rd December 2016</div></li>
+                                <div class="col-sm-8 pl0"> <?php echo date('d F Y', strtotime($rowPro['event_start_date'])); ?></div></li>
                             <li>
                                 <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0">Be the first to know about the products, store events and other discount information</div>
+                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_description'], 0, 150) ; ?></div>
                             </li>
                             <li>
                                 <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0">Comment Building, Bandra West, Mumbai,
-                                Maharashtra
+                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_evenue'], 0, 150) ; ?>
                             </li>
                         </ul>
                         <div class="clear0"></div>
                         <hr/>
-                        <ul>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Event</b></div> 
-                                <div class="col-sm-8 pl0">Live Space India 2016</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Date</b></div>
-                                <div class="col-sm-8 pl0"> 23rd December 2016</div></li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0">Be the first to know about the products, store events and other discount information</div>
-                            </li>
-                            <li>
-                                <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0">Comment Building, Bandra West, Mumbai,
-                                Maharashtra
-                            </li>
-                        </ul>
-                        
+                        <?php $strCount++; } ?>
                     </div>
                 </div>
                 <div class="col-sm-7 pl0">
                     <div class="pastEvent">
-                        <h5>past events</h5>
-                        <p>Furniture India 2016</p>
-                        <p>9th Feb 2016</p>
-                        <div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#pastevent-carausal" data-slide-to="0" class="active"></li>
-                            <li data-target="#pastevent-carausal" data-slide-to="1"></li>
-                            <li data-target="#pastevent-carausal" data-slide-to="2"></li>
-                        </ol>
+                        <?php 
+                            $strPastCount = 1;
+                            while($rowPastPro = $EventPastQuery->fetch()){
+                        ?>
+                            <h5>past events</h5>
+                            <p><?php echo $rowPastPro['event_title']; ?></p>
+                            <p><?php echo date('d F Y', strtotime($rowPastPro['event_start_date'])); ?></p>
+                            <div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">
+                            <?php 
+                                if( !empty( $rowPastPro['event_images'] ) ){
+                                    $getTotalImg = explode(",", $rowPastPro['event_images']);
+                            ?>
+                                <ol class="carousel-indicators">
+                                    <?php for ($i=0; $i < count($getTotalImg) ; $i++) { 
+                                        $currStatus = '';
+                                        if($i == 0){
+                                            $currStatus = 'active';
+                                        }
+                                    ?> 
+                                        <li data-target="#pastevent-carausal" data-slide-to="<?php echo $i; ?>" class="<?php echo $currStatus;?>"></li>
+                                    <?php } ?>
+                                    <!-- <li data-target="#pastevent-carausal" data-slide-to="1"></li>
+                                    <li data-target="#pastevent-carausal" data-slide-to="2"></li> -->
+                                </ol>
 
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="assets/images/past-event-img.png" alt="">
+                            
+                                <div class="carousel-inner">
+                                <?php 
+                                    foreach ($getTotalImg as $key => $value) {
+                                        $currStatus = '';
+                                        if($key == 0){
+                                            $currStatus = 'active';
+                                        }
+                                ?> 
+                                    <div class="item <?php echo $currStatus;?>">
+                                        <img src="assets/images/events/<?php echo $value; ?>" alt="">
+                                    </div>
+                                <?php } ?>
+                                
                             </div>
-                            <div class="item">
-                                <img src="assets/images/past-event-img.png" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/past-event-img.png" alt="">
-                            </div>
-                        </div>
-                        <div class="clear15"></div>
+                            <?php } else { echo "No Image";} ?>
+                        <?php $strPastCount++; } ?>
                         </div>
                    </div>
                 </div>
                 <div class="clear15"></div>
-                <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
+                <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="<?php echo DIR .'event' ?>" class="btn">view more</a></div>
             </div>
             <div class="clear15"></div>
             <div class="container-fluid footer">
