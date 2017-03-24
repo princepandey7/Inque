@@ -6,9 +6,14 @@ include_once('header.php') ?>
             <div class="clear0"></div>
             <div class="container event margin-top100">
                 <div class="title">Event <hr/></div>
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <div class="eventInner">
-                        <h5>upcoming events</h5>
+                        <div class="menu-list">
+                            <ul>
+                                <li class="active"><a href="">Upcoming Event's</a> </li>
+                                <li><a href="">Past Event's </a></li>
+                            </ul>
+                        </div>
                         <?php
                             $curDate = date("Y-m-d");
                             $EventQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date > '$curDate'");
@@ -39,9 +44,8 @@ include_once('header.php') ?>
                         <?php $strCount++; } ?>
                     </div>
                 </div>
-                <div class="col-sm-7 pl0">
+                <div class="col-sm-9 pl0">
                     <div class="pastEvent">
-                        <h5>past events</h5>
                         <?php 
                             $strPastCount = 1;
                             while($rowPastPro = $EventPastQuery->fetch()){
