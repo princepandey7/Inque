@@ -126,7 +126,7 @@ class SubCategories extends CActiveRecord
 	}
 
 	public static function getActiveSubCategory($categories_id){
-		return Yii::app()->db->createCommand('SELECT categories_id,sub_categories_name FROM sub_categories WHERE categories_id = '. $categories_id .' AND sub_categories_status='. self::STATUS_ACTIVE )->queryAll();
+		return Yii::app()->db->createCommand('SELECT sub_categories_id,sub_categories_name FROM sub_categories WHERE categories_id = '. $categories_id .' AND sub_categories_status='. self::STATUS_ACTIVE )->queryAll();
 	}
 
 	// public static function itemAlias($type, $code = NULL) {

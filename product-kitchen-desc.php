@@ -1,42 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta name="description" content="Modular kitchen and bathroom accessories. All kinds of kitchen accessories, Bathroom fittings, Office Furniture &amp; Fitting ">
-        <meta name="author" content="">
-        <link rel="icon" href="../../favicon.ico">
-
-        <title>INQUE - Modular kitchen and bathroom accessories</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="assets/fonts/stylesheet.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-
-        <link rel="stylesheet" type="text/css" href="assets/gallery/css/default.css" />
-        <link rel="stylesheet" type="text/css" href="assets/gallery/css/component.css" />
-        
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/gallery/js/modernizr.custom.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-
-    <body>  
-        <div class="container-fluid">
-            <div class="menubar fixed">
-                <?php include_once('header-menu.php') ?>
-            </div><!-- / Menubar  -->
-
+<?php
+ob_start();
+require_once("db.php");
+$pgTitle = "INQUE - Modular kitchen and bathroom accessories";
+include_once('header.php');
+?>
             <div class="container-fluid banner margin-top100">
                 <img src="assets/images/top-banner.jpg" class="responsive-img">
                 <h6>solution for smart spaces</h6>
@@ -78,49 +45,51 @@
                                 <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                             </div>
                         </div>
-                        <div class="descr">
-                            <span class="title-band"> 
-                                EVA Slim Box High Inner Drawer with Cross Railling System
-                            </span>
-                            <div class="left-sec">
-                                <img src="assets/images/kitchen-banner.png">
+                        <div class="productDescription">
+                            <div class="descr">
+                                <span class="title-band"> 
+                                    EVA Slim Box High Inner Drawer with Cross Railling System
+                                </span>
+                                <div class="left-sec">
+                                    <img src="assets/images/kitchen-banner.png">
+                                </div>
+                                <div class="right-sec">
+                                    <span class="title">EBDS - 4040-95</span>
+                                    <span>
+                                        <b>Available Size -</b>
+                                        400/450/500/550/600/650/700
+                                    </span>
+                                    <span>
+                                        <b>Finish - </b>
+                                        White &amp; Grey
+                                    </span>
+                                    <span>
+                                        <b>Height - </b>
+                                        Drawer sides height 95mm
+                                    </span>
+                                    <span>
+                                        <b>Features - </b>
+                                        <span>Drawer sides height</span>
+                                        <span>Drawer sides height 95mm</span>
+                                        <span>Drawer sides height 95mm</span>
+                                        <span>Drawer sides height 95mm</span>
+                                    </span>
+                                </div>
+                                <div class="clear15"></div>
+                                <div class="link pull-right">
+                                    <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
+                                    <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                                </div>
+                                <div class="clear0"></div>
                             </div>
-                            <div class="right-sec">
-                                <span class="title">EBDS - 4040-95</span>
-                                <span>
-                                    <b>Available Size -</b>
-                                    400/450/500/550/600/650/700
-                                </span>
-                                <span>
-                                    <b>Finish - </b>
-                                    White &amp; Grey
-                                </span>
-                                <span>
-                                    <b>Height - </b>
-                                    Drawer sides height 95mm
-                                </span>
-                                <span>
-                                    <b>Features - </b>
-                                    <span>Drawer sides height</span>
-                                    <span>Drawer sides height 95mm</span>
-                                    <span>Drawer sides height 95mm</span>
-                                    <span>Drawer sides height 95mm</span>
-                                </span>
+                            <div class="img-block">
+                                <b>Kit Package -</b>
+                                <img src="assets/images/banner-img.jpg" class="responsive-img">
                             </div>
-                            <div class="clear15"></div>
-                            <div class="link pull-right">
-                                <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-                                <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                            <div class="img-block">
+                                <b>Planning -</b>
+                                <img src="assets/images/banner-img.jpg" class="responsive-img">
                             </div>
-                            <div class="clear0"></div>
-                        </div>
-                        <div class="img-block">
-                            <b>Kit Package -</b>
-                            <img src="assets/images/banner-img.jpg" class="responsive-img">
-                        </div>
-                        <div class="img-block">
-                            <b>Planning -</b>
-                            <img src="assets/images/banner-img.jpg" class="responsive-img">
                         </div>
                     </div>
                 </div>

@@ -39,7 +39,11 @@
 					<?php echo $form->labelEx($model,'subcategories_id', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php
-							echo $form->dropDownList($model, 'subcategories_id', array(), array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
+							$subCatDetails = array();
+							if( !empty( $model->subcategories_id ) ){
+								$subCatDetails = CHtml::listData(SubCategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
+							}
+							echo $form->dropDownList($model, 'subcategories_id', $subCatDetails, array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'subcategories_id'); ?>
 					</div>
 				</div>
@@ -82,24 +86,41 @@
 				</div>
 
 				<div class="form-group col-md-12">
-					<?php echo $form->labelEx($model,'product_main_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<?php
+					 echo $form->labelEx($model,'product_main_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<?php echo $form->fileField($model,'product_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php 
+						if(!empty($model->product_main_image)){
+							echo '<img src="../../images/products/'.$model->product_main_image.'" width="200" />';
+							echo $form->hiddenField($model, 'product_main_image', array('value'=>$model->product_main_image));
+						}
+						echo $form->fileField($model,'product_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_main_image'); ?>
 					</div>
 				</div>
 				<div class="form-group col-md-12">
-					<?php echo $form->labelEx($model,'product_thum_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<?php
+					echo $form->labelEx($model,'product_thum_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<?php echo $form->fileField($model,'product_thum_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php 
+						if(!empty($model->product_thum_image)){
+							echo '<img src="../../images/products/thum/'.$model->product_thum_image.'" width="200" />';
+							echo $form->hiddenField($model, 'product_thum_image', array('value'=>$model->product_thum_image));
+						}
+						echo $form->fileField($model,'product_thum_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_thum_image'); ?>
 					</div>
 				</div>
-				
+
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'kit_package_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<?php echo $form->fileField($model,'kit_package_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php 
+						if(!empty($model->kit_package_image)){
+							echo '<img src="../../images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
+							echo $form->hiddenField($model, 'kit_package_image', array('value'=>$model->kit_package_image));
+						}
+						echo $form->fileField($model,'kit_package_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'kit_package_image'); ?>
 					</div>
 				</div>
@@ -122,6 +143,7 @@
 		$(document).on('change','#Products_categories_id', function(){
 			var strCatId = $(this).find('option:selected').val();
 			if( strCatId != ''){
+				$("#loader-overlay").show();
 				$.ajax({
 	                type: "POST",
 	                dataType: "json",
@@ -133,12 +155,12 @@
 	                    	var items="";
 							$.each(data.update, function(index, item)
 							{
-								items += "<option "+ item.categories_id +" >" + item.sub_categories_name + "</option>";
+								items += "<option "+ item.sub_categories_id +" >" + item.sub_categories_name + "</option>";
 							});
-
 							$("#Products_subcategories_id").html(items);
+							$("#loader-overlay").hide();
 	                    }
-	                }
+	                },
 	            });
 			} else {
 				$("#Products_subcategories_id").empty();

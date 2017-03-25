@@ -47,7 +47,7 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                             $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 LIMIT 0,5");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 LIMIT 0,5");
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
@@ -58,114 +58,59 @@ include_once('header.php');
                                 <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
                                 <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                             </div>
+                            <div class="backToProductBox" style="display: none;">
+                                <a id="backToProductList">Back To Product</a>
+                            </div>
                         </div>
-                        <div class="block">
+                        <div class="block productInqueList">
                             <ul>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
-                                <li>
-                                    <span class="title">EVA Slim Box Standard Drawer</span>
-                                    <span>
-                                        <b>Available Size -</b>
-                                        400/450/500/550/600/650/700
-                                    </span>
-                                    <span>
-                                        <b>Finish - </b>
-                                        White &amp; Grey
-                                    </span>
-                                    <span>
-                                        <b>Height - </b>
-                                        Drawer sides height 95mm
-                                    </span>
-                                    <div><img src="assets/images/06.png" /><div>
-                                </li>
+                                <?php
+                                    $rowProducts = $ProductQuery->fetchAll(PDO::FETCH_ASSOC);
+                                    if( !empty( $rowProducts ) ){
+                                        foreach ($rowProducts as $strProIndex => $rowProduct) {
+                                ?>
+                                    <li>
+                                        <span class="title"> <a class="productList" proId = <?php echo $rowProduct['id']; ?>><?php echo $rowProduct['title']; ?> </a></span>
+                                        <span>
+                                            <?php 
+                                                if(!empty($rowProduct['size'])){
+                                                    echo "<b>Available Size - </b>". $rowProduct['size']; 
+                                                }
+                                            ?>
+                                        </span>
+                                        <span>
+                                            <?php 
+                                                if(!empty($rowProduct['finish'])){
+                                                    echo "<b>Finish - </b>". $rowProduct['finish']; 
+                                                }
+                                            ?>
+                                        </span>
+                                        <span>
+                                            <?php 
+                                                if(!empty($rowProduct['height'])){
+                                                    echo "<b>Height - </b>". $rowProduct['height']; 
+                                                }
+                                            ?>
+                                        </span>
+                                        <div>
+                                            <?php 
+                                                if( !empty( $rowProduct['product_main_image'] ) ){
+                                                    echo "<img src=assets/images/products/". $rowProduct['product_main_image'] ."";
+                                                }
+                                            ?>
+                                        <div>
+                                    </li>
+                                <?php
+                                        }
+                                    } else { echo "No Product Found"; } 
+                                ?>
                             </ul>
+                            <div class="clear0"></div>
+                            <?php if( !empty( $rowProducts ) ){ ?>
+                                <div class="col-sm-12" style="text-align:center"><a class="btn" id="productViewMore">view more</a></div>
+                            <?php } ?>
                         </div>
-                        <ul class="pagination">
-                            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
+                        <div class="productDetails" style="display: none"></div>
                     </div>
                 </div>
             </div>
@@ -190,13 +135,44 @@ include_once('header.php');
                 $(this).addClass("active");
             });
         </script>
-        <script>
-            new AnimOnScroll( document.getElementById( 'grid1' ), {
-                minDuration : 0.4,
-                maxDuration : 0.7,
-                viewportFactor : 0.2
-            } );
+         <script>
+            $(function(){
+                $(".backToProductBox").hide();
+                $(document).on('click', '.productList', function(){
+                    $("#loader-overlay").show();
+                    var productId = $(this).attr("proid");
+                    var This = $(this);
+                    jQuery.ajax({
+                        url: "loadProductDetails.php",
+                        type: "post",
+                        data: {"productId" : productId},
+                        success: function(data) {
+                            if( data != ''){
+                                This.parents('.productInqueList').hide();
+                                $(".productDetails").show();
+                                $(".productDetails").html();
+                                $(".productDetails").html(data);
+                                $(".backToProductBox").show();
+                                // $('.imageGalleryMainBox').find("li:last").after(data);
+                            }
+                            $("#loader-overlay").hide();
+                        }
+                    });
+                })
+
+                $(document).on('click', '#backToProductList', function(){
+                    $("#loader-overlay").show();
+                    $(".productDetails").html();
+                    $(".productDetails").hide();
+                    $(".productInqueList").show();
+                    $("#loader-overlay").hide();
+                    $(this).parent('.backToProductBox').hide();
+                });
+
+                
+            });
         </script>
+
         <script type="text/javascript">
             /*
             ------------------------------------------------------------
