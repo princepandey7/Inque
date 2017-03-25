@@ -416,7 +416,7 @@ margin-top: 0px; margin-bottom: 15px;}
 .heading .link{ position: absolute;  right: 0; bottom: 15px;}
 .link a { display: inline-block; font-size: 13px; color:#323232;}
 .link a .fa{ font-size: 11px; vertical-align:baseline; margin-right: 2px; }
-.link a.active{ color:#00e0d1 }
+.link a:hover{ color:#00e0d1 }
 
 .block ul{ width: 100%; }
 .block ul li{ border: 1px solid  #323232; display: inline-block; list-style: none; 
