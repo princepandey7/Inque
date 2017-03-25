@@ -61,6 +61,12 @@ while($rowProductDesc = $arrProductDescQuery->fetch()){
 		    <img src="assets/images/products/kit-package/'. $rowProductDesc['kit_package_image'] .'" class="responsive-img">              
 		</div>';
 	}
+	if( !empty($rowProductDesc['planning_image']) ) {
+		$LoadedData .='<div class="img-block">
+		    <b>Kit Package -</b>
+		    <img src="assets/images/products/planning/'. $rowProductDesc['planning_image'] .'" class="responsive-img">              
+		</div>';
+	}
 ?>
 <?php } 
 echo $LoadedData;

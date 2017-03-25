@@ -15,7 +15,7 @@ include_once('header.php');
                         <div class="menu-list">
                             <?php
                                 // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
-                            $current_cat = urlencode($_GET['cat']);
+                                $current_cat = urlencode($_GET['cat']);
                                 $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
                                 $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
 
@@ -47,7 +47,7 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 LIMIT 0,5");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $_GET['subid'] ." LIMIT 0,5");
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
