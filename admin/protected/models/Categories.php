@@ -132,4 +132,11 @@ class Categories extends CActiveRecord
 		$criteria->compare('categories_status',self::STATUS_ACTIVE);
 		return Categories::model()->findAll($criteria);
 	}
+
+	public static function getCategoryName($categories_id){
+		$data = self::model()->findByPk($categories_id);
+		if( !empty( $data ) ){
+			return $data->categories_name;
+		}
+	}
 }

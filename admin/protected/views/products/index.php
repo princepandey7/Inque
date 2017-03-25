@@ -21,6 +21,8 @@ $this->breadcrumbs=array(
 			<tr>
 				<th>Sr No</th>
 				<th>Title</th>
+				<th>Category</th>
+				<th>Sub-Category</th>
 				<th>Size</th>
 				<!-- <th>End Date</th> -->
 				<th>Action</th>
@@ -35,6 +37,8 @@ $this->breadcrumbs=array(
 						<tr>
 							<td><?php echo $keyProduct + 1; ?></td>
 							<td><?php echo $objProduct->title; ?></td>
+							<td><?php echo Categories::getCategoryName($objProduct->categories_id); ?></td>
+							<td><?php echo SubCategories::getSubCategoryName($objProduct->subcategories_id); ?></td>
 							<td><?php echo $objProduct->size; ?></td>
 							<!-- <td><?php //echo $objProduct->event_end_date; ?></td> -->
 							<td>
