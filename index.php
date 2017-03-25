@@ -1,5 +1,6 @@
 <?php
 require_once("db.php");
+// require_once 'routing.php';
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
             <div class="kitchenBlock">

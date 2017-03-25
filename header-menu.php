@@ -16,7 +16,7 @@
                 $strFixedUrl = '';
                 $arrUrlData = end(explode('/',$_SERVER['REQUEST_URI']));
                 $strGetUrl = current(explode('.',$arrUrlData));
-                $arrMenuList = array( 'index' => 'Home', 'product?cat=1&subid=1' => 'Products', 'overview' => 'Overview', 'gallery' => 'Gallery', 'event' => 'Events', 'career' => 'Careers', 'contact' => 'Contacts');
+                $arrMenuList = array( 'index' => 'Home', 'product' => 'Products', 'overview' => 'Overview', 'gallery' => 'Gallery', 'event' => 'Events', 'career' => 'Careers', 'contact' => 'Contacts');
             ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php
@@ -32,11 +32,25 @@
                             <li class="nav-item <?php echo $strActiveClass; ?>">
                                 <?php
                                     $strAddSpanTag = '';
+                                    $strAddSubMenus = array();
                                     if( $strIndexUrl == 'index' ){
                                         $strAddSpanTag = '<span class="sr-only">(current)</span>';
                                     }
+
+                                    if( $strIndexUrl == 'product'){
+                                        $getCatQuery = $connection->tableDataCondition("categories_id, categories_name", "categories", "categories_status=1");
+                                        $strAddSubMenus = $getCatQuery->fetchAll(PDO::FETCH_ASSOC);
+                                    }
                                 ?>
                                 <a class="nav-link" href="<?php echo DIR .''. $strIndexUrl; ?>"><?php echo $strMenu; ?></a>
+                                    <?php 
+                                        if( !empty( $strAddSubMenus ) ){
+                                        echo "<ul>";
+                                            foreach ($strAddSubMenus as $strProIndex => $strAddSubCat) {
+                                    ?>
+                                            <li><a href="<?php echo $strIndexUrl .'?cat='. $strAddSubCat['categories_id'] .'&subid=1' ; ?>"> <?php echo $strAddSubCat['categories_name']; ?> </a></li>
+                                        
+                                    <?php } echo "</ul>"; } ?>
                             </li>        
                 <?php    }
                 ?>

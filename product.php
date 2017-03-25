@@ -15,7 +15,9 @@ include_once('header.php');
                         <div class="menu-list">
                             <?php
                                 // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
-                                $current_cat = urlencode($_GET['cat']);
+                            $catId = isset($_GET['cat']) ? $_GET['cat'] : "1";
+                            $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
+                                $current_cat = urlencode($catId);
                                 $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
                                 $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
 
@@ -31,13 +33,13 @@ include_once('header.php');
                                     $strActiveDesc = '';
                                     while($rowSubCategory = $SubCategoryQuery->fetch()){ 
                                         $strActiveClass = '';
-                                        if(isset($_GET['subid']) && ( $_GET['subid'] == $rowSubCategory['sub_categories_id'] ) ){
+                                        if(isset($subId) && ( $subId == $rowSubCategory['sub_categories_id'] ) ){
                                             $strActiveClass = 'active';
                                             $strActiveTitle = $rowSubCategory['sub_categories_name'];
                                             $strActiveDesc = $rowSubCategory['sub_categories_description'];
                                         }
                                     ?>
-                                    <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat=1&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
+                                    <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat='. $catId .'&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
                                 <?php } ?>
                             </ul>
                             <?php 
@@ -47,7 +49,7 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $_GET['subid'] ." LIMIT 0,5");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,5");
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
