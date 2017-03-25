@@ -41,13 +41,14 @@ class Products extends CActiveRecord
 			array('title, size, categories_id, subcategories_id', 'required'),
 			array('product_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('title, finish, height, material', 'length', 'max'=>100),
-			array('size', 'length', 'max'=>10),
+			array('size', 'length', 'max'=>100),
 			array('features, modified_date', 'safe'),
+			//  'width' => 515, 'height' => 450, 'dimensionError' => 'Image dimension error',
+			array('product_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
-			array('product_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 1024, 'height' => 1024, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
-			array('product_thum_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 300, 'height' => 300, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			array('product_thum_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 390, 'height' => 280, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 			
-			array('kit_package_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 300, 'height' => 300, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			array('kit_package_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

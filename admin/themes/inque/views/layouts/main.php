@@ -27,6 +27,7 @@
 </head>
 
 <body class="nav-md">
+  <div id="loader-overlay"><img src="<?php echo Yii::app()->baseUrl ?>/images/loader.gif" alt="Loading" /></div>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -269,6 +270,11 @@
 
     <!-- Custom Theme Scripts -->
     <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/vendors/build/js/custom.min.js"></script>
-	
+	 <script type='text/javascript'>
+    $(window).load(function(){
+        $('#loader-overlay').fadeOut(900);
+        $("html").css("overflow","visible");
+    });
+    </script>
   </body>
 </html>
