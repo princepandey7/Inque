@@ -1,8 +1,10 @@
 $(function(){
     $("#strSendContactFrm").validationEngine();
     $("#strSendEnquiryFrm").validationEngine();
+    $("#strSendProductCatalogueFrm").validationEngine();
     $(document).on('click','#strContactBtn',function(){
         if($("#strSendContactFrm").validationEngine('validate')){
+            $("#loader-overlay").show();
             var form_value = $("#strSendContactFrm").serializeArray();
             jQuery.ajax({
                 url: "sendEmailData.php",
@@ -22,6 +24,7 @@ $(function(){
                     {
                         alert("Something Went Wrong, Please try again.");
                     }
+                    $("#loader-overlay").hide();
                 }
             });
         }
@@ -29,6 +32,7 @@ $(function(){
 
     $(document).on('click','#strEnquiryContactBtn',function(){
         if($("#strSendEnquiryFrm").validationEngine('validate')){
+            $("#loader-overlay").show();
             var form_value = $("#strSendEnquiryFrm").serializeArray();
             jQuery.ajax({
                 url: "sendEmailData.php",
@@ -48,6 +52,33 @@ $(function(){
                     {
                         alert("Something Went Wrong, Please try again.");
                     }
+                    $("#loader-overlay").hide();
+                }
+            });
+        }
+    });
+
+    $(document).on('click','#strProductCatalogueBtn',function(){
+        if($("#strSendProductCatalogueFrm").validationEngine('validate')){
+            $("#loader-overlay").show();
+            var form_value = $("#strSendProductCatalogueFrm").serializeArray();
+            jQuery.ajax({
+                url: "sendProductCatalogueData.php",
+                type: "post",
+                data: form_value,
+                success: function(data) {
+                    if(data == "success")
+                    {
+                        $("#strSendProductCatalogueFrm").find("input[type=text]").val("");
+                        $("#strSendProductCatalogueFrm").find("input[type=email]").val("");
+                        $('#productCatalogueForm').modal('hide');
+                        alert("Pdf Link has been sent to your email.");
+                    }
+                    else
+                    {
+                        alert("Something Went Wrong, Please try again.");
+                    }
+                    $("#loader-overlay").hide();
                 }
             });
         }

@@ -24,7 +24,7 @@
         <link rel="stylesheet" type="text/css" href="assets/gallery/css/default.css" />
         <link rel="stylesheet" type="text/css" href="assets/gallery/css/component.css" />
         
-        <!-- <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.css" media="screen" /> -->
+        <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.css" media="screen" />
         <!-- <link rel="stylesheet" type="text/css" href="assets/css/jquery_notification.css" media="screen" /> -->
         <link rel="stylesheet" type="text/css" href="assets/css/validationEngine.jquery.css" media="screen" />
 

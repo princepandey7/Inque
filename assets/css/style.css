@@ -468,6 +468,19 @@ font-size: 26px!important; color: #323232;}
 #enquiryForm .modal-content .modal-header{ border-bottom: 1px solid #323232;margin: 0px 15px;
     padding: 30px 0px 0px 0px;}
 
+#productCatalogueForm .modal-content{ border:4px solid #00e0d1; }
+#productCatalogueForm .modal-content .modal-title{font-family: 'bebas_neuebold'!important;
+font-size: 26px!important; color: #323232;}
+#productCatalogueForm .modal-content input{ width: 100%; height: 32px; margin-bottom: 5px; 
+    border:1px solid rgba(0,0,0,0.5);border-radius: 2px;box-shadow: 0 0 5px rgba(0,0,0,0.2) inset; padding: 0px 10px; font-size: 14px;}
+
+#productCatalogueForm .modal-content #strProductCatalogueBtn {border: 1px solid #323232;background: transparent;color: #323232;
+    font-family: 'bebas_neuebold'; padding: 6px 30px 4px 30px;border-radius: 0px;
+    transition: all 0.3s ease 0s;font-size: 16px;letter-spacing: 2px; margin-bottom: 10px;}
+
+#productCatalogueForm .modal-content .modal-header{ border-bottom: 1px solid #323232;margin: 0px 15px;
+    padding: 30px 0px 0px 0px;}
+
 @media screen and (max-width: 480px) {
 
 .main-wrapper .container h4{ font-size: 23px; margin-top: 19px; }
