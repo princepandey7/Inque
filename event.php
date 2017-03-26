@@ -10,10 +10,10 @@ include_once('header.php') ?>
                     <div class="eventInner">
                         <div class="menu-list">
                             <ul class="nav nav-tabs">
-                                <li class="active">
+                                <li>
                                     <a data-toggle="tab" href="#present-event">Upcoming Event's</a> 
                                 </li>
-                                <li>
+                                <li  class="active">
                                     <a data-toggle="tab" href="#past-event">Past Event's </a>
                                 </li>
                             </ul>
@@ -49,10 +49,10 @@ include_once('header.php') ?>
                     </div>
                 </div>
                 <div class="col-sm-9 pl0 tab-content">
-                    <div id="present-event" class="pastEvent tab-pane fade in active">
-                      pcoming event
+                    <div id="present-event" class="tab-pane fade pastEvent">
+                            Upcomng Event
                     </div>
-                    <div id="past-event" class="tab-pane fade pastEvent">
+                    <div id="past-event" class="pastEvent tab-pane fade in active">
                         <?php 
                             $strPastCount = 1;
                             while($rowPastPro = $EventPastQuery->fetch()){
@@ -101,7 +101,7 @@ include_once('header.php') ?>
                                 <hr/>
                                 <?php $strPastCount++; } ?>
                         </div>
-                        </div>
+                    </div>
                        
                     <div class="clear15"></div>
                     <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
@@ -115,7 +115,7 @@ include_once('header.php') ?>
 
         <?php include_once('enquiry-slider.php') ?>
 
-        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+        <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>
         <script src="assets/gallery/js/classie.js"></script>
@@ -128,11 +128,61 @@ include_once('header.php') ?>
             });
         </script>
         <script>
-            // new AnimOnScroll( document.getElementById( 'grid1' ), {
-            //     minDuration : 0.4,
-            //     maxDuration : 0.7,
-            //     viewportFactor : 0.2
-            // } );
+            new AnimOnScroll( document.getElementById( 'grid1' ), {
+                minDuration : 0.4,
+                maxDuration : 0.7,
+                viewportFactor : 0.2
+            } );
+        </script>
+        <script type="text/javascript">
+            /*
+            ------------------------------------------------------------
+            Function to activate form button to open the slider.
+            ------------------------------------------------------------
+            */
+            function open_panel() {
+            slideIt();
+            var a = document.getElementById("sidebar");
+            a.setAttribute("id", "sidebar1");
+            a.setAttribute("onclick", "close_panel()");
+            }
+            /*
+            ------------------------------------------------------------
+            Function to slide the sidebar form (open form)
+            ------------------------------------------------------------
+            */
+            function slideIt() {
+            var slidingDiv = document.getElementById("slider");
+            var stopPosition = 0;
+            if (parseInt(slidingDiv.style.right) < stopPosition) {
+            slidingDiv.style.right = parseInt(slidingDiv.style.right) + 2 + "px";
+            setTimeout(slideIt, 1);
+            }
+            }
+            /*
+            ------------------------------------------------------------
+            Function to activate form button to close the slider.
+            ------------------------------------------------------------
+            */
+            function close_panel() {
+            slideIn();
+            a = document.getElementById("sidebar1");
+            a.setAttribute("id", "sidebar");
+            a.setAttribute("onclick", "open_panel()");
+            }
+            /*
+            ------------------------------------------------------------
+            Function to slide the sidebar form (slide in form)
+            ------------------------------------------------------------
+            */
+            function slideIn() {
+            var slidingDiv = document.getElementById("slider");
+            var stopPosition = -342;
+            if (parseInt(slidingDiv.style.right) > stopPosition) {
+            slidingDiv.style.right = parseInt(slidingDiv.style.right) - 2 + "px";
+            setTimeout(slideIn, 1);
+            }
+            }
         </script>
     </body>
 </html>
