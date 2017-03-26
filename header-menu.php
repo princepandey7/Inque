@@ -29,10 +29,11 @@
                                 $strActiveClass = 'active';
                             }
                 ?>
-                            <li class="nav-item <?php echo $strActiveClass; ?>">
+                            <li class=" dropdown nav-item <?php echo $strActiveClass; ?>">
                                 <?php
                                     $strAddSpanTag = '';
                                     $strAddSubMenus = array();
+                                    $bootstrapToogle = '';
                                     if( $strIndexUrl == 'index' ){
                                         $strAddSpanTag = '<span class="sr-only">(current)</span>';
                                     }
@@ -40,12 +41,13 @@
                                     if( $strIndexUrl == 'product'){
                                         $getCatQuery = $connection->tableDataCondition("categories_id, categories_name", "categories", "categories_status=1");
                                         $strAddSubMenus = $getCatQuery->fetchAll(PDO::FETCH_ASSOC);
+                                        $bootstrapToogle = 'data-toggle="dropdown"';
                                     }
                                 ?>
-                                <a class="nav-link" href="<?php echo DIR .''. $strIndexUrl; ?>"><?php echo $strMenu; ?></a>
+                                <a class="dropdown-toggle" <?php echo $bootstrapToogle ?>  href="<?php echo DIR .''. $strIndexUrl; ?>"><?php echo $strMenu; ?></a>
                                     <?php 
                                         if( !empty( $strAddSubMenus ) ){
-                                        echo "<ul>";
+                                        echo "<ul class='dropdown-menu'>";
                                             foreach ($strAddSubMenus as $strProIndex => $strAddSubCat) {
                                     ?>
                                             <li><a href="<?php echo $strIndexUrl .'?cat='. $strAddSubCat['categories_id'] .'&subid=1' ; ?>"> <?php echo $strAddSubCat['categories_name']; ?> </a></li>
@@ -54,6 +56,13 @@
                             </li>        
                 <?php    }
                 ?>
+                 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Page 1-1</a></li>
+                      <li><a href="#">Page 1-2</a></li>
+                      <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li> -->
             </ul>
         </div>
     </nav>

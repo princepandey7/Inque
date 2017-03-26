@@ -35,30 +35,28 @@ include_once('header.php') ?>
 
                         <ul class="upcoming_event_box">
                             <li class="row">
-                                <div class="col-sm-4 pl0"><b>Event</b></div> 
-                                <div class="col-sm-8 pl0"><?php echo $rowPro['event_title']; ?></div>
+                                <div class="col-sm-2 pl0"><b>Event</b></div> 
+                                <div class="col-sm-10 pl0"><?php echo $rowPro['event_title']; ?></div>
                             </li>
                             <li class="row">
-                                <div class="col-sm-4 pl0"><b>Date</b></div>
-                                <div class="col-sm-8 pl0"><?php echo date('d F Y', strtotime($rowPro['event_start_date'])); ?></div></li>
+                                <div class="col-sm-2 pl0"><b>Date</b></div>
+                                <div class="col-sm-10 pl0"><?php echo date('d F Y', strtotime($rowPro['event_start_date'])); ?></div></li>
                             <li class="row">
-                                <div class="col-sm-4 pl0"><b>Description</b></div>
-                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_description'], 0, 150) ; ?></div>
+                                <div class="col-sm-2 pl0"><b>Description</b></div>
+                                <div class="col-sm-10 pl0"><?php echo substr($rowPro['event_description'], 0, 150) ; ?></div>
                             </li>
                             <li class="row">
-                                <div class="col-sm-4 pl0"><b>Evenue</b></div>
-                                <div class="col-sm-8 pl0"><?php echo substr($rowPro['event_evenue'], 0, 150) ; ?>
+                                <div class="col-sm-2 pl0"><b>Evenue</b></div>
+                                <div class="col-sm-10 pl0"><?php echo substr($rowPro['event_evenue'], 0, 150) ; ?>
                             </li>
                         </ul>
                         <div class="clear0"></div>
-                        <hr/>
+                       
                         <?php $strCount++; } ?>
 
                     <div class="clear15"></div>
-                    <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPresentEventBtn" class="btn">view more</a></div>
-
-
                     </div>
+                     <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPresentEventBtn" class="btn">view more</a></div>
                     <div id="past-event" class="pastEvent tab-pane fade in">
                         <?php 
                             $strPastCount = 1;
@@ -104,11 +102,9 @@ include_once('header.php') ?>
                         <hr/>
                         <?php $strPastCount++; } ?>
                     <div class="clear15"></div>
-                    <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPastEventBtn" class="btn">view more</a></div>
-
-
-                    </div>
                  </div>
+                <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPastEventBtn" class="btn">view more</a></div>
+                    </div>
                        
                 </div>
             <div class="clear15"></div>
