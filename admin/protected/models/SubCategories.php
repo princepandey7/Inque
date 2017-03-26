@@ -118,10 +118,10 @@ class SubCategories extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public static function getCategoryName($categories_id){
-		$data = Categories::model()->findByPk($categories_id);
+	public static function getSubCategoryName($sub_cat_id){
+		$data = self::model()->findByPk($sub_cat_id);
 		if( !empty( $data ) ){
-			return $data->categories_name;
+			return $data->sub_categories_name;
 		}
 	}
 

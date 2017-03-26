@@ -15,7 +15,9 @@ include_once('header.php');
                         <div class="menu-list">
                             <?php
                                 // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
-                            $current_cat = urlencode($_GET['cat']);
+                            $catId = isset($_GET['cat']) ? $_GET['cat'] : "1";
+                            $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
+                                $current_cat = urlencode($catId);
                                 $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
                                 $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
 
@@ -31,13 +33,13 @@ include_once('header.php');
                                     $strActiveDesc = '';
                                     while($rowSubCategory = $SubCategoryQuery->fetch()){ 
                                         $strActiveClass = '';
-                                        if(isset($_GET['subid']) && ( $_GET['subid'] == $rowSubCategory['sub_categories_id'] ) ){
+                                        if(isset($subId) && ( $subId == $rowSubCategory['sub_categories_id'] ) ){
                                             $strActiveClass = 'active';
                                             $strActiveTitle = $rowSubCategory['sub_categories_name'];
                                             $strActiveDesc = $rowSubCategory['sub_categories_description'];
                                         }
                                     ?>
-                                    <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat=1&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
+                                    <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat='. $catId .'&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
                                 <?php } ?>
                             </ul>
                             <?php 
@@ -47,7 +49,7 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 LIMIT 0,5");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,5");
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
@@ -55,8 +57,8 @@ include_once('header.php');
                                 <?php echo $strActiveDesc; ?>
                             </p>
                             <div class="link">
-                                <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-                                <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                                <a ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
+                                <a class="active" data-toggle="modal" data-target="#enquiryForm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                             </div>
                             <div class="backToProductBox" style="display: none;">
                                 <a id="backToProductList">Back To Product</a>
@@ -120,9 +122,9 @@ include_once('header.php');
                 <?php include_once('footer.php') ?>
             </div>
         </div>
-
-        <?php include_once('enquiry-slider.php') ?>
-
+ <div class="clear0"></div>
+        <?php //include_once('enquiry-slider.php') ?>
+         <?php include_once('enquiry-popup.php') ?>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>
@@ -130,12 +132,13 @@ include_once('header.php');
         <script src="assets/gallery/js/AnimOnScroll.js"></script>
 
         <script type="text/javascript">
-            $(".menubar").on('click', 'li', function () {
-                $(".menubar li.active").removeClass("active");
-                $(this).addClass("active");
-            });
+            // $(".menubar").on('click', 'li', function () {
+            //     $(".menubar li.active").removeClass("active");
+            //     $(this).addClass("active");
+            // });
         </script>
          <script>
+
             $(function(){
                 $(".backToProductBox").hide();
                 $(document).on('click', '.productList', function(){
@@ -173,56 +176,7 @@ include_once('header.php');
             });
         </script>
 
-        <script type="text/javascript">
-            /*
-            ------------------------------------------------------------
-            Function to activate form button to open the slider.
-            ------------------------------------------------------------
-            */
-            function open_panel() {
-            slideIt();
-            var a = document.getElementById("sidebar");
-            a.setAttribute("id", "sidebar1");
-            a.setAttribute("onclick", "close_panel()");
-            }
-            /*
-            ------------------------------------------------------------
-            Function to slide the sidebar form (open form)
-            ------------------------------------------------------------
-            */
-            function slideIt() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = 0;
-            if (parseInt(slidingDiv.style.right) < stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) + 2 + "px";
-            setTimeout(slideIt, 1);
-            }
-            }
-            /*
-            ------------------------------------------------------------
-            Function to activate form button to close the slider.
-            ------------------------------------------------------------
-            */
-            function close_panel() {
-            slideIn();
-            a = document.getElementById("sidebar1");
-            a.setAttribute("id", "sidebar");
-            a.setAttribute("onclick", "open_panel()");
-            }
-            /*
-            ------------------------------------------------------------
-            Function to slide the sidebar form (slide in form)
-            ------------------------------------------------------------
-            */
-            function slideIn() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = -342;
-            if (parseInt(slidingDiv.style.right) > stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) - 2 + "px";
-            setTimeout(slideIn, 1);
-            }
-            }
-        </script>
+        
         <!-- <script type="text/javascript">
             $('#portfolio').click(function(e){
               e.preventDefault();

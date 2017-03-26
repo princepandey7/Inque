@@ -1,5 +1,6 @@
 <?php
 require_once("db.php");
+// require_once 'routing.php';
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
             <div class="kitchenBlock">
@@ -219,7 +220,7 @@ include_once('header.php') ?>
                         <hr/>
                         <div class="clear0"></div>
                         <p>Be the first to know about the products, store events and other discount information</p>
-                        <a href="" class="btn">Download</a>
+                        <a data-toggle="modal" data-target="#productCatalogueForm" class="btn">Download</a>
                     </div>
                     <div class="col-sm-6">
                         <img src="assets/images/bro-img.png">
@@ -231,19 +232,53 @@ include_once('header.php') ?>
         </div>
 
         <?php include_once('enquiry-slider.php') ?>
-
+        <div class="modal fade" id="productCatalogueForm" role="dialog">
+          <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Request for pdf</h4>
+              </div>
+              <div class="modal-body">
+                <form id="strSendProductCatalogueFrm" method="post" class="contact-form">
+                    <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required]" name="name" id="name" placeholder="Name *">
+                    </div>
+                    <div class="col-sm-12 padding0"> 
+                        <input type="email" class="validate[required,custom[email]]" name="email" id="email" placeholder="Email ID *">
+                    </div>
+                    <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="mobile" id="mobile" placeholder="Mobile *">
+                    </div>
+                     <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required]" name="company" id="company" placeholder="Company *">
+                    </div>
+                    <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required]" name="country" id="country" placeholder="Country *">
+                    </div>
+                     <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required]" name="state" id="state" placeholder="State *">
+                    </div>
+                    <div class="col-sm-12 padding0"> 
+                        <input type="text" class="validate[required]" name="city" id="city" placeholder="City *">
+                    </div>
+                    <div class="col-sm-12 alert alert-success padding0" style="display: none">
+                      <strong>Success!</strong> Enquiry Submitted Successfully.
+                    </div>
+                    <div class="col-sm-12 padding0">
+                        <button type="button" id="strProductCatalogueBtn"> submit</button>
+                    </div>
+                </form>
+              </div>
+              <div class="clear15"></div>
+              </div>
+          </div>
+        </div>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>
         <script src="assets/gallery/js/classie.js"></script>
         <script src="assets/gallery/js/AnimOnScroll.js"></script>
-
-        <script type="text/javascript">
-            $(".menubar").on('click', 'li', function () {
-                $(".menubar li.active").removeClass("active");
-                $(this).addClass("active");
-            });
-        </script>
         <script>
             new AnimOnScroll( document.getElementById( 'grid1' ), {
                 minDuration : 0.4,
@@ -251,61 +286,12 @@ include_once('header.php') ?>
                 viewportFactor : 0.2
             } );
         </script>
-        <script type="text/javascript">
-            /*
-            ------------------------------------------------------------
-            Function to activate form button to open the slider.
-            ------------------------------------------------------------
-            */
-            function open_panel() {
-            slideIt();
-            var a = document.getElementById("sidebar");
-            a.setAttribute("id", "sidebar1");
-            a.setAttribute("onclick", "close_panel()");
-            }
-            /*
-            ------------------------------------------------------------
-            Function to slide the sidebar form (open form)
-            ------------------------------------------------------------
-            */
-            function slideIt() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = 0;
-            if (parseInt(slidingDiv.style.right) < stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) + 2 + "px";
-            setTimeout(slideIt, 1);
-            }
-            }
-            /*
-            ------------------------------------------------------------
-            Function to activate form button to close the slider.
-            ------------------------------------------------------------
-            */
-            function close_panel() {
-            slideIn();
-            a = document.getElementById("sidebar1");
-            a.setAttribute("id", "sidebar");
-            a.setAttribute("onclick", "open_panel()");
-            }
-            /*
-            ------------------------------------------------------------
-            Function to slide the sidebar form (slide in form)
-            ------------------------------------------------------------
-            */
-            function slideIn() {
-            var slidingDiv = document.getElementById("slider");
-            var stopPosition = -342;
-            if (parseInt(slidingDiv.style.right) > stopPosition) {
-            slidingDiv.style.right = parseInt(slidingDiv.style.right) - 2 + "px";
-            setTimeout(slideIn, 1);
-            }
-            }
-        </script>
+        
         <script type="text/javascript">
             $('#portfolio').click(function(e){
-              e.preventDefault();
-              //var href = $(this).attr('href');
-              $('.kitchenBlock').slideUp('fast');
+                e.preventDefault();
+                //var href = $(this).attr('href');
+                $('.kitchenBlock').slideUp('fast');
             });
         </script>
     </body>

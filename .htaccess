@@ -4,8 +4,7 @@
 	Options -MultiViews
 	Options +FollowSymLinks
 
-	RewriteBase /Inque/	
-	#RewriteBase /beta/	
+	RewriteBase /Inque/
 
 	RewriteRule ^index?$ index.php
 	RewriteRule ^product?$ product.php
@@ -16,18 +15,14 @@
 	RewriteRule ^contact?$ contact.php
 
 	#RewriteRule ^([^/\.]+)/?$ category.php?catid=$1 [QSA]
-	
 	#RewriteRule    ^product/([0-9]+)/?$    product.php?product_id=$1    [NC,L]    # Handle product requests
-
-	#RewriteRule ^product/([^/\.]+)/?$ product-description.php?proid=$1 [QSA]		
-
+	#RewriteRule ^product/([^/\.]+)/?$ product-description.php?proid=$1 [QSA]
 	#RewriteRule ^products/([^/\.]+)/?$ product.php?proid=$1 [QSA]	
 	#RewriteRule ^([^/\.]+)/([^/\.]+)/?$ sub-category.php?catid=$1&subid=$2 [QSA]	
 	#RewriteRule ^([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ product.php?catid=$1&subid=$2&proid=$3 [QSA]
 
 	RewriteCond %{HTTP_HOST} ^admin/$
     RewriteRule ^(.*)$ admin/index.php [L,R=301]	
-
 
 	# (.*)- means allow all types.
 	# ([0-9]+) means only numbers.

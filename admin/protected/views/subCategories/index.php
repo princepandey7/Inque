@@ -27,7 +27,7 @@
 						<tr>
 							<td><?php echo $keySubCategorie + 1; ?></td>
 							<td><?php echo $objSubCategory->sub_categories_name; ?></td>
-							<td><?php echo SubCategories::getCategoryName($objSubCategory->categories_id); ?></td>
+							<td><?php echo Categories::getCategoryName($objSubCategory->categories_id); ?></td>
 							<td><?php echo substr($objSubCategory->sub_categories_description, 0, 30); ?></td>
 							<td>
 								<a href="<?php echo Yii::app()->createUrl("/subcategories/update", array('id' => $objSubCategory->sub_categories_id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>

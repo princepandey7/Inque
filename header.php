@@ -20,16 +20,17 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <link rel="stylesheet" type="text/css" href="assets/fonts/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/gallery/css/default.css" />
         <link rel="stylesheet" type="text/css" href="assets/gallery/css/component.css" />
+        
         <link rel="stylesheet" type="text/css" href="assets/css/jquery.fancybox.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="assets/css/jquery_notification.css" media="screen" />
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/jquery_notification.css" media="screen" /> -->
         <link rel="stylesheet" type="text/css" href="assets/css/validationEngine.jquery.css" media="screen" />
 
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery_notification.js"></script>
+        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+        <!-- <script src="assets/js/jquery_notification.js"></script> -->
         <script src="assets/js/jquery.validationEngine-en.js"></script>
         <script src="assets/js/jquery.validationEngine.js"></script>
         <script src="assets/gallery/js/modernizr.custom.js"></script>

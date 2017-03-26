@@ -20,3 +20,9 @@
         </div>
     </div>
 </footer>
+ <script type="text/javascript">
+    $(".menubar").on('click', 'li', function () {
+        $(".menubar li.active").removeClass("active");
+        $(this).addClass("active");
+    });
+</script>
