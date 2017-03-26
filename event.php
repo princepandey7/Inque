@@ -64,49 +64,45 @@ include_once('header.php') ?>
                             $strPastCount = 1;
                             while($rowPastPro = $EventPastQuery->fetch()){
                         ?>
-
-                        <p><?php echo $rowPastPro['event_title']; ?></p>
-                        <p><?php echo date('d F Y', strtotime($rowPastPro['event_start_date'])); ?></p>
-                        <div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">
-                            <?php 
-                                if( !empty( $rowPastPro['event_images'] ) ){
-                                    $getTotalImg = explode(",", $rowPastPro['event_images']);
-                            ?>
-                                <ol class="carousel-indicators">
-                                    <?php for ($i=0; $i < count($getTotalImg) ; $i++) { 
-                                        $currStatus = '';
-                                        if($i == 0){
-                                            $currStatus = 'active';
-                                        }
-                                    ?> 
-                                        <li data-target="#pastevent-carausal" data-slide-to="<?php echo $i; ?>" class="<?php echo $currStatus;?>"></li>
-                                    <?php } ?>
-                                    <!-- <li data-target="#pastevent-carausal" data-slide-to="1"></li>
-                                    <li data-target="#pastevent-carausal" data-slide-to="2"></li> -->
-                                </ol>
-
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <?php 
-                                        foreach ($getTotalImg as $key => $value) {
+                        <div class="past_event_box">
+                            <p><?php echo $rowPastPro['event_title']; ?></p>
+                            <p><?php echo date('d F Y', strtotime($rowPastPro['event_start_date'])); ?></p>
+                            <div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">
+                                <?php 
+                                    if( !empty( $rowPastPro['event_images'] ) ){
+                                        $getTotalImg = explode(",", $rowPastPro['event_images']);
+                                ?>
+                                    <ol class="carousel-indicators">
+                                        <?php for ($i=0; $i < count($getTotalImg) ; $i++) { 
                                             $currStatus = '';
-                                            if($key == 0){
+                                            if($i == 0){
                                                 $currStatus = 'active';
                                             }
-                                    ?> 
-                                        <div class="item <?php echo $currStatus;?>">
-                                            <img src="assets/images/events/<?php echo $value; ?>" alt="">
-                                        </div>
-                                    <?php } ?>
-                                    
-                                </div>
-                                <?php } else { echo "No Image";} ?>
-                            <div class="clear15"></div>
+                                        ?> 
+                                            <li data-target="#pastevent-carausal" data-slide-to="<?php echo $i; ?>" class="<?php echo $currStatus;?>"></li>
+                                        <?php } ?>
+                                    </ol>
+
+                                    <div class="carousel-inner">
+                                        <?php 
+                                            foreach ($getTotalImg as $key => $value) {
+                                                $currStatus = '';
+                                                if($key == 0){
+                                                    $currStatus = 'active';
+                                                }
+                                        ?> 
+                                            <div class="item <?php echo $currStatus;?>">
+                                                <img src="assets/images/events/<?php echo $value; ?>" alt="">
+                                            </div>
+                                        <?php } ?>
+                                        
+                                    </div>
+                                    <?php } else { echo "No Image";} ?>
+                                <div class="clear15"></div>
+                            </div>
                         </div>
-                            <hr/>
-                            <?php $strPastCount++; } ?>
-
-
+                        <hr/>
+                        <?php $strPastCount++; } ?>
                     <div class="clear15"></div>
                     <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPastEventBtn" class="btn">view more</a></div>
 
@@ -123,7 +119,6 @@ include_once('header.php') ?>
         </div>
 
         <?php include_once('enquiry-slider.php') ?>
-
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>
