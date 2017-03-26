@@ -9,9 +9,13 @@ include_once('header.php') ?>
                 <div class="col-sm-3">
                     <div class="eventInner">
                         <div class="menu-list">
-                            <ul>
-                                <li class="active"><a href="">Upcoming Event's</a> </li>
-                                <li><a href="">Past Event's </a></li>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#present-event">Upcoming Event's</a> 
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#past-event">Past Event's </a>
+                                </li>
                             </ul>
                         </div>
                         <?php
@@ -44,8 +48,11 @@ include_once('header.php') ?>
                         <?php $strCount++; } ?>
                     </div>
                 </div>
-                <div class="col-sm-9 pl0">
-                    <div class="pastEvent">
+                <div class="col-sm-9 pl0 tab-content">
+                    <div  id="present-event" class="pastEvent tab-pane fade in active">
+                        
+                    </div>
+                    <div id="past-event" class="tab-pane fade pastEvent">
                         <?php 
                             $strPastCount = 1;
                             while($rowPastPro = $EventPastQuery->fetch()){
@@ -91,12 +98,13 @@ include_once('header.php') ?>
 
                         </div>
                         <div class="clear15"></div>
-                         <hr/>
-                        <?php $strPastCount++; } ?>
-                   </div>
-                </div>
-                <div class="clear15"></div>
-                <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
+                                <hr/>
+                                <?php $strPastCount++; } ?>
+                        </div>
+                        </div>
+                       
+                    <div class="clear15"></div>
+                    <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
             </div>
             <div class="clear15"></div>
             <div class="container-fluid footer">
