@@ -4,19 +4,6 @@
  * This is the model class for table "products".
  *
  * The followings are the available columns in table 'products':
- * @property integer $id
- * @property string $title
- * @property string $size
- * @property string $finish
- * @property string $height
- * @property string $material
- * @property string $features
- * @property string $product_main_image
- * @property string $kit_package_image
- * @property integer $product_status
- * @property string $created_date
- * @property string $modified_date
- * @property integer $delete_flag
  */
 class Products extends CActiveRecord
 {
@@ -50,9 +37,11 @@ class Products extends CActiveRecord
 			
 			array('kit_package_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
+			array('planning_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, categories_id, subcategories_id, title, size, finish, height, material, features, product_main_image, product_thum_image, kit_package_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('id, categories_id, subcategories_id, title, size, finish, height, material, features, product_main_image, product_thum_image, kit_package_image, planning_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +71,7 @@ class Products extends CActiveRecord
 			'features' => 'Features',
 			'product_main_image' => 'Product Main Image',
 			'kit_package_image' => 'Kit Package Image',
+			'planning_image' => 'Planning Image',
 			'product_status' => 'Product Status',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',
@@ -116,6 +106,7 @@ class Products extends CActiveRecord
 		$criteria->compare('features',$this->features,true);
 		$criteria->compare('product_main_image',$this->product_main_image,true);
 		$criteria->compare('kit_package_image',$this->kit_package_image,true);
+		$criteria->compare('planning_image',$this->planning_image,true);
 		$criteria->compare('product_status',$this->product_status);
 		$criteria->compare('created_date',$this->created_date,true);
 		$criteria->compare('modified_date',$this->modified_date,true);

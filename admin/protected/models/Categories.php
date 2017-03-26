@@ -37,9 +37,12 @@ class Categories extends CActiveRecord
 			array('categories_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('categories_name, categories_slug', 'length', 'max'=>50),
 			array('categories_description, modified_date', 'safe'),
+			array('upload_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'on'=>'insert,update'),
+            array('upload_pdf','file', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB'),
+
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('categories_id, categories_name, categories_slug, categories_description, categories_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('categories_id, categories_name, categories_slug, upload_pdf, categories_description, categories_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -139,4 +142,17 @@ class Categories extends CActiveRecord
 			return $data->categories_name;
 		}
 	}
+
+
+	// public function getFolderPath($folder) {
+ //        // $rootPath = Yii::getPathOfAlias('webroot.upload') . DIRECTORY_SEPARATOR;
+ //        $rootPath = "../assets/pdfProduct/";
+
+ //        if (!is_dir($rootPath . $folder)) {
+ //            mkdir($rootPath . $folder, 0777, true) . DIRECTORY_SEPARATOR;
+ //            return $rootPath . $folder . DIRECTORY_SEPARATOR;
+ //        } else {
+ //            return $rootPath . $folder . DIRECTORY_SEPARATOR;
+ //        }
+ //    }
 }

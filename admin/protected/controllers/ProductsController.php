@@ -72,6 +72,7 @@ class ProductsController extends Controller
 			$model->product_main_image=CUploadedFile::getInstance($model,'product_main_image');
 			$model->product_thum_image=CUploadedFile::getInstance($model,'product_thum_image');
 			$model->kit_package_image=CUploadedFile::getInstance($model,'kit_package_image');
+			$model->planning_image=CUploadedFile::getInstance($model,'planning_image');
 
 			if($model->save()){
 				// $path1 = "../assets/images/gallery/".$uniqueName;
@@ -92,6 +93,12 @@ class ProductsController extends Controller
 					$path3 = "../assets/images/products/kit-package/".$uniqueName3;
 					$model->kit_package_image->saveAs($path3);
 					$model->kit_package_image = $uniqueName3;
+				}
+				if( !empty($_FILES['Products']['name']['planning_image'])){
+					$uniqueName4 	= $model->id ."_". time()."_".$model->planning_image;
+					$path4 = "../assets/images/products/kit-package/".$uniqueName4;
+					$model->planning_image->saveAs($path4);
+					$model->planning_image = $uniqueName4;
 				}
 				if( !empty($_FILES) ){
 					$model->save();

@@ -125,6 +125,19 @@
 					</div>
 				</div>
 				
+				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'planning_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php 
+						if(!empty($model->planning_image)){
+							echo '<img src="../../images/products/planning/'.$model->planning_image.'" width="200" />';
+							echo $form->hiddenField($model, 'planning_image', array('value'=>$model->planning_image));
+						}
+						echo $form->fileField($model,'planning_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php echo $form->error($model,'planning_image'); ?>
+					</div>
+				</div>
+
 				<div class="form-group">
 					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 						<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

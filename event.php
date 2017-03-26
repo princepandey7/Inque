@@ -10,22 +10,29 @@ include_once('header.php') ?>
                     <div class="eventInner">
                         <div class="menu-list">
                             <ul class="nav nav-tabs">
-                                <li>
+                                <li class="active">
                                     <a data-toggle="tab" href="#present-event">Upcoming Event's</a> 
                                 </li>
-                                <li  class="active">
+                                <li>
                                     <a data-toggle="tab" href="#past-event">Past Event's </a>
                                 </li>
                             </ul>
                         </div>
-                        <?php
-                            $curDate = date("Y-m-d");
-                            $EventQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date > '$curDate'");
-                            $EventPastQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date < '$curDate'");
+                    </div>
+                </div>
+                <div class="col-sm-9 pl0 tab-content">
+                    <?php
+                        $curDate = date("Y-m-d");
+                        $EventQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date > '$curDate'");
+                        $EventPastQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date < '$curDate'");
 
+                    ?>
+                    <div id="present-event" class="tab-pane fade  in pastEvent active">
+                        <?php
                             $strCount = 1;
                             while($rowPro = $EventQuery->fetch()){
                         ?>
+
                         <ul>
                             <li class="row">
                                 <div class="col-sm-4 pl0"><b>Event</b></div> 
@@ -46,13 +53,13 @@ include_once('header.php') ?>
                         <div class="clear0"></div>
                         <hr/>
                         <?php $strCount++; } ?>
+
+                    <div class="clear15"></div>
+                    <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
+
+
                     </div>
-                </div>
-                <div class="col-sm-9 pl0 tab-content">
-                    <div id="present-event" class="tab-pane fade pastEvent">
-                            Upcomng Event
-                    </div>
-                    <div id="past-event" class="pastEvent tab-pane fade in active">
+                    <div id="past-event" class="pastEvent tab-pane fade in">
                         <?php 
                             $strPastCount = 1;
                             while($rowPastPro = $EventPastQuery->fetch()){
@@ -100,12 +107,16 @@ include_once('header.php') ?>
                         <div class="clear15"></div>
                                 <hr/>
                                 <?php $strPastCount++; } ?>
-                        </div>
-                    </div>
-                       
+
+
                     <div class="clear15"></div>
                     <div class="col-sm-12" style="text-align:center; margin-top:10px"><a href="#" class="btn">view more</a></div>
-            </div>
+
+
+                    </div>
+                 </div>
+                       
+                </div>
             <div class="clear15"></div>
             <div class="container-fluid footer">
                 <div class="clear0"></div>

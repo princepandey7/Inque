@@ -14,6 +14,7 @@
 				<?php $form=$this->beginWidget('CActiveForm', array(
 					'id'=>'categories-form',
 					'enableAjaxValidation'=>false,
+					'htmlOptions'=>array('enctype'=>'multipart/form-data')
 				)); ?>
 				<!-- <p class="note">Fields with <span class="required">*</span> are required.</p> -->
 				<!-- <?php //echo $form->errorSummary($model); ?> -->
@@ -32,6 +33,14 @@
 						<?php echo $form->error($model,'categories_slug'); ?>
 					</div>
 				</div>
+				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'upload_pdf', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php echo $form->fileField($model,'upload_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); ?>
+						<?php echo $form->error($model,'upload_pdf'); ?>
+					</div>
+				</div>
+
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'categories_description', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">

@@ -62,14 +62,23 @@ class CategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
+		ini_set('upload_max_filesize', '10M');
 		$model=new Categories;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['Categories']))
 		{
 			$model->attributes=$_POST['Categories'];
+			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
+			if(!empty($letterUpload))
+			{
+				$uniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/category/".$uniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_pdf = $uniqueName;
+			}
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->categories_id));
 		}
@@ -86,6 +95,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		ini_set('upload_max_filesize', '10M');
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -94,6 +104,16 @@ class CategoriesController extends Controller
 		if(isset($_POST['Categories']))
 		{
 			$model->attributes=$_POST['Categories'];
+
+			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
+			if(!empty($letterUpload))
+			{
+				$uniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/category/".$uniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_pdf = $uniqueName;
+			}
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->categories_id));
 		}
