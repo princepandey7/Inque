@@ -86,6 +86,14 @@
 				</div>
 
 				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'upload_product_pdf', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php echo $form->fileField($model,'upload_product_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); ?>
+						<?php echo $form->error($model,'upload_product_pdf'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
 					<?php
 					 echo $form->labelEx($model,'product_main_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
@@ -168,7 +176,7 @@
 	                    	var items="";
 							$.each(data.update, function(index, item)
 							{
-								items += "<option "+ item.sub_categories_id +" >" + item.sub_categories_name + "</option>";
+								items += "<option value='"+ item.sub_categories_id +"' >" + item.sub_categories_name + "</option>";
 							});
 							$("#Products_subcategories_id").html(items);
 							$("#loader-overlay").hide();

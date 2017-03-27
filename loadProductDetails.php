@@ -47,11 +47,21 @@ while($rowProductDesc = $arrProductDescQuery->fetch()){
 
     $LoadedData .='
         </div>
-        <div class="clear15"></div>
+        <div class="clear15"></div>';
+
+        // echo  $rowProductDesc['upload_product_pdf'];
+
+        if( !empty($rowProductDesc['kit_package_image']) ) {
+            $filename = "assets/pdfProduct/product/". $rowProductDesc['upload_product_pdf'];
+            if(file_exists($filename)){ 
+ $LoadedData .='
         <div class="link pull-right">
-            <a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
+            <a href="'. $filename .'"  target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
             <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
-        </div>
+        </div> ';
+            }
+        }
+$LoadedData .='
         <div class="clear0"></div>
     </div>';
 

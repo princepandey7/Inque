@@ -24,7 +24,7 @@ include_once('header.php') ?>
                     <?php
                         $curDate = date("Y-m-d");
                         $EventQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date > '$curDate' LIMIT 0,1");
-                        $EventPastQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date < '$curDate'");
+                        $EventPastQuery = $connection->tableDataCondition("*", "events", "event_status=1 AND event_start_date < '$curDate' LIMIT 0,1");
 
                     ?>
                     <div id="present-event" class="tab-pane fade  in pastEvent active">
@@ -53,10 +53,10 @@ include_once('header.php') ?>
                         <div class="clear0"></div>
                        
                         <?php $strCount++; } ?>
+                        <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPresentEventBtn" class="btn">view more</a></div>
 
-                    <div class="clear15"></div>
+                        <div class="clear15"></div>
                     </div>
-                     <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPresentEventBtn" class="btn">view more</a></div>
                     <div id="past-event" class="pastEvent tab-pane fade in">
                         <?php 
                             $strPastCount = 1;
@@ -102,8 +102,8 @@ include_once('header.php') ?>
                         <hr/>
                         <?php $strPastCount++; } ?>
                     <div class="clear15"></div>
-                 </div>
                 <div class="col-sm-12" style="text-align:center; margin-top:10px"><a id="strPastEventBtn" class="btn">view more</a></div>
+                 </div>
                     </div>
                        
                 </div>
@@ -129,7 +129,6 @@ include_once('header.php') ?>
         </script>
         <script>
             $(function(){
-                // loadImageGallery();
                 $(document).on('click', '#strPresentEventBtn', function(){
                     $("#loader-overlay").show();
                     var countTotalEvent = $(".upcoming_event_box").length;
@@ -148,7 +147,28 @@ include_once('header.php') ?>
                             $("#loader-overlay").hide();
                         }
                     });
-                })
+                });
+
+
+                $(document).on('click', '#strPastEventBtn', function(){
+                    $("#loader-overlay").show();
+                    var countTotalEvent = $(".past_event_box").length;
+                    // console.log(countTotalEvent);
+                    var This = $(this);
+                    jQuery.ajax({
+                        url: "loadEvent.php",
+                        type: "post",
+                        data: {"event_count" : countTotalEvent, "event_status" : "past"},
+                        success: function(data) {
+                            if( data != ''){
+                                $('.past_event_box:last').after(data);
+                            } else {
+                                This.hide();
+                            }
+                            $("#loader-overlay").hide();
+                        }
+                    });
+                });
             });
         </script>
     </body>

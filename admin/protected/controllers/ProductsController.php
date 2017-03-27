@@ -66,6 +66,7 @@ class ProductsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
@@ -73,6 +74,15 @@ class ProductsController extends Controller
 			$model->product_thum_image=CUploadedFile::getInstance($model,'product_thum_image');
 			$model->kit_package_image=CUploadedFile::getInstance($model,'kit_package_image');
 			$model->planning_image=CUploadedFile::getInstance($model,'planning_image');
+
+			$letterUpload = CUploadedFile::getInstance($model,'upload_product_pdf');
+			if(!empty($letterUpload))
+			{
+				$uniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/product/".$uniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_product_pdf = $uniqueName;
+			}
 
 			if($model->save()){
 				// $path1 = "../assets/images/gallery/".$uniqueName;

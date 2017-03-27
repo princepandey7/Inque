@@ -15,6 +15,7 @@ include_once('header.php');
                         <div class="menu-list">
                             <?php
                                 // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
+                            $strCatPdfFile = '';
                             $catId = isset($_GET['cat']) ? $_GET['cat'] : "1";
                             $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
                                 $current_cat = urlencode($catId);
@@ -22,6 +23,7 @@ include_once('header.php');
                                 $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
 
                                 while($rowCategory = $CategoryQuery->fetch()){
+                                    $strCatPdfFile = $rowCategory['upload_pdf'];
                             ?>
                             <div class="heading">
                                 <h2>products /</h2>
@@ -49,23 +51,28 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,5");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,1");
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
                             <p>
                                 <?php echo $strActiveDesc; ?>
                             </p>
-                            <div class="link">
-                                <a ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-                                <a class="active" data-toggle="modal" data-target="#enquiryForm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
-                            </div>
+                            <?php 
+                                $filename = 'assets/pdfProduct/category/'. $strCatPdfFile;
+                                if(file_exists($filename)){ 
+                            ?>
+                                <div class="link">
+                                    <a href="<?php echo $filename; ?>" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
+                                    <a class="active" data-toggle="modal" data-target="#enquiryForm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                                </div>
+                            <?php } ?>
                             <div class="backToProductBox" style="display: none;">
                                 <a id="backToProductList">Back To Product</a>
                             </div>
                         </div>
                         <div class="block productInqueList">
-                            <ul>
+                            <ul class="str-product-box-list">
                                 <?php
                                     $rowProducts = $ProductQuery->fetchAll(PDO::FETCH_ASSOC);
                                     if( !empty( $rowProducts ) ){
@@ -172,7 +179,25 @@ include_once('header.php');
                     $(this).parent('.backToProductBox').hide();
                 });
 
-                
+                $(document).on('click', '#productViewMore', function(){
+                    $("#loader-overlay").show();
+                    var productCount = $(".str-product-box-list li").length;
+                    var This = $(this);
+                    jQuery.ajax({
+                        url: "loadListProduct.php",
+                        type: "post",
+                        data: {"productCount" : productCount, "catId" : "<?php echo $current_cat ?>", "subId" : "<?php echo $subId; ?>"},
+                        success: function(data) {
+                            if( data != ''){
+                                $('.str-product-box-list').find("li:last").after(data);
+                            } else {
+                                This.hide();
+                            }
+                            $("#loader-overlay").hide();
+                        }
+                    });
+                })
+
             });
         </script>
 
