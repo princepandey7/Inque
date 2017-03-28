@@ -3,6 +3,7 @@ require_once("db.php");
 // require_once 'routing.php';
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
+            <a name="myAnchor" id="myAnchor">
             <div class="kitchenBlock">
                 <div class="container kitchenContainer">
                     <div id="kitchen-carausal" class="carousel slide col-sm-6" data-ride="carousel">
@@ -35,7 +36,9 @@ include_once('header.php') ?>
                     </div>
                 </div>
             </div>
-            <div class="bathroomBlock">
+            </a>
+
+            <div class="bathroomBlock" id="id3">
                 <div class="container kitchenContainer">
                     <div id="bathroom-carausal" class="carousel slide col-sm-6 pull-right" data-ride="carousel">
                         <!-- Indicators -->
@@ -222,7 +225,7 @@ include_once('header.php') ?>
                         <p>Be the first to know about the products, store events and other discount information</p>
                         <a data-toggle="modal" data-target="#productCatalogueForm" class="btn">Download</a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 foo-img">
                         <img src="assets/images/bro-img.png">
                     </div>
                 </div>
@@ -294,5 +297,18 @@ include_once('header.php') ?>
                 $('.kitchenBlock').slideUp('fast');
             });
         </script>
+        <script>
+       $(document).ready(function(){
+           $(window).bind('scroll', function() {
+           var navHeight = $( window ).height() + 200;
+                 if ($(window).scrollTop() > navHeight) {
+                     $('.menubar').addClass('fixed-menu');
+                 }
+                 else {
+                     $('.menubar').removeClass('fixed-menu');
+                 }
+            });
+        });
+</script>
     </body>
 </html>

@@ -248,7 +248,7 @@ body{ margin: 0; padding: 0  }
 
 .responsive-img{ width: 100%; height: auto; }
 
-.fixed-menu{position: fixed;top: 0;width: 100%;background: #fff; }
+.fixed-menu{position: fixed;top: 0;width: 100%;background: #fff; z-index: 9 }
 
 .main-wrapper .container{ position: absolute; right: 0; left: 0; top: 0; max-width: 700px; }
 
@@ -319,6 +319,7 @@ footer a{ color: #b2b2b2;font-family: 'latoregular'; font-size: 12px;   }
 footer a:hover{ color: #ffffff;font-family: 'latoregular'; font-size: 12px;  }
 
 footer a span{ color: #ffffff }
+.foo-img img{ margin-left: 32px; }
 
 
 
@@ -470,8 +471,7 @@ height: 210px; width: 370px; position: absolute; bottom: 27%;left: 46%;}
 .kitchenContainer { position: relative; width: 100%; height: 100%;}
 
 .kitchenAbsolute h4{ font-family: 'bebas_neuebold'; font-size: 60px; color: #323232; margin-left: 30px;
-
- margin-bottom: 0px; margin-top: 40px; letter-spacing: 2px;}
+margin-bottom: 0px; margin-top: 40px; letter-spacing: 2px; font-style: normal;}
 
 .kitchenAbsolute h4::first-letter{ color: #00e0d1; }
 
@@ -479,7 +479,7 @@ height: 210px; width: 370px; position: absolute; bottom: 27%;left: 46%;}
 
  margin-left: 30px; }
 
-.kitchenAbsolute p{  font-family: 'latoregular'; font-size: 14px; color: #323232; font-weight: bold;
+.kitchenAbsolute p{font-style: normal;  font-family: 'latoregular'; font-size: 14px; color: #323232; font-weight: bold;
 
 margin-left: 30px; margin-top: 20px; margin-bottom: 0px;}
 

@@ -30,6 +30,15 @@
     <ul>
         <li></li>
         <li> <button class="explore-btn btn" id="portfolio">Explore</button></li>
-        <li> <img src="assets/images/scroll-banner-img.png"></li>
+        <li><a href="#myAnchor" rel="" id="anchor1" class="anchorLink"> <img src="assets/images/scroll-banner-img.png"></a></li>
     </ul>
 </div>
+
+<script type="text/javascript">
+$('.anchorLink').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top - 90
+    }, 1000);
+    return false;
+});
+</script>
