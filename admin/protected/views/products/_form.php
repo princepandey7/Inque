@@ -41,7 +41,7 @@
 						<?php
 							$subCatDetails = array();
 							if( !empty( $model->subcategories_id ) ){
-								$subCatDetails = CHtml::listData(SubCategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
+								$subCatDetails = CHtml::listData(Subcategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
 							}
 							echo $form->dropDownList($model, 'subcategories_id', $subCatDetails, array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'subcategories_id'); ?>
@@ -86,13 +86,20 @@
 				</div>
 
 				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'upload_product_pdf', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php echo $form->fileField($model,'upload_product_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); ?>
+						<?php echo $form->error($model,'upload_product_pdf'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
 					<?php
 					 echo $form->labelEx($model,'product_main_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_main_image)){
-							echo '<img src="../../images/products/'.$model->product_main_image.'" width="200" />';
-							echo $form->hiddenField($model, 'product_main_image', array('value'=>$model->product_main_image));
+							echo '<img src="../../../assets/images/products/'.$model->product_main_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'product_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_main_image'); ?>
@@ -104,8 +111,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_thum_image)){
-							echo '<img src="../../images/products/thum/'.$model->product_thum_image.'" width="200" />';
-							echo $form->hiddenField($model, 'product_thum_image', array('value'=>$model->product_thum_image));
+							echo '<img src="../../../assets/images/products/thum/'.$model->product_thum_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'product_thum_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_thum_image'); ?>
@@ -117,8 +123,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->kit_package_image)){
-							echo '<img src="../../images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
-							echo $form->hiddenField($model, 'kit_package_image', array('value'=>$model->kit_package_image));
+							echo '<img src="../../../assets/images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'kit_package_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'kit_package_image'); ?>
@@ -130,8 +135,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->planning_image)){
-							echo '<img src="../../images/products/planning/'.$model->planning_image.'" width="200" />';
-							echo $form->hiddenField($model, 'planning_image', array('value'=>$model->planning_image));
+							echo '<img src="../../../assets/images/products/planning/'.$model->planning_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'planning_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'planning_image'); ?>
@@ -168,7 +172,7 @@
 	                    	var items="";
 							$.each(data.update, function(index, item)
 							{
-								items += "<option "+ item.sub_categories_id +" >" + item.sub_categories_name + "</option>";
+								items += "<option value='"+ item.sub_categories_id +"' >" + item.sub_categories_name + "</option>";
 							});
 							$("#Products_subcategories_id").html(items);
 							$("#loader-overlay").hide();

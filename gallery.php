@@ -6,14 +6,14 @@ include_once('header.php') ?>
             <div class="container gallery margin-top100">
                 <div class="title">Gallery</div>
                 <?php
-                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT 0,3");
+                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 ORDER BY gallery_id DESC LIMIT 0,6");
                 ?>
                 <ul class="grid effect-2 imageGalleryMainBox" id="grid1">
                     <?php 
                         while($rowPro = $GalleryQuery->fetch()){ 
                     ?>
                         <li class="galleryMainImage">
-                            <a href="assets/images/gallery/<?php echo $rowPro['gallery_main_image']; ?>" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/<?php echo $rowPro['gallery_thumnail_image']; ?>">
+                            <a href="assets/images/gallery/<?php echo $rowPro['gallery_main_image']; ?>" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/thumbnail/<?php echo $rowPro['gallery_thumnail_image']; ?>">
                             <div class="caption">
                                 <b><?php echo $rowPro['gallery_title']; ?></b>
                                 <p><?php echo $rowPro['gallery_description']; ?></p>

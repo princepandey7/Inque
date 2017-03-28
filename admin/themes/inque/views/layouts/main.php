@@ -33,7 +33,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              	<a href="<?php echo Yii::app()->baseUrl ?>" class="site_title"><i class="fa fa-paw"></i> <span>Inque</span></a>
+              	<a href="<?php echo Yii::app()->baseUrl ?>/dashboard" class="site_title"><i class="fa fa-paw"></i> <span>Inque</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -54,7 +54,7 @@
 					<h3>General</h3>
 					<ul class="nav side-menu">
 						<li>
-							<a href="<?php echo Yii::app()->baseUrl ?>"><i class="fa fa-home"></i> Home</a>
+							<a href="<?php echo Yii::app()->baseUrl ?>/dashboard"><i class="fa fa-home"></i> Home</a>
 						</li>
 					  	<li>
 							<a href="<?php echo Yii::app()->createUrl("/categories/index"); ?>"><i class="fa fa-tags" aria-hidden="true"></i>Category </a>
@@ -75,8 +75,8 @@
 						<li>
 							<a><i class="fa fa-envelope"></i>Mail Info <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu">
-								<li><a href="<?php echo Yii::app()->createUrl("/careersMail/index"); ?>"><i class="fa fa-user" aria-hidden="true"></i>Career Info</a></li>
-								<li><a href="<?php echo Yii::app()->createUrl("/ContactUs/index"); ?>"><i class="fa fa-at" aria-hidden="true"></i>Contact Us Info</a></li>
+								<li><a href="<?php echo Yii::app()->createUrl("/careersmail/index"); ?>"><i class="fa fa-user" aria-hidden="true"></i>Career Info</a></li>
+								<li><a href="<?php echo Yii::app()->createUrl("/contactus/index"); ?>"><i class="fa fa-at" aria-hidden="true"></i>Contact Us Info</a></li>
 							</ul>
 						</li>
 					</ul>

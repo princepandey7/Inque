@@ -47,8 +47,8 @@
 
 		<tbody>
 			<?php
-				if( true == !empty( $objCareersMail ) ){
-					foreach ($objCareersMail as $keyCareersMail => $objCareersMails) {
+				if( !empty( $objCareersmail ) ){
+					foreach ($objCareersmail as $keyCareersMail => $objCareersMails) {
 			?>
 						<tr>
 							<td><?php echo $keyCareersMail + 1; ?></td>
@@ -66,11 +66,11 @@
 							 ?>
 							 <!-- </td> -->
 
-							 <td><?php echo CHtml::link('Download Resume',array('CareersMail/download', 'id' => $objCareersMails->id )); ?></td>
+							 <td><?php echo CHtml::link('Download Resume',array('careersmail/download', 'id' => $objCareersMails->id )); ?></td>
 							<td>
 								<!-- <a href="<?php //echo Yii::app()->createUrl("/careersMail/update", array('id' => $objCareersMails->id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a> -->
 
-								<a id="strCurrentCarMailStatus" status="<?php echo $objCareersMails->status; ?>" id="<?php echo $objCareersMails->id; ?>" class="btn btn-danger btn-xs">
+								<a id="strCurrentCarMailStatus" status="<?php echo $objCareersMails->status; ?>" car_id="<?php echo $objCareersMails->id; ?>" class="btn btn-danger btn-xs">
 									<?php 
 										$strFaIcon = 'fa-eye-slash';
 										if( $objCareersMails->status == Events::STATUS_ACTIVE ){
@@ -98,8 +98,8 @@
 			$.ajax({
                 type: "POST",
                 dataType: "json",
-                data: { status: $(this).attr('event_status'), id: $(this).attr('id')},
-                url: "<?php echo Yii::app()->baseUrl; ?>/events/ChangeStatus/",
+                data: { status: $(this).attr('status'), id: $(this).attr('car_id')},
+                url: "<?php echo Yii::app()->baseUrl; ?>/careersmail/ChangeStatus/",
                 success: function(data) {
                     if(data.status =="success"){
                         if( data.change_status == "1") {

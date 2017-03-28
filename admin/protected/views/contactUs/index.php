@@ -25,8 +25,8 @@
 
 		<tbody>
 			<?php
-				if( true == !empty( $objContactUs ) ){
-					foreach ($objContactUs as $keyContactUs => $objContactDetail) {
+				if( true == !empty( $objContactus ) ){
+					foreach ($objContactus as $keyContactUs => $objContactDetail) {
 			?>
 						<tr>
 							<td><?php echo $keyContactUs + 1; ?></td>
@@ -39,7 +39,7 @@
 							<td>
 								<!-- <a href="<?php //echo Yii::app()->createUrl("/ContactUs/update", array('id' => $objContactDetail->id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a> -->
 
-								<a id="strCurrentContactStatus" status="<?php echo $objContactDetail->status; ?>" id="<?php echo $objContactDetail->id; ?>" class="btn btn-danger btn-xs">
+								<a id="strCurrentContactStatus" status="<?php echo $objContactDetail->status; ?>" cont_id="<?php echo $objContactDetail->id; ?>" class="btn btn-danger btn-xs">
 									<?php 
 										$strFaIcon = 'fa-eye-slash';
 										if( $objContactDetail->status == Events::STATUS_ACTIVE ){
@@ -67,8 +67,8 @@
 			$.ajax({
                 type: "POST",
                 dataType: "json",
-                data: { status: $(this).attr('event_status'), id: $(this).attr('id')},
-                url: "<?php echo Yii::app()->baseUrl; ?>/events/ChangeStatus/",
+                data: { status: $(this).attr('status'), id: $(this).attr('cont_id')},
+                url: "<?php echo Yii::app()->baseUrl; ?>/contactus/ChangeStatus/",
                 success: function(data) {
                     if(data.status =="success"){
                         if( data.change_status == "1") {

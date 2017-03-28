@@ -38,7 +38,7 @@ $this->breadcrumbs=array(
 							<td><?php echo $keyProduct + 1; ?></td>
 							<td><?php echo $objProduct->title; ?></td>
 							<td><?php echo Categories::getCategoryName($objProduct->categories_id); ?></td>
-							<td><?php echo SubCategories::getSubCategoryName($objProduct->subcategories_id); ?></td>
+							<td><?php echo Subcategories::getSubCategoryName($objProduct->subcategories_id); ?></td>
 							<td><?php echo $objProduct->size; ?></td>
 							<!-- <td><?php //echo $objProduct->event_end_date; ?></td> -->
 							<td>

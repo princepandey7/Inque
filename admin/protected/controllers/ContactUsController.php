@@ -1,6 +1,6 @@
 <?php
 
-class ContactUsController extends Controller
+class ContactusController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,7 +32,7 @@ class ContactUsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','ChangeStatus'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,16 +62,16 @@ class ContactUsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ContactUs;
+		$model=new Contactus;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContactUs']))
+		if(isset($_POST['Contactus']))
 		{
-			$model->attributes=$_POST['ContactUs'];
+			$model->attributes=$_POST['Contactus'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class ContactUsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ContactUs']))
+		if(isset($_POST['Contactus']))
 		{
-			$model->attributes=$_POST['ContactUs'];
+			$model->attributes=$_POST['Contactus'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -122,9 +122,9 @@ class ContactUsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$objContactUs = ContactUs::model()->findAll();
+		$objContactus = Contactus::model()->findAll();
 		$this->render('index',array(
-			'objContactUs'=>$objContactUs,
+			'objContactus'=>$objContactus,
 		));
 	}
 
@@ -133,10 +133,10 @@ class ContactUsController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ContactUs('search');
+		$model=new Contactus('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ContactUs']))
-			$model->attributes=$_GET['ContactUs'];
+		if(isset($_GET['Contactus']))
+			$model->attributes=$_GET['Contactus'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class ContactUsController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return ContactUs the loaded model
+	 * @return Contactus the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=ContactUs::model()->findByPk($id);
+		$model=Contactus::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,7 +160,7 @@ class ContactUsController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param ContactUs $model the model to be validated
+	 * @param Contactus $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
@@ -169,5 +169,32 @@ class ContactUsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionChangeStatus()
+	{
+		if (Yii::app()->request->isAjaxRequest) {
+            $id = $_POST['id'];
+            $status = $_POST['status'];
+            $arrContactusList = Contactus::model()->findByPk($id);
+            if( true == !empty( $arrContactusList ) )
+            {
+                $strStatus = Contactus::STATUS_INACTIVE;
+                $strBtnText = "Disable";
+                $strMsg = "Contactus has been Enabled successfully";
+                if( Contactus::STATUS_INACTIVE == $status )
+                {
+                    $strStatus = Contactus::STATUS_ACTIVE;
+                    $strMsg = "Contactus has been Disabled successfully";
+                    $strBtnText = "Enable";
+                }
+                $arrContactusList->status = $strStatus;
+                $arrContactusList->save();
+
+                $send = array('status' => 'success', 'message' => $strMsg, 'change_status' => $strStatus, 'update' => $strBtnText);
+                echo CJSON::encode($send);
+                Yii::app()->end();
+            }
+        }
 	}
 }

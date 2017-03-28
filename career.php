@@ -53,7 +53,7 @@ require_once("db.php");
                         'resume' => $upload_resume_name
                     );
 
-        $connection->InsertQuery("careers_mail",$insetQuery);
+        $connection->InsertQuery("careersmail",$insetQuery);
 
         //mail
         $to_email= "contact@m9creative.com";

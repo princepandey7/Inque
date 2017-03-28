@@ -1,6 +1,6 @@
 <?php
 
-class SubCategoriesController extends Controller
+class SubcategoriesController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,16 +62,15 @@ class SubCategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new SubCategories;
+		$model = new Subcategories;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['SubCategories']))
+		if(isset($_POST['Subcategories']))
 		{
-			$model->attributes=$_POST['SubCategories'];
+			$model->attributes=$_POST['Subcategories'];
 			if($model->save()){
-				$this->redirect(array('view','id'=>$model->sub_categories_id));
+				$this->redirect(array('index'));
 			}
 		}
 
@@ -92,11 +91,11 @@ class SubCategoriesController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['SubCategories']))
+		if(isset($_POST['Subcategories']))
 		{
-			$model->attributes=$_POST['SubCategories'];
+			$model->attributes=$_POST['Subcategories'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->sub_categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -123,9 +122,9 @@ class SubCategoriesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$objSubCategories = SubCategories::model()->findAll();
+		$objSubcategories = Subcategories::model()->findAll();
 		$this->render('index',array(
-			'objSubCategories'=>$objSubCategories,
+			'objSubcategories'=>$objSubcategories,
 		));
 	}
 
@@ -134,10 +133,10 @@ class SubCategoriesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new SubCategories('search');
+		$model=new Subcategories('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['SubCategories']))
-			$model->attributes=$_GET['SubCategories'];
+		if(isset($_GET['Subcategories']))
+			$model->attributes=$_GET['Subcategories'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -148,12 +147,12 @@ class SubCategoriesController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return SubCategories the loaded model
+	 * @return Subcategories the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=SubCategories::model()->findByPk($id);
+		$model=Subcategories::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -161,7 +160,7 @@ class SubCategoriesController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param SubCategories $model the model to be validated
+	 * @param Subcategories $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
@@ -174,24 +173,25 @@ class SubCategoriesController extends Controller
 
 	public function actionChangeStatus()
 	{
+
 		if (Yii::app()->request->isAjaxRequest) {
             $id = $_POST['id'];
             $status = $_POST['status'];
-            $arrCategoriesList = SubCategories::model()->findByPk($id);
+            $arrSubcategoriesList = Subcategories::model()->findByPk($id);
 
-            if( true == !empty( $arrSubCategoriesList ) )
+            if(!empty( $arrSubcategoriesList ) )
             {
-                $strStatus = SubCategories::STATUS_INACTIVE;
+                $strStatus = Subcategories::STATUS_INACTIVE;
                 $strBtnText = "Disable";
                 $strMsg = "Sub-Categories has been Enabled successfully";
-                if( SubCategories::STATUS_INACTIVE == $status )
+                if( Subcategories::STATUS_INACTIVE == $status )
                 {
-                    $strStatus = SubCategories::STATUS_ACTIVE;
+                    $strStatus = Subcategories::STATUS_ACTIVE;
                     $strMsg = "Sub-Categories has been Disabled successfully";
                     $strBtnText = "Enable";
                 }
-                $arrCategoriesList->categories_status = $strStatus;
-                $arrCategoriesList->save();
+                $arrSubcategoriesList->sub_categories_status = $strStatus;
+                $arrSubcategoriesList->save();
 
                 $send = array('status' => 'success', 'message' => $strMsg, 'change_status' => $strStatus, 'update' => $strBtnText);
                 echo CJSON::encode($send);

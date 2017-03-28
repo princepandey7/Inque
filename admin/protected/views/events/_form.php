@@ -75,12 +75,22 @@
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'event_images', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<?php //echo $form->fileField($model,'event_images',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12', 'multiple' => true ,'placeholder' => 'can upload multiple images')); 
+						<?php //echo $form->fileField($model,'event_images',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12', 'multiple' => true ,'placeholder' => 'can upload multiple images'));
+
+						if(!empty($model->event_images)){
+							$eventImage = explode(',', $model->event_images);
+							foreach ($eventImage as $key => $value) {
+								echo '<img src="../../../assets/images/events/'. $value .' ?>" width="200" /> ';
+							}
+						}
+
+
 						 $this->widget('CMultiFileUpload', array(
 							'name' => 'event_images',
 							'model'=> $model,
 							'id'=>'event_images',
 							'remove'=>'[x]',
+							'max' => 3,
 							'accept' => 'jpeg|jpg|gif|png', // useful for verifying files
 							'duplicate' => 'Duplicate file!', // useful, i think
 							'denied' => 'Invalid file type', // useful, i think

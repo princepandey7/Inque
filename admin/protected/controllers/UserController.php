@@ -26,12 +26,12 @@ class UserController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	// public function actionIndex()
-	// {
+	public function actionIndex()
+	{
 		// renders the view file 'protected/views/dashboard/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		// $this->render('index');
-	// }
+	}
 
 	/**
 	 * This is the action to handle external exceptions.
@@ -53,7 +53,6 @@ class UserController extends Controller
 	public function actionLogin()
 	{
 		$this->layout = '//layouts/loginbox';
-		echo Yii::app()->user->id;
 		$model=new LoginForm;
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -72,7 +71,7 @@ class UserController extends Controller
 		}
 
 		$user = Users::model()->findByPk(Yii::app()->user->id);
-		if ( true == !empty( $user ) )
+		if ( !empty( $user ) )
         {
             Yii::app()->controller->redirect(array('/dashboard'));
         }

@@ -62,7 +62,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		ini_set('upload_max_filesize', '10M');
+		ini_set('upload_max_filesize', '40M');
 		$model=new Categories;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -80,7 +80,7 @@ class CategoriesController extends Controller
 			}
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		ini_set('upload_max_filesize', '10M');
+		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -115,7 +115,7 @@ class CategoriesController extends Controller
 			}
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

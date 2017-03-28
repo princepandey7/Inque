@@ -19,7 +19,7 @@ if(!empty($_POST))
 				'message'	=>$message
 			);
 
-	$connection->InsertQuery("contact_us",$insetQuery);
+	$connection->InsertQuery("contactus",$insetQuery);
 
 	$to = "contact@m9creative.com";
 	$subject = "User contact details";

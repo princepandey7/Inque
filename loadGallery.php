@@ -4,10 +4,9 @@ require_once("db.php");
 
 $start = $_POST['gallery_count'];
 
-$arrGalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT ". $start .",3");
+$arrGalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1  ORDER BY gallery_id DESC LIMIT ". $start .",6");
 
 $LoadedData = '';
-
 while($rowGallery = $arrGalleryQuery->fetch()){
 $LoadedData .='<li class="galleryMainImage" style="position: absolute; left: 0px; top: 0px; animation-duration: 0.620164s;">
 	<a href="assets/images/gallery/'. $rowGallery["gallery_main_image"] .'" class="fancybox" data-fancybox-group="gallery"><img src="assets/images/gallery/'. $rowGallery['gallery_thumnail_image'] .'">

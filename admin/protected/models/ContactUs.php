@@ -14,14 +14,17 @@
  * @property string $message
  * @property string $created_on
  */
-class ContactUs extends CActiveRecord
+class Contactus extends CActiveRecord
 {
+	const STATUS_ACTIVE = 1;
+	const STATUS_INACTIVE = 0;
+	/**
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'contact_us';
+		return 'contactus';
 	}
 
 	/**

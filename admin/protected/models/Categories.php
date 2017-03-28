@@ -37,8 +37,8 @@ class Categories extends CActiveRecord
 			array('categories_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('categories_name, categories_slug', 'length', 'max'=>50),
 			array('categories_description, modified_date', 'safe'),
-			array('upload_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'on'=>'insert,update'),
-            array('upload_pdf','file', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB'),
+			
+			array('upload_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB', 'allowEmpty'=>true, 'on'=>'insert,update'),
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -68,6 +68,7 @@ class Categories extends CActiveRecord
 			'categories_slug' => 'Categories Slug',
 			'categories_description' => 'Categories Description',
 			'categories_status' => 'Categories Status',
+			'upload_pdf' => 'Upload Pdf',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',
 			'delete_flag' => 'Delete Flag',

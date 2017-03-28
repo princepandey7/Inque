@@ -76,8 +76,8 @@ class Gallery extends CActiveRecord
 			'gallery_id' => 'Gallery',
 			'gallery_title' => 'Gallery Title',
 			'gallery_description' => 'Gallery Description',
-			'gallery_main_image' => 'Main Image (1920 * 1080)',
-			'gallery_thumnail_image' => 'Thumnail Image (300 * 300) ',
+			'gallery_main_image' => 'Main Image', // (1920 * 1080)
+			'gallery_thumnail_image' => 'Thumnail Image ', // (300 * 300) 
 			'gallery_status' => 'Gallery Status',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',

@@ -4,8 +4,8 @@
 	Options -MultiViews
 	Options +FollowSymLinks
 
-	RewriteBase /Inque/
-
+	RewriteBase /Inque/	
+	#RewriteBase /beta/	
 	RewriteRule ^index?$ index.php
 	RewriteRule ^product?$ product.php
 	RewriteRule ^overview?$ overview.php
