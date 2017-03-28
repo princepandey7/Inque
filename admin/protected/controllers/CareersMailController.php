@@ -1,6 +1,6 @@
 <?php
 
-class CareersMailController extends Controller
+class CareersmailController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,7 +32,7 @@ class CareersMailController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'download'),
+				'actions'=>array('create','update', 'download','ChangeStatus'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,14 +62,14 @@ class CareersMailController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new CareersMail;
+		$model=new Careersmail;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CareersMail']))
+		if(isset($_POST['Careersmail']))
 		{
-			$model->attributes=$_POST['CareersMail'];
+			$model->attributes=$_POST['Careersmail'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class CareersMailController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CareersMail']))
+		if(isset($_POST['Careersmail']))
 		{
-			$model->attributes=$_POST['CareersMail'];
+			$model->attributes=$_POST['Careersmail'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,9 +122,9 @@ class CareersMailController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$objCareersMail = CareersMail::model()->findAll();
+		$objCareersmail = Careersmail::model()->findAll();
 		$this->render('index',array(
-			'objCareersMail'=>$objCareersMail,
+			'objCareersmail'=>$objCareersmail,
 		));
 	}
 
@@ -133,10 +133,10 @@ class CareersMailController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new CareersMail('search');
+		$model=new Careersmail('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['CareersMail']))
-			$model->attributes=$_GET['CareersMail'];
+		if(isset($_GET['Careersmail']))
+			$model->attributes=$_GET['Careersmail'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class CareersMailController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return CareersMail the loaded model
+	 * @return Careersmail the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=CareersMail::model()->findByPk($id);
+		$model=Careersmail::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,7 +160,7 @@ class CareersMailController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param CareersMail $model the model to be validated
+	 * @param Careersmail $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
@@ -184,5 +184,32 @@ class CareersMailController extends Controller
 			}
 		}
 		Yii::app()->end();
+	}
+
+	public function actionChangeStatus()
+	{ 
+		if (Yii::app()->request->isAjaxRequest) {
+            $id = $_POST['id'];
+            $status = $_POST['status'];
+            $arrCareersmailList = Careersmail::model()->findByPk($id);
+            if( true == !empty( $arrCareersmailList ) )
+            {
+                $strStatus = Careersmail::STATUS_INACTIVE;
+                $strBtnText = "Disable";
+                $strMsg = "Careersmail has been Enabled successfully";
+                if( Careersmail::STATUS_INACTIVE == $status )
+                {
+                    $strStatus = Careersmail::STATUS_ACTIVE;
+                    $strMsg = "Careersmail has been Disabled successfully";
+                    $strBtnText = "Enable";
+                }
+                $arrCareersmailList->status = $strStatus;
+                $arrCareersmailList->save();
+
+                $send = array('status' => 'success', 'message' => $strMsg, 'change_status' => $strStatus, 'update' => $strBtnText);
+                echo CJSON::encode($send);
+                Yii::app()->end();
+            }
+        }
 	}
 }

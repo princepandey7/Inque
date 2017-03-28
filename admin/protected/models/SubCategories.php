@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "sub_categories".
+ * This is the model class for table "subcategories".
  *
- * The followings are the available columns in table 'sub_categories':
+ * The followings are the available columns in table 'subcategories':
  * @property integer $sub_categories_id
  * @property integer $categories_id
  * @property string $sub_categories_name
@@ -14,7 +14,7 @@
  * @property string $modified_date
  * @property integer $delete_flag
  */
-class SubCategories extends CActiveRecord
+class Subcategories extends CActiveRecord
 {
 
 	const STATUS_ACTIVE = 1;
@@ -24,7 +24,7 @@ class SubCategories extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'sub_categories';
+		return 'subcategories';
 	}
 
 	/**
@@ -111,12 +111,13 @@ class SubCategories extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return SubCategories the static model class
+	 * @return Subcategories the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
+
 
 	public static function getSubCategoryName($sub_cat_id){
 		$data = self::model()->findByPk($sub_cat_id);
@@ -126,7 +127,7 @@ class SubCategories extends CActiveRecord
 	}
 
 	public static function getActiveSubCategory($categories_id){
-		return Yii::app()->db->createCommand('SELECT sub_categories_id,sub_categories_name FROM sub_categories WHERE categories_id = '. $categories_id .' AND sub_categories_status='. self::STATUS_ACTIVE )->queryAll();
+		return Yii::app()->db->createCommand('SELECT sub_categories_id,sub_categories_name FROM subcategories WHERE categories_id = '. $categories_id .' AND sub_categories_status='. self::STATUS_ACTIVE )->queryAll();
 	}
 
 	// public static function getActiveCategory(){
@@ -147,4 +148,5 @@ class SubCategories extends CActiveRecord
  //        else
  //            return isset($_items[$type]) ? $_items[$type] : false;
  //    }
+
 }

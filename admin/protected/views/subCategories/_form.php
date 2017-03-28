@@ -61,10 +61,10 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
-  		$('#SubCategories_sub_categories_name').keyup(function(e) {
+  		$('#Subcategories_sub_categories_name').keyup(function(e) {
 			var txtVal = $(this).val();
 			txtVal = txtVal.toLowerCase().replace(/\s/g, '-');
-			$('#SubCategories_sub_categories_slug').val(txtVal);
+			$('#Subcategories_sub_categories_slug').val(txtVal);
 		});
 	});
 </script>

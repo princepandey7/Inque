@@ -20,7 +20,7 @@ include_once('header.php');
                             $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
                                 $current_cat = urlencode($catId);
                                 $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
-                                $SubCategoryQuery = $connection->tableDataCondition("*", "sub_categories", "categories_id=". $current_cat);
+                                $SubCategoryQuery = $connection->tableDataCondition("*", "subcategories", "categories_id=". $current_cat);
 
                                 while($rowCategory = $CategoryQuery->fetch()){
                                     $strCatPdfFile = $rowCategory['upload_pdf'];

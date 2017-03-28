@@ -6,7 +6,7 @@ include_once('header.php') ?>
             <div class="container gallery margin-top100">
                 <div class="title">Gallery</div>
                 <?php
-                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT 0,6");
+                    $GalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 ORDER BY gallery_id DESC LIMIT 0,6");
                 ?>
                 <ul class="grid effect-2 imageGalleryMainBox" id="grid1">
                     <?php 

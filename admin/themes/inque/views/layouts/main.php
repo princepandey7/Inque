@@ -75,8 +75,8 @@
 						<li>
 							<a><i class="fa fa-envelope"></i>Mail Info <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu">
-								<li><a href="<?php echo Yii::app()->createUrl("/careersMail/index"); ?>"><i class="fa fa-user" aria-hidden="true"></i>Career Info</a></li>
-								<li><a href="<?php echo Yii::app()->createUrl("/ContactUs/index"); ?>"><i class="fa fa-at" aria-hidden="true"></i>Contact Us Info</a></li>
+								<li><a href="<?php echo Yii::app()->createUrl("/careersmail/index"); ?>"><i class="fa fa-user" aria-hidden="true"></i>Career Info</a></li>
+								<li><a href="<?php echo Yii::app()->createUrl("/contactus/index"); ?>"><i class="fa fa-at" aria-hidden="true"></i>Contact Us Info</a></li>
 							</ul>
 						</li>
 					</ul>

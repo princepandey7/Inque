@@ -28,8 +28,6 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
-		echo "<pre>"; print_r($_POST); echo "</pre>". __LINE__ . ".\n"; exit(); 
-
 		// renders the view file 'protected/views/dashboard/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		// $this->render('index');
@@ -55,7 +53,6 @@ class UserController extends Controller
 	public function actionLogin()
 	{
 		$this->layout = '//layouts/loginbox';
-		echo Yii::app()->user->id;
 		$model=new LoginForm;
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -74,7 +71,7 @@ class UserController extends Controller
 		}
 
 		$user = Users::model()->findByPk(Yii::app()->user->id);
-		if ( true == !empty( $user ) )
+		if ( !empty( $user ) )
         {
             Yii::app()->controller->redirect(array('/dashboard'));
         }

@@ -15,14 +15,17 @@
  * @property string $resume
  * @property string $created_on
  */
-class CareersMail extends CActiveRecord
+class Careersmail extends CActiveRecord
 {
+	const STATUS_ACTIVE = 1;
+	const STATUS_INACTIVE = 0;
+	/**
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'careers_mail';
+		return 'careersmail';
 	}
 
 	/**

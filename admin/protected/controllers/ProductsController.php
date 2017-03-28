@@ -219,7 +219,7 @@ class ProductsController extends Controller
                     $strMsg = "Products has been Disabled successfully";
                     $strBtnText = "Enable";
                 }
-                $arrProductsList->Products_status = $strStatus;
+                $arrProductsList->product_status = $strStatus;
                 $arrProductsList->save();
 
                 $send = array('status' => 'success', 'message' => $strMsg, 'change_status' => $strStatus, 'update' => $strBtnText);
@@ -300,7 +300,7 @@ class ProductsController extends Controller
 
 	public function actionGetSubCatDetails(){
 		if( !empty($_POST['cat_id'])){
-			$objSubCategories = SubCategories::getActiveSubCategory($_POST['cat_id']);
+			$objSubCategories = Subcategories::getActiveSubCategory($_POST['cat_id']);
 			echo CJSON::encode(array(
                                   'status' => "success",
                                   'update' => $objSubCategories,

@@ -41,7 +41,7 @@
 						<?php
 							$subCatDetails = array();
 							if( !empty( $model->subcategories_id ) ){
-								$subCatDetails = CHtml::listData(SubCategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
+								$subCatDetails = CHtml::listData(Subcategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
 							}
 							echo $form->dropDownList($model, 'subcategories_id', $subCatDetails, array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'subcategories_id'); ?>

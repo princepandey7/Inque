@@ -4,7 +4,7 @@ require_once("db.php");
 
 $start = $_POST['gallery_count'];
 
-$arrGalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1 LIMIT ". $start .",6");
+$arrGalleryQuery = $connection->tableDataCondition("*", "gallery", "gallery_status=1  ORDER BY gallery_id DESC LIMIT ". $start .",6");
 
 $LoadedData = '';
 while($rowGallery = $arrGalleryQuery->fetch()){

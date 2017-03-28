@@ -21,8 +21,8 @@
 
 		<tbody>
 			<?php
-				if( true == !empty( $objSubCategories ) ){
-					foreach ($objSubCategories as $keySubCategorie => $objSubCategory) {
+				if( !empty( $objSubcategories ) ){
+					foreach ($objSubcategories as $keySubCategorie => $objSubCategory) {
 			?>
 						<tr>
 							<td><?php echo $keySubCategorie + 1; ?></td>
