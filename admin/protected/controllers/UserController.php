@@ -26,12 +26,14 @@ class UserController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	// public function actionIndex()
-	// {
+	public function actionIndex()
+	{
+		echo "<pre>"; print_r($_POST); echo "</pre>". __LINE__ . ".\n"; exit(); 
+
 		// renders the view file 'protected/views/dashboard/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		// $this->render('index');
-	// }
+	}
 
 	/**
 	 * This is the action to handle external exceptions.

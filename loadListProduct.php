@@ -14,7 +14,8 @@ $LoadedData = '';
 	if( !empty( $rowProducts ) ){
 		foreach ($rowProducts as $strProIndex => $rowProduct) {
 			$LoadedData .='<li>
-			                	<span class="title"> <a class="productList" proId = '. $rowProduct['id'] .'> '. $rowProduct['title'] .' </a></span>
+								<a class="productList" proId = '. $rowProduct['id'] .'>
+			                	<span class="title"> '. $rowProduct['title'] .'</span>
 			                <span> ';
 			                        if(!empty($rowProduct['size'])){
 			                           $LoadedData .='<b>Available Size - </b>'. $rowProduct['size'];
@@ -38,6 +39,7 @@ $LoadedData = '';
 			                    	$LoadedData .='<img src=assets/images/products/'. $rowProduct['product_main_image'];
 			                    }
 			$LoadedData .=' <div>
+							</a>
 			            </li>';
         }
 

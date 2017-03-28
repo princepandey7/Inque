@@ -62,7 +62,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		ini_set('upload_max_filesize', '10M');
+		ini_set('upload_max_filesize', '40M');
 		$model=new Categories;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		ini_set('upload_max_filesize', '10M');
+		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed

@@ -308,7 +308,8 @@ float: left;width: 100%; height: auto;  }
 #pastevent-carausal .carousel-indicators{ left: 96%; bottom: -23px; }
 #pastevent-carausal .carousel-indicators li{ border-radius: 0px; height: 12px; width: 12px;
     background: #323232; border: 1px solid #323232; }
-#pastevent-carausal .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; }
+/*#pastevent-carausal .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; }*/
+.carousel .carousel-indicators .active{ background: #07a89d; border: 1px solid #07a89d; }
 .pastEvent p{ font-family: 'latoregular'; font-size: 15px; color: #323232; font-weight: 600; 
 margin-top: 0px; margin-bottom: 6px; }
 
@@ -550,3 +551,5 @@ ul.upcoming_event_box li{ list-style: none; margin-left: 15px; }
     -o-transform:translateX(-50%) translateY(-50%);
     transform:translateX(-50%) translateY(-50%);
 }
+
+.block ul li a{cursor: pointer;}

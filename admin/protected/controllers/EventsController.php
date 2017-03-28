@@ -62,25 +62,20 @@ class EventsController extends Controller
 	 */
 	public function actionCreate()
 	{
+		ini_set('upload_max_filesize', '40M');
 		$model = new Events;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-
 		if(isset($_POST['Events']))
 		{
-
-
 			$model->attributes=$_POST['Events'];
 			$model->event_start_date = date('Y-m-d', strtotime($model->event_start_date));
-			// $model->event_images = CUploadedFile::getInstance($model,'event_images');
 			
 			$sfile = CUploadedFile::getInstancesByName('event_images');
 
 			$ffile = array();
-			foreach ($sfile as $i=>$file){  
-        	// $formatName=time().$i.'.'.$file->getExtensionName();
+			foreach ($sfile as $i=>$file){
 	        	$fileName = "{$sfile[$i]}";
 				$formatName=time().$i.'_'.$fileName;
 				$file->saveAs('../assets/images/events/'.$formatName);
@@ -106,6 +101,7 @@ class EventsController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -113,8 +109,22 @@ class EventsController extends Controller
 
 		if(isset($_POST['Events']))
 		{
-			$model->attributes=$_POST['Events'];
-			$model->event_start_date = date('Y-m-d', strtotime($model->event_start_date));
+			$model->event_title 		= $_POST['Events']['event_title'];
+			$model->event_description 	= $_POST['Events']['event_description'];
+			$model->event_evenue 		= $_POST['Events']['event_evenue'];
+			$model->event_start_date	= date('Y-m-d', strtotime($_POST['Events']['event_start_date']));
+			$EventMainImage 		= CUploadedFile::getInstancesByName('event_images');
+			if(!empty($EventMainImage)){
+				$ffile = array();
+				foreach ($EventMainImage as $i=>$file){
+		        	$fileName = "{$EventMainImage[$i]}";
+					$formatName=time().$i.'_'.$fileName;
+					$file->saveAs('../assets/images/events/'.$formatName);
+					$ffile[$i]=$formatName;
+	         	}
+				
+	         	$model->event_images = implode(",", $ffile);
+			}
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->event_id));
 		}

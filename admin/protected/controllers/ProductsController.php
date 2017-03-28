@@ -75,51 +75,52 @@ class ProductsController extends Controller
 			$model->kit_package_image=CUploadedFile::getInstance($model,'kit_package_image');
 			$model->planning_image=CUploadedFile::getInstance($model,'planning_image');
 
-			$letterUpload = CUploadedFile::getInstance($model,'upload_product_pdf');
+			$letterUpload 			= CUploadedFile::getInstance($model,'upload_product_pdf');
+			$uploadedMainFile		=	CUploadedFile::getInstance($model,'product_main_image');
+			$uploadedThumFile		=	CUploadedFile::getInstance($model,'product_thum_image');
+			$uploadedKitPackFile	=	CUploadedFile::getInstance($model,'kit_package_image');
+			$uploadedPlanningFile	=	CUploadedFile::getInstance($model,'planning_image');
+			
 			if(!empty($letterUpload))
 			{
-				$uniqueName = time()."_".$letterUpload->name;
-				$rootPath = "../assets/pdfProduct/product/".$uniqueName;
+				$pdfUniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/product/".$pdfUniqueName;
 				$letterUpload->saveAs($rootPath);
-				$model->upload_product_pdf = $uniqueName;
+				$model->upload_product_pdf = $pdfUniqueName;
+			}
+
+			if(!empty($uploadedMainFile)){
+				$uniqueName = rand(1000,9999) . time()."_". $uploadedMainFile->name;
+				$rootPath = "../assets/images/products/".$uniqueName;
+				$uploadedMainFile->saveAs($rootPath);
+				$model->product_main_image = $uniqueName;
+			}
+
+
+			if(!empty($uploadedThumFile)){
+				$uniqueName1 = rand(1000,9999) . time()."_". $uploadedThumFile->name;
+				$rootPath1 = "../assets/images/products/thum/".$uniqueName1;
+				$uploadedThumFile->saveAs($rootPath1);
+				$model->product_thum_image = $uniqueName1;
+			}
+
+			if(!empty($uploadedKitPackFile)){
+				$uniqueName2 = rand(1000,9999) . time()."_". $uploadedKitPackFile->name;
+				$rootPath2 = "../assets/images/products/kit-package/".$uniqueName2;
+				$uploadedKitPackFile->saveAs($rootPath2);
+				$model->kit_package_image = $uniqueName2;
+			}
+
+			if(!empty($uploadedPlanningFile)){
+				$uniqueName3 = rand(1000,9999) . time()."_". $uploadedPlanningFile->name;
+				$rootPath3 = "../assets/images/products/planning/".$uniqueName3;
+				$uploadedPlanningFile->saveAs($rootPath3);
+				$model->planning_image = $uniqueName3;
 			}
 
 			if($model->save()){
-				// $path1 = "../assets/images/gallery/".$uniqueName;
-				if( !empty($_FILES['Products']['name']['product_main_image'])){
-					$uniqueName1 	= $model->id ."_". time()."_".$model->product_main_image;
-					$path1 = "../assets/images/products/".$uniqueName1;
-					$model->product_main_image->saveAs($path1);
-					$model->product_main_image = $uniqueName1;
-				}
-				if( !empty($_FILES['Products']['name']['product_thum_image'])){
-					$uniqueName2 	= $model->id ."_". time()."_".$model->product_thum_image;
-					$path2 = "../assets/images/products/thum/".$uniqueName2;
-					$model->product_thum_image->saveAs($path2);
-					$model->product_thum_image = $uniqueName2;
-				}
-				if( !empty($_FILES['Products']['name']['kit_package_image'])){
-					$uniqueName3 	= $model->id ."_". time()."_".$model->kit_package_image;
-					$path3 = "../assets/images/products/kit-package/".$uniqueName3;
-					$model->kit_package_image->saveAs($path3);
-					$model->kit_package_image = $uniqueName3;
-				}
-				if( !empty($_FILES['Products']['name']['planning_image'])){
-					$uniqueName4 	= $model->id ."_". time()."_".$model->planning_image;
-					$path4 = "../assets/images/products/kit-package/".$uniqueName4;
-					$model->planning_image->saveAs($path4);
-					$model->planning_image = $uniqueName4;
-				}
-				if( !empty($_FILES) ){
-					$model->save();
-				}
-
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			// else {
-			// 	echo "<pre>"; print_r($model->getErrors()); echo "</pre>". __LINE__ . ".\n"; exit(); 
-			// }
-
 		}
 
 		$this->render('create',array(
@@ -141,36 +142,58 @@ class ProductsController extends Controller
 
 		if(isset($_POST['Products']))
 		{
-			$model->attributes=$_POST['Products'];
+			$model->title 				= $_POST['Products']['title'];
+			$model->categories_id 		= $_POST['Products']['categories_id'];
+			$model->subcategories_id 	= $_POST['Products']['subcategories_id'];
+			$model->size 				= $_POST['Products']['size'];
+			$model->finish 				= $_POST['Products']['finish'];
+			$model->height 				= $_POST['Products']['height'];
+			$model->material 			= $_POST['Products']['material'];
+			$model->features 			= $_POST['Products']['features'];
+
+			$letterUpload 			= CUploadedFile::getInstance($model,'upload_product_pdf');
 			$uploadedMainFile		=	CUploadedFile::getInstance($model,'product_main_image');
 			$uploadedThumFile		=	CUploadedFile::getInstance($model,'product_thum_image');
 			$uploadedKitPackFile	=	CUploadedFile::getInstance($model,'kit_package_image');
+			$uploadedPlanningFile	=	CUploadedFile::getInstance($model,'planning_image');
+
+			if(!empty($letterUpload))
+			{
+				$pdfUniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/product/".$pdfUniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_product_pdf = $pdfUniqueName;
+			}
+
+			if(!empty($uploadedMainFile)){
+				$uniqueName = rand(1000,9999) . time()."_". $uploadedMainFile->name;
+				$rootPath = "../assets/images/products/".$uniqueName;
+				$uploadedMainFile->saveAs($rootPath);
+				$model->product_main_image = $uniqueName;
+			}
+
+			if(!empty($uploadedThumFile)){
+				$uniqueName1 = rand(1000,9999) . time()."_". $uploadedThumFile->name;
+				$rootPath1 = "../assets/images/products/thum/".$uniqueName1;
+				$uploadedThumFile->saveAs($rootPath1);
+				$model->product_thum_image = $uniqueName1;
+			}
+
+			if(!empty($uploadedKitPackFile)){
+				$uniqueName2 = rand(1000,9999) . time()."_". $uploadedKitPackFile->name;
+				$rootPath2 = "../assets/images/products/kit-package/".$uniqueName2;
+				$uploadedKitPackFile->saveAs($rootPath2);
+				$model->kit_package_image = $uniqueName2;
+			}
+
+			if(!empty($uploadedPlanningFile)){
+				$uniqueName3 = rand(1000,9999) . time()."_". $uploadedPlanningFile->name;
+				$rootPath3 = "../assets/images/products/planning/".$uniqueName3;
+				$uploadedPlanningFile->saveAs($rootPath3);
+				$model->planning_image = $uniqueName3;
+			}
 
 			if($model->save())
-				// if( !empty($_FILES['Products']['name']['product_main_image'])){
-				if( !empty($uploadedMainFile ) ){
-					$uniqueName1 	= $model->id ."_". time()."_".$model->product_main_image;
-					$path1 = "../assets/images/products/".$uniqueName1;
-					$uploadedMainFile->saveAs($path1);
-					$model->product_main_image = $uniqueName1;
-				}
-				// if( !empty($_FILES['Products']['name']['product_thum_image'])){
-				if( !empty($uploadedThumFile ) ){
-					$uniqueName2 	= $model->id ."_". time()."_".$model->product_thum_image;
-					$path2 = "../assets/images/products/thum/".$uniqueName2;
-					$uploadedThumFile->saveAs($path2);
-					$model->product_thum_image = $uniqueName2;
-				}
-				// if( !empty($_FILES['Products']['name']['kit_package_image'])){
-				if( !empty($uploadedKitPackFile ) ){
-					$uniqueName3 	= $model->id ."_". time()."_".$model->kit_package_image;
-					$path3 = "../assets/images/products/kit-package/".$uniqueName3;
-					$uploadedKitPackFile->saveAs($path3);
-					$model->kit_package_image = $uniqueName3;
-				}
-				if( !empty($_FILES) ){
-					$model->save();
-				}
 				$this->redirect(array('view','id'=>$model->id));
 		}
 

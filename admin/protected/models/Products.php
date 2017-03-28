@@ -33,11 +33,14 @@ class Products extends CActiveRecord
 			//  'width' => 515, 'height' => 450, 'dimensionError' => 'Image dimension error',
 			array('product_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
-			array('product_thum_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 390, 'height' => 280, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			//'width' => 390, 'height' => 280, 'dimensionError' => 'Image dimension error',
+			array('product_thum_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 			
-			array('kit_package_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			//'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error',
+			array('kit_package_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
-			array('planning_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			//'width' => 873, 'height' => 246, 'dimensionError' => 'Image dimension error',
+			array('planning_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
 			array('upload_product_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB', 'allowEmpty'=>true, 'on'=>'insert,update'),
 

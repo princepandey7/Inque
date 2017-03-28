@@ -42,7 +42,7 @@ if( $currEvent == 'upcoming' ){
 				<div class="past_event_box">
 					<p> '. $rowPastPro['event_title'] .' </p>
 					<p> '. date('d F Y', strtotime($rowPastPro['event_start_date'])) .' </p>
-					<div id="pastevent-carausal" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">';
+					<div id="pastevent-carausal'. $strPastCount .'" class="carousel slide col-sm-12 padding0 pull-right" data-ride="carousel">';
 						if( !empty( $rowPastPro['event_images'] ) ){
                             $getTotalImg = explode(",", $rowPastPro['event_images']);
                             $LoadedData .=' <ol class="carousel-indicators"> ';
@@ -51,7 +51,7 @@ if( $currEvent == 'upcoming' ){
                                     if($i == 0){
                                         $currStatus = 'active';
                                     }
-                                    $LoadedData .='<li data-target="#pastevent-carausal" data-slide-to="'. $i .'" class="'. $currStatus .'"></li> ';
+                                    $LoadedData .='<li data-target="#pastevent-carausal'. $strPastCount .'" data-slide-to="'. $i .'" class="'. $currStatus .'"></li> ';
                                 }
                             $LoadedData .=' </ol> 
                             <div class="carousel-inner">';

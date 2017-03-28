@@ -99,8 +99,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_main_image)){
-							echo '<img src="../../images/products/'.$model->product_main_image.'" width="200" />';
-							echo $form->hiddenField($model, 'product_main_image', array('value'=>$model->product_main_image));
+							echo '<img src="../../../assets/images/products/'.$model->product_main_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'product_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_main_image'); ?>
@@ -112,8 +111,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_thum_image)){
-							echo '<img src="../../images/products/thum/'.$model->product_thum_image.'" width="200" />';
-							echo $form->hiddenField($model, 'product_thum_image', array('value'=>$model->product_thum_image));
+							echo '<img src="../../../assets/images/products/thum/'.$model->product_thum_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'product_thum_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_thum_image'); ?>
@@ -125,8 +123,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->kit_package_image)){
-							echo '<img src="../../images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
-							echo $form->hiddenField($model, 'kit_package_image', array('value'=>$model->kit_package_image));
+							echo '<img src="../../../assets/images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'kit_package_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'kit_package_image'); ?>
@@ -138,8 +135,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->planning_image)){
-							echo '<img src="../../images/products/planning/'.$model->planning_image.'" width="200" />';
-							echo $form->hiddenField($model, 'planning_image', array('value'=>$model->planning_image));
+							echo '<img src="../../../assets/images/products/planning/'.$model->planning_image.'" width="200" />';
 						}
 						echo $form->fileField($model,'planning_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'planning_image'); ?>

@@ -162,6 +162,7 @@ include_once('header.php') ?>
                         success: function(data) {
                             if( data != ''){
                                 $('.past_event_box:last').after(data);
+                                // $('.carousel').carousel('next');
                             } else {
                                 This.hide();
                             }

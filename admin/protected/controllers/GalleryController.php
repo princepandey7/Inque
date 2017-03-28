@@ -76,7 +76,7 @@ class GalleryController extends Controller
 				$uniqueName 	= rand(1000,9999) . time()."_".$model->gallery_main_image;
 				$uniqueThumName = rand(1000,9999) . time()."_".$model->gallery_thumnail_image;
 				$path1 = "../assets/images/gallery/".$uniqueName;
-				$path2 = "../assets/images/gallery/".$uniqueThumName;
+				$path2 = "../assets/images/gallery/thumbnail/".$uniqueThumName;
 				$model->gallery_main_image->saveAs($path1);
 				$model->gallery_thumnail_image->saveAs($path2);
 				$model->gallery_main_image 		= $uniqueName;
@@ -103,24 +103,33 @@ class GalleryController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+
 		if(isset($_POST['Gallery']))
 		{
-			$model->attributes=$_POST['Gallery'];
-			$model->gallery_main_image=CUploadedFile::getInstance($model,'gallery_main_image');
-			$model->gallery_thumnail_image=CUploadedFile::getInstance($model,'gallery_thumnail_image');
+			$getUrl = explode('/', Yii::app()->baseUrl);
+			$model->gallery_title 		= $_POST['Gallery']['gallery_title'];
+			$model->gallery_description = $_POST['Gallery']['gallery_description'];
+			$GalleryMainImage 		= CUploadedFile::getInstance($model,'gallery_main_image');
+			if(!empty($GalleryMainImage)){
+				// $oldMainFile = "/". $getUrl[1]."/assets/images/gallery/". $model->gallery_main_image;
+				// unlink($oldMainFile);
+				$uniqueName = rand(1000,9999) . time()."_". $GalleryMainImage->name;
+				$rootPath = "../assets/images/gallery/".$uniqueName;
+				$GalleryMainImage->saveAs($rootPath);
+				$model->gallery_main_image = $uniqueName;
+			}
+
+			$GalleryThumnailImage 	= CUploadedFile::getInstance($model,'gallery_thumnail_image');
+			if(!empty($GalleryThumnailImage)){
+				// $oldThumnailFile = $getUrl[1]."/assets/images/gallery/". $model->gallery_main_image;
+				// unlink($oldMainFile);
+				$uniqueThumName = rand(1000,9999) . time()."_". $GalleryThumnailImage->name;
+				$rootPath1 = "../assets/images/gallery/thumbnail/".$uniqueThumName;
+				$GalleryThumnailImage->saveAs($rootPath1);
+				$model->gallery_thumnail_image = $uniqueThumName;
+			}
+
 			if($model->save())
-				if(!empty($model->gallery_main_image)){
-					$uniqueName 	= rand(1000,9999) . time()."_".$model->gallery_main_image;
-					$uniqueThumName = rand(1000,9999) . time()."_".$model->gallery_thumnail_image;
-					$path1 = "../assets/images/gallery/".$uniqueName;
-					$path2 = "../assets/images/gallery/".$uniqueThumName;
-					$model->gallery_main_image->saveAs($path1);
-					$model->gallery_thumnail_image->saveAs($path2);
-					
-					$model->gallery_main_image 		= $uniqueName;
-					$model->gallery_thumnail_image 	= $uniqueThumName;
-	    			$model->save();
-				}
 				$this->redirect(array('view','id'=>$model->gallery_id));
 		}
 

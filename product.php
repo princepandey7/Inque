@@ -79,35 +79,37 @@ include_once('header.php');
                                         foreach ($rowProducts as $strProIndex => $rowProduct) {
                                 ?>
                                     <li>
-                                        <span class="title"> <a class="productList" proId = <?php echo $rowProduct['id']; ?>><?php echo $rowProduct['title']; ?> </a></span>
-                                        <span>
-                                            <?php 
-                                                if(!empty($rowProduct['size'])){
-                                                    echo "<b>Available Size - </b>". $rowProduct['size']; 
-                                                }
-                                            ?>
-                                        </span>
-                                        <span>
-                                            <?php 
-                                                if(!empty($rowProduct['finish'])){
-                                                    echo "<b>Finish - </b>". $rowProduct['finish']; 
-                                                }
-                                            ?>
-                                        </span>
-                                        <span>
-                                            <?php 
-                                                if(!empty($rowProduct['height'])){
-                                                    echo "<b>Height - </b>". $rowProduct['height']; 
-                                                }
-                                            ?>
-                                        </span>
-                                        <div>
-                                            <?php 
-                                                if( !empty( $rowProduct['product_main_image'] ) ){
-                                                    echo "<img src=assets/images/products/". $rowProduct['product_main_image'] ."";
-                                                }
-                                            ?>
-                                        <div>
+                                        <a class="productList" proId = <?php echo $rowProduct['id']; ?>>
+                                            <span class="title"> <?php echo $rowProduct['title']; ?></span>
+                                            <span>
+                                                <?php 
+                                                    if(!empty($rowProduct['size'])){
+                                                        echo "<b>Available Size - </b>". $rowProduct['size']; 
+                                                    }
+                                                ?>
+                                            </span>
+                                            <span>
+                                                <?php 
+                                                    if(!empty($rowProduct['finish'])){
+                                                        echo "<b>Finish - </b>". $rowProduct['finish']; 
+                                                    }
+                                                ?>
+                                            </span>
+                                            <span>
+                                                <?php 
+                                                    if(!empty($rowProduct['height'])){
+                                                        echo "<b>Height - </b>". $rowProduct['height']; 
+                                                    }
+                                                ?>
+                                            </span>
+                                            <div>
+                                                <?php 
+                                                    if( !empty( $rowProduct['product_main_image'] ) ){
+                                                        echo "<img src=assets/images/products/". $rowProduct['product_main_image'] ."";
+                                                    }
+                                                ?>
+                                            <div>
+                                        </a>
                                     </li>
                                 <?php
                                         }

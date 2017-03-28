@@ -10,13 +10,13 @@
 
 
 	// define('DBHOST','localhost');
-	// define('DBUSER','welvart_mage1');
-	// define('DBPASS','J@Z9]191hI21)]7');
-	// define('DBNAME','welvart_mage1');
+	// define('DBUSER','inque');
+	// define('DBPASS','71{zt#!LTxWF');
+	// define('DBNAME','inque');
 
 	//application address
 	define('DIR','http://localhost/Inque/');
-	// define('DIR','http://www.inque.com/beta/');
+	// define('DIR','http://inque.co.in/beta/');
 
 	try {
 		$conn = new PDO("mysql:host=".DBHOST.";dbname=".DBNAME, DBUSER, DBPASS);
