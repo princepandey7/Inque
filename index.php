@@ -161,7 +161,7 @@ include_once('header.php') ?>
                             </li>
                         </ul>
                         <div class="clear0"></div>
-                        <hr/>
+                       
                         <?php $strCount++; } ?>
                     </div>
                 </div>
@@ -282,6 +282,10 @@ include_once('header.php') ?>
         <script src="assets/gallery/js/imagesloaded.js"></script>
         <script src="assets/gallery/js/classie.js"></script>
         <script src="assets/gallery/js/AnimOnScroll.js"></script>
+        <style>body{ background-image: none!important; } 
+        .eventInner{ background: #e1e1e1; padding: 20px 10px 40px 40px  }
+        .eventInner ul{ border-bottom: 1px solid #e1eec3 }
+        </style>
         <script>
             new AnimOnScroll( document.getElementById( 'grid1' ), {
                 minDuration : 0.4,
