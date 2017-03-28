@@ -80,7 +80,7 @@ class CategoriesController extends Controller
 			}
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -115,7 +115,7 @@ class CategoriesController extends Controller
 			}
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

@@ -69,12 +69,8 @@ class SubcategoriesController extends Controller
 		if(isset($_POST['Subcategories']))
 		{
 			$model->attributes=$_POST['Subcategories'];
-			// echo "<pre>"; print_r($_POST); echo "</pre>". __LINE__ . ".\n"; exit(); 
 			if($model->save()){
-				$this->redirect(array('view','id'=>$model->sub_categories_id));
-			} else {
-				echo "<pre>"; print_r($model->getErrors()); echo "</pre>". __LINE__ . ".\n"; exit(); 
-
+				$this->redirect(array('index'));
 			}
 		}
 
@@ -99,7 +95,7 @@ class SubcategoriesController extends Controller
 		{
 			$model->attributes=$_POST['Subcategories'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->sub_categories_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

@@ -84,7 +84,7 @@ class EventsController extends Controller
 			
          	$model->event_images = implode(",", $ffile);
 			if($model->save()){
-				$this->redirect(array('view','id'=>$model->event_id));
+				$this->redirect(array('index'));
 			}
 		}
 
@@ -126,7 +126,7 @@ class EventsController extends Controller
 	         	$model->event_images = implode(",", $ffile);
 			}
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->event_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

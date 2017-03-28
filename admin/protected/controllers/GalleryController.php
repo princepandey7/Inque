@@ -82,7 +82,7 @@ class GalleryController extends Controller
 				$model->gallery_main_image 		= $uniqueName;
 				$model->gallery_thumnail_image 	= $uniqueThumName;
     			$model->save();
-				$this->redirect(array('view','id'=>$model->gallery_id));
+				$this->redirect(array('index'));
 			}
 		}
 
@@ -130,7 +130,7 @@ class GalleryController extends Controller
 			}
 
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->gallery_id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(
@@ -185,7 +185,7 @@ class GalleryController extends Controller
 	public function actionIndex()
 	{
 		// $dataProvider=new CActiveDataProvider('Gallery');
-		$objGallerys = Gallery::model()->findAll();
+		$objGallerys = Gallery::model()->findAll(array('order'=>'gallery_id DESC'));
 		$this->render('index',array(
 			'objGallerys'=>$objGallerys,
 		));
