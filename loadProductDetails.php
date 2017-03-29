@@ -48,16 +48,13 @@ while($rowProductDesc = $arrProductDescQuery->fetch()){
     $LoadedData .='
         </div>
         <div class="clear15"></div>';
-
-        // echo  $rowProductDesc['upload_product_pdf'];
-
-        if( !empty($rowProductDesc['kit_package_image']) ) {
-            $filename = "assets/pdfProduct/product/". $rowProductDesc['upload_product_pdf'];
+        if( !empty($rowProductDesc['upload_product_pdf']) ) {
+            $filename = 'assets/pdfProduct/product/'. $rowProductDesc['upload_product_pdf'];
             if(file_exists($filename)){ 
  $LoadedData .='
         <div class="link pull-right">
             <a href="'. $filename .'"  target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-            <a href="" class="active"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+            <a class="active commonPdfRequest" requested_pdf_name="'. $rowProductDesc['upload_product_pdf'] .'" pdf_status="get_product_pdf" data-toggle="modal" data-target="#productPdfRequest" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
         </div> ';
             }
         }

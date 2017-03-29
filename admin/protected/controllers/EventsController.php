@@ -103,9 +103,9 @@ class EventsController extends Controller
 	{
 		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$removePro = str_replace('protected', '', Yii::app()->basePath);
+		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+		$oldMainImg = $model->event_images;
 
 		if(isset($_POST['Events']))
 		{
@@ -115,6 +115,13 @@ class EventsController extends Controller
 			$model->event_start_date	= date('Y-m-d', strtotime($_POST['Events']['event_start_date']));
 			$EventMainImage 		= CUploadedFile::getInstancesByName('event_images');
 			if(!empty($EventMainImage)){
+				$arrayPreviousEventImg = explode(",", $oldMainImg);
+				foreach ($arrayPreviousEventImg as $key => $value) {
+					if( !empty( $value ) && file_exists($changeBaseUrl."/images/events/". $value)){
+						unlink($changeBaseUrl."/images/events/". $value );
+					}
+				}
+
 				$ffile = array();
 				foreach ($EventMainImage as $i=>$file){
 		        	$fileName = "{$EventMainImage[$i]}";

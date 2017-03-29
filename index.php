@@ -223,7 +223,7 @@ include_once('header.php') ?>
                         <hr/>
                         <div class="clear0"></div>
                         <p>Be the first to know about the products, store events and other discount information</p>
-                        <a data-toggle="modal" data-target="#productCatalogueForm" class="btn">Download</a>
+                        <a data-toggle="modal" requested_pdf_name="pdf-product-catalogue.pdf" pdf_status="get_catalogue_pdf" data-target="#productPdfRequest" class="btn commonPdfRequest">Download</a>
                     </div>
                     <div class="col-sm-6 foo-img">
                         <img src="assets/images/bro-img.png">
@@ -234,49 +234,11 @@ include_once('header.php') ?>
             </div>
         </div>
 
-        <?php include_once('enquiry-slider.php') ?>
-        <div class="modal fade" id="productCatalogueForm" role="dialog">
-          <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Request for pdf</h4>
-              </div>
-              <div class="modal-body">
-                <form id="strSendProductCatalogueFrm" method="post" class="contact-form">
-                    <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required]" name="name" id="name" placeholder="Name *">
-                    </div>
-                    <div class="col-sm-12 padding0"> 
-                        <input type="email" class="validate[required,custom[email]]" name="email" id="email" placeholder="Email ID *">
-                    </div>
-                    <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="mobile" id="mobile" placeholder="Mobile *">
-                    </div>
-                     <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required]" name="company" id="company" placeholder="Company *">
-                    </div>
-                    <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required]" name="country" id="country" placeholder="Country *">
-                    </div>
-                     <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required]" name="state" id="state" placeholder="State *">
-                    </div>
-                    <div class="col-sm-12 padding0"> 
-                        <input type="text" class="validate[required]" name="city" id="city" placeholder="City *">
-                    </div>
-                    <div class="col-sm-12 alert alert-success padding0" style="display: none">
-                      <strong>Success!</strong> Enquiry Submitted Successfully.
-                    </div>
-                    <div class="col-sm-12 padding0">
-                        <button type="button" id="strProductCatalogueBtn"> submit</button>
-                    </div>
-                </form>
-              </div>
-              <div class="clear15"></div>
-              </div>
-          </div>
-        </div>
+        <?php 
+            include_once('enquiry-slider.php');
+            include_once('request_for_pdf.php');
+        ?>
+
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>

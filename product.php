@@ -60,11 +60,11 @@ include_once('header.php');
                             </p>
                             <?php 
                                 $filename = 'assets/pdfProduct/category/'. $strCatPdfFile;
-                                if(file_exists($filename)){ 
+                                if(!empty($strCatPdfFile) && file_exists($filename)){ 
                             ?>
                                 <div class="link">
                                     <a href="<?php echo $filename; ?>" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-                                    <a class="active" data-toggle="modal" data-target="#enquiryForm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                                    <a class="active commonPdfRequest" requested_pdf_name="<?php echo $strCatPdfFile; ?>"  pdf_status="get_category_pdf" data-toggle="modal" data-target="#productPdfRequest"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                                 </div>
                             <?php } ?>
                             <div class="backToProductBox" style="display: none;">
@@ -133,7 +133,7 @@ include_once('header.php');
         </div>
  <div class="clear0"></div>
         <?php //include_once('enquiry-slider.php') ?>
-         <?php include_once('enquiry-popup.php') ?>
+         <?php include_once('request_for_pdf.php') ?>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
         <script src="assets/gallery/js/imagesloaded.js"></script>

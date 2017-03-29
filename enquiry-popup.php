@@ -1,4 +1,4 @@
-  <div class="modal fade" id="enquiryForm" role="dialog">
+  <<!-- div class="modal fade" id="enquiryForm" role="dialog">
       <div class="modal-dialog modal-sm">
           <div class="modal-content">
           <div class="modal-header">
@@ -20,4 +20,4 @@
           <div class="clear15"></div>
           </div>
       </div>
-  </div>
+  </div> -->

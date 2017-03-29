@@ -4,30 +4,54 @@ require_once("db.php");
 
 if(!empty($_POST))
 {
-	$name    		= 	filter_var($_POST["name"], FILTER_SANITIZE_STRING);
-	$emailId   		= 	filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-	$mobile 		= 	filter_var($_POST["mobile"], FILTER_SANITIZE_NUMBER_INT);
-	$companyName    = 	filter_var($_POST["company"], FILTER_SANITIZE_STRING);
-	$country    	= 	filter_var($_POST["country"], FILTER_SANITIZE_STRING);
-	$state    		= 	filter_var($_POST["state"], FILTER_SANITIZE_STRING);
-	$city       	= 	filter_var($_POST["city"], FILTER_SANITIZE_STRING);
+	$name    			= 	filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+	$emailId   			= 	filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+	$mobile 			= 	filter_var($_POST["mobile"], FILTER_SANITIZE_NUMBER_INT);
+	$companyName    	= 	filter_var($_POST["company"], FILTER_SANITIZE_STRING);
+	$country    		= 	filter_var($_POST["country"], FILTER_SANITIZE_STRING);
+	$state    			= 	filter_var($_POST["state"], FILTER_SANITIZE_STRING);
+	$city       		= 	filter_var($_POST["city"], FILTER_SANITIZE_STRING);
+	$status				= 	$_POST['requested_pdf_status'];
+	
+	$requestedPdfName		= 	$_POST['requested_name'];
 
-	$insetQuery = 
+	$insetQuery =
 			array(
-				'name'		=>$name,
-				'email'		=>$emailId,
-				'mobile'	=>$mobile,
-				'company'	=>$companyName,
-				'country'	=>$country,
-				'state'		=>$state,
-				'city'		=>$city,
-				'is_visible'=>1,
+				'name'			=>$name,
+				'email'			=>$emailId,
+				'mobile'		=>$mobile,
+				'company'		=>$companyName,
+				'country'		=>$country,
+				'state'			=>$state,
+				'city'			=>$city,
+				'requested_by'	=>$status,
+				'is_visible'	=>1,
 			);
-	$pdfname = 'test.pdf';
-	$connection->InsertQuery("request_product_catalogue",$insetQuery);
+
+	$connection->InsertQuery("requested_pdf",$insetQuery);
+
 	$image_link = DIR.'assets/images/menu-logo.png';
 
-	$download_link = DIR.'assets/pdfProductCatalogue/pdf-product-catalogue.pdf';
+	$UrlLink = '';
+	switch ($status) {
+		case 'get_catalogue_pdf':
+			$UrlLink = DIR.'assets/pdfProductCatalogue/pdf-product-catalogue.pdf';
+			break;
+		case 'get_category_pdf':
+			$UrlLink = DIR.'assets/pdfProduct/category/'. $requestedPdfName ;
+			break;
+		case 'get_product_pdf':
+			$UrlLink = DIR.'assets/pdfProduct/product/'. $requestedPdfName ;
+			break;
+		default:
+			break;
+	}
+	
+	// $pdfname = 'test.pdf';
+	$pdfname = $requestedPdfName;
+	$download_link = $UrlLink;
+
+
 	$to = $emailId;
 
 	$subject = 'PDF request received';
@@ -65,6 +89,8 @@ if(!empty($_POST))
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$headers .= 'From: Inque<contact@m9creative.com>' . "\r\n";
+
+	echo "<pre>"; print_r($message); echo "</pre>". __LINE__ . ".\n"; exit(); 
 
 	$mail = mail($to,$subject,$message,$headers);
 

@@ -136,9 +136,14 @@ class ProductsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$removePro = str_replace('protected', '', Yii::app()->basePath);
+		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$oldProductPdf 	= $model->upload_product_pdf;
+		$oldMainImg 	= $model->product_main_image;
+		$oldThumImg 	= $model->product_thum_image;
+		$oldKitPackImg 	= $model->kit_package_image;
+		$oldPlanImg 	= $model->planning_image;
 
 		if(isset($_POST['Products']))
 		{
@@ -159,6 +164,9 @@ class ProductsController extends Controller
 
 			if(!empty($letterUpload))
 			{
+				if( !empty( $oldProductPdf ) &&  file_exists($changeBaseUrl."/pdfProduct/product/". $oldProductPdf)){
+					unlink($changeBaseUrl."/pdfProduct/product/". $oldProductPdf );
+				}
 				$pdfUniqueName = time()."_".$letterUpload->name;
 				$rootPath = "../assets/pdfProduct/product/".$pdfUniqueName;
 				$letterUpload->saveAs($rootPath);
@@ -166,6 +174,9 @@ class ProductsController extends Controller
 			}
 
 			if(!empty($uploadedMainFile)){
+				if(!empty( $oldMainImg ) &&  file_exists($changeBaseUrl."/images/products/". $oldMainImg)){
+					unlink($changeBaseUrl."/images/products/". $oldMainImg );
+				}
 				$uniqueName = rand(1000,9999) . time()."_". $uploadedMainFile->name;
 				$rootPath = "../assets/images/products/".$uniqueName;
 				$uploadedMainFile->saveAs($rootPath);
@@ -173,6 +184,9 @@ class ProductsController extends Controller
 			}
 
 			if(!empty($uploadedThumFile)){
+				if( !empty( $oldThumImg ) && file_exists($changeBaseUrl."/images/products/thum/". $oldThumImg)){
+					unlink($changeBaseUrl."/images/products/thum/". $oldThumImg );
+				}
 				$uniqueName1 = rand(1000,9999) . time()."_". $uploadedThumFile->name;
 				$rootPath1 = "../assets/images/products/thum/".$uniqueName1;
 				$uploadedThumFile->saveAs($rootPath1);
@@ -180,6 +194,9 @@ class ProductsController extends Controller
 			}
 
 			if(!empty($uploadedKitPackFile)){
+				if( !empty( $oldKitPackImg ) && file_exists($changeBaseUrl."/images/products/kit-package/". $oldKitPackImg)){
+					unlink($changeBaseUrl."/images/products/kit-package/". $oldKitPackImg );
+				}
 				$uniqueName2 = rand(1000,9999) . time()."_". $uploadedKitPackFile->name;
 				$rootPath2 = "../assets/images/products/kit-package/".$uniqueName2;
 				$uploadedKitPackFile->saveAs($rootPath2);
@@ -187,6 +204,9 @@ class ProductsController extends Controller
 			}
 
 			if(!empty($uploadedPlanningFile)){
+				if( !empty( $oldPlanImg ) && file_exists($changeBaseUrl."/images/products/planning/". $oldPlanImg)){
+					unlink($changeBaseUrl."/images/products/planning/". $oldPlanImg );
+				}
 				$uniqueName3 = rand(1000,9999) . time()."_". $uploadedPlanningFile->name;
 				$rootPath3 = "../assets/images/products/planning/".$uniqueName3;
 				$uploadedPlanningFile->saveAs($rootPath3);

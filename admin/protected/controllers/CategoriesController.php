@@ -97,17 +97,22 @@ class CategoriesController extends Controller
 	{
 		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$removePro = str_replace('protected', '', Yii::app()->basePath);
+		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+		$oldProductPdf 	= $model->upload_pdf;
 		if(isset($_POST['Categories']))
 		{
-			$model->attributes=$_POST['Categories'];
+			$model->categories_name 		= $_POST['Categories']['categories_name'];
+			$model->categories_slug 		= $_POST['Categories']['categories_slug'];
+			$model->categories_description 	= $_POST['Categories']['categories_description'];
 
 			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
 			if(!empty($letterUpload))
 			{
+				if( !empty( $oldProductPdf ) &&  file_exists($changeBaseUrl."/pdfProduct/product/category/". $oldProductPdf)){
+					unlink($changeBaseUrl."/pdfProduct/product/category/". $oldProductPdf );
+				}
+
 				$uniqueName = time()."_".$letterUpload->name;
 				$rootPath = "../assets/pdfProduct/category/".$uniqueName;
 				$letterUpload->saveAs($rootPath);

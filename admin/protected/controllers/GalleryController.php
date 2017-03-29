@@ -99,10 +99,10 @@ class GalleryController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$removePro = str_replace('protected', '', Yii::app()->basePath);
+		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+		$oldMainImg = $model->gallery_main_image;
+		$oldThumImg = $model->gallery_thumnail_image;
 
 		if(isset($_POST['Gallery']))
 		{
@@ -111,8 +111,9 @@ class GalleryController extends Controller
 			$model->gallery_description = $_POST['Gallery']['gallery_description'];
 			$GalleryMainImage 		= CUploadedFile::getInstance($model,'gallery_main_image');
 			if(!empty($GalleryMainImage)){
-				// $oldMainFile = "/". $getUrl[1]."/assets/images/gallery/". $model->gallery_main_image;
-				// unlink($oldMainFile);
+				if( !empty( $oldMainImg ) && file_exists($changeBaseUrl."/images/gallery/". $oldMainImg)){
+					unlink($changeBaseUrl."/images/gallery/". $oldMainImg );
+				}
 				$uniqueName = rand(1000,9999) . time()."_". $GalleryMainImage->name;
 				$rootPath = "../assets/images/gallery/".$uniqueName;
 				$GalleryMainImage->saveAs($rootPath);
@@ -121,8 +122,10 @@ class GalleryController extends Controller
 
 			$GalleryThumnailImage 	= CUploadedFile::getInstance($model,'gallery_thumnail_image');
 			if(!empty($GalleryThumnailImage)){
-				// $oldThumnailFile = $getUrl[1]."/assets/images/gallery/". $model->gallery_main_image;
-				// unlink($oldMainFile);
+				if( !empty( $oldThumImg ) && file_exists($changeBaseUrl."/images/gallery/thumbnail/". $oldThumImg)){
+					unlink($changeBaseUrl."/images/gallery/thumbnail/". $oldThumImg);
+				}
+				
 				$uniqueThumName = rand(1000,9999) . time()."_". $GalleryThumnailImage->name;
 				$rootPath1 = "../assets/images/gallery/thumbnail/".$uniqueThumName;
 				$GalleryThumnailImage->saveAs($rootPath1);
