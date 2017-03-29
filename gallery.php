@@ -37,7 +37,7 @@ include_once('header.php') ?>
                     </ol>
                     <div class="carousel-inner">
                         <div class="item active vendor">
-                          <iframe width="100%" height="100%" src="//www.youtube.com/embed/SEBLt6Kd9EY?controls=0" frameborder="0" allowfullscreen=""></iframe>
+                          <iframe width="100%" height="100%"  src="https://www.youtube.com/embed/o38vm6VGAG4" frameborder="0" allowfullscreen=""></iframe>
                             <div class="caption">
                                 <b>Vile Parle Demonetisation</b>
                                 <p>
@@ -46,7 +46,7 @@ include_once('header.php') ?>
                             </div>
                         </div>
                         <div class="item vendor">
-                            <iframe width="100%" height="100%" src="//www.youtube.com/embed/SEBLt6Kd9EY?controls=0" frameborder="0" allowfullscreen=""></iframe>
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/o38vm6VGAG4" frameborder="0" allowfullscreen=""></iframe>
                             <div class="caption">
                                 <b>Vile Parle Demonetisation</b>
                                 <p>
@@ -55,7 +55,8 @@ include_once('header.php') ?>
                             </div>
                         </div>
                         <div class="item vendor">
-                            <iframe width="100%" height="100%" src="//www.youtube.com/embed/IkTw7J-hGmg?controls=0" frameborder="0" allowfullscreen=""></iframe>
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/o38vm6VGAG4" frameborder="0" allowfullscreen=""></iframe>
+
                             <div class="caption">
                                 <b>Vile Parle Demonetisation</b>
                                 <p>

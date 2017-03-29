@@ -590,6 +590,9 @@ margin-top: 0px; margin-bottom: 10px; max-width: 400px;}
     transition: width 2s; padding: 4px 25px; letter-spacing: 4px;}
 
 .gallery .btn:hover{ background:#00e0d1; color: #ffffff;border: 1px solid #00e0d1;  }
+.carousel-inner .vendor{ max-height: 406px; }
+/*#galleryCarousel .carousel-inner{ max-height: 500px; }*/
+iframe{ max-height: 400px; }
 
 hr{ margin-top: 0px!important; border-color: #323232!important; text-align: center;}
 
@@ -705,11 +708,11 @@ text-transform: uppercase; margin-top: 5px; }
 
 .galleryCarousel{ max-width: 650px; margin: 100px auto; color: #323232; }
 
-.galleryCarousel .caption{ max-width: 600px; float: left; margin-top: 30px; }
+.galleryCarousel .caption{ max-width: 600px; float: left; margin-top: -215px; }
 
 .galleryCarousel .item{ border: 3px solid #323232; }
 
-.galleryCarousel .carousel-indicators{ left: 96%; bottom: 42px; }
+.galleryCarousel .carousel-indicators{ left: 96%; bottom: 174px; }
 
 .galleryCarousel .carousel-indicators li{ border-radius: 0px; height: 12px; width: 12px;
 
