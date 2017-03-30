@@ -52,7 +52,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->gallery_main_image)){
-							echo '<img src="../../../assets/images/gallery/thumbnail/'. $model->gallery_thumnail_image .' ?>" width="200" />';	
+							echo '<img src="../../../assets/images/gallery/thumbnail/'. $model->gallery_thumnail_image .'" width="200" />';	
 						}
 						echo $form->fileField($model,'gallery_thumnail_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'gallery_thumnail_image'); ?>

@@ -25,10 +25,10 @@ if(!empty($_POST))
 				'state'			=>$state,
 				'city'			=>$city,
 				'requested_by'	=>$status,
-				'is_visible'	=>1,
+				'status'		=>1,
 			);
 
-	$connection->InsertQuery("requested_pdf",$insetQuery);
+	$connection->InsertQuery("requestedpdf",$insetQuery);
 
 	$image_link = DIR.'assets/images/menu-logo.png';
 
@@ -89,8 +89,6 @@ if(!empty($_POST))
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$headers .= 'From: Inque<contact@m9creative.com>' . "\r\n";
-
-	echo "<pre>"; print_r($message); echo "</pre>". __LINE__ . ".\n"; exit(); 
 
 	$mail = mail($to,$subject,$message,$headers);
 
