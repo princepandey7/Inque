@@ -223,7 +223,7 @@ include_once('header.php') ?>
                         <hr/>
                         <div class="clear0"></div>
                         <p>Be the first to know about the products, store events and other discount information</p>
-                        <a data-toggle="modal" requested_pdf_name="pdf-product-catalogue.pdf" pdf_status="get_catalogue_pdf" data-target="#productPdfRequest" class="btn commonPdfRequest">Download</a>
+                        <a data-toggle="modal" requested_pdf_name="pdf-product-catalogue.pdf" pdf_status="get_catalogue_pdf" data-target="#productPdfRequest" sub_cat_id="0" class="btn commonPdfRequest">Download</a>
                     </div>
                     <div class="col-sm-6 foo-img">
                         <img src="assets/images/bro-img.png">

@@ -39,11 +39,10 @@
 							 		if( $strRequestedBy == Requestedpdf::CATALOGUE ){
 							 			$strRequestedData = 'Catalogue';
 							 		} else if( $strRequestedBy == Requestedpdf::CATEGORY ){
-							 			$strRequestedData = 'Category';
+							 			$strRequestedData = 'Sub Category ('. Subcategories::getSubCategoryName( $objCareersMails->requested_id ) .')' ;
 							 		}  else if( $strRequestedBy == Requestedpdf::PRODUCT ){
-							 			$strRequestedData = 'Product';
+							 			$strRequestedData = 'Product ('. Products::getProductName( $objCareersMails->requested_id ) .')';
 							 		}
-
 							 		echo $strRequestedData;
 							 	?>
 							</td>

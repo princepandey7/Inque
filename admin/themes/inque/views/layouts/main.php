@@ -72,6 +72,9 @@
 						<li>
 							<a href="<?php echo Yii::app()->createUrl("/events/index"); ?>"><i class="fa fa-calendar"></i> Event </a>
 						</li>
+            <li>
+              <a href="<?php echo Yii::app()->createUrl("/distributors/index"); ?>"><i class="fa fa-users" aria-hidden="true"></i> Distributor </a>
+            </li>
 						<li>
 							<a><i class="fa fa-envelope"></i>Mail Info <span class="fa fa-chevron-down"></span></a>
 							<ul class="nav child_menu">

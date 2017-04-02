@@ -1,5 +1,4 @@
 <?php
-
 class ProductsController extends Controller
 {
 	/**
@@ -65,8 +64,6 @@ class ProductsController extends Controller
 		$model=new Products;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
@@ -150,13 +147,14 @@ class ProductsController extends Controller
 			$model->title 				= $_POST['Products']['title'];
 			$model->categories_id 		= $_POST['Products']['categories_id'];
 			$model->subcategories_id 	= $_POST['Products']['subcategories_id'];
+			$model->ebds 				= $_POST['Products']['ebds'];
 			$model->size 				= $_POST['Products']['size'];
 			$model->finish 				= $_POST['Products']['finish'];
 			$model->height 				= $_POST['Products']['height'];
 			$model->material 			= $_POST['Products']['material'];
 			$model->features 			= $_POST['Products']['features'];
 
-			$letterUpload 			= CUploadedFile::getInstance($model,'upload_product_pdf');
+			$letterUpload 			= 	CUploadedFile::getInstance($model,'upload_product_pdf');
 			$uploadedMainFile		=	CUploadedFile::getInstance($model,'product_main_image');
 			$uploadedThumFile		=	CUploadedFile::getInstance($model,'product_thum_image');
 			$uploadedKitPackFile	=	CUploadedFile::getInstance($model,'kit_package_image');

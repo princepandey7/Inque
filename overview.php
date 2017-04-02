@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+require_once("db.php");
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
 include_once('header.php') ?>
 
@@ -47,109 +49,53 @@ include_once('header.php') ?>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum, has been theindustry's standard dummy text ever since the1500s, when an unknown Printer took a galley of type and scrambled it tomake a type specimen book. It has survived not only five centuries, but alsothe leap into electronic typesetting, remaining essentially unchanged.</p>
             </div>
             <div class="container find-contact">
-                <ul>
-                    <li class="">
-                        <div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="distributorFormBox">
                             <p>Contact details for distributor </p>
-                            <form>
-                                <input type="text" name="country" placeholder="Country">
-                                <input type="text" name="state" placeholder="State">
-                                <input type="text" name="City" placeholder="City">
-                                <input type="button" name="submit"  value="SUBMIT" />
+                            <?php
+                                $countryQuery = $connection->tableDataCondition("*", "countries","1=1");
+                                $rowCountrys = $countryQuery->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            <form class="form-horizontal" method="post">
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-bottom: 10px">
+                                        <select name="country" id="distributorCountry" placeholder="Country" class="form-control">
+                                            <?php
+                                                if( !empty( $rowCountrys ) ){
+                                                    foreach ($rowCountrys as $strCtyIndex => $rowCountry) {
+                                            ?>
+                                                        <option value="<?php echo $rowCountry['id']; ?>"> <?php echo $rowCountry['name']; ?> </option>
+                                            <?php } } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-bottom: 10px">
+                                        <select name="state" id="distributorState" placeholder="State" class="form-control">
+                                            <option value="0"> Select State </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-bottom: 10px">
+                                        <select name="city" id="distributorCity" placeholder="City" class="form-control">
+                                            <option value="0">Select City </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="button" id="strGetDistDetails"  value="SUBMIT" />
                             </form>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>
-                                <b>Ghatkopar - Mumbai</b>
-                                <span>904, Peninsula Tower 1,</span>
-                                <span>Ganrao Kadam Marg</span>
-                                <span>Mumbai - 400013</span>
-                            </p>
-                            <p>
-                                <span>Tel: +91-22-2852 0329</span>
-                                <span>Tel: +91-22-2852 0329</span>
-                            </p>
-                            <p>
-                                <span>Email: design@inque.co.in</span>
-                                <span>Email: sales.design@inque.co.in</span>
-                            </p>
+                        </div>   
+                    </div>
 
-                        </div>
-
-                        <div>
-                            <p>
-                                <b>Ghatkopar - Mumbai</b>
-                                <span>904, Peninsula Tower 1,</span>
-                                <span>Ganrao Kadam Marg</span>
-                                <span>Mumbai - 400013</span>
-                            </p>
-                            <p>
-                                <span>Tel: +91-22-2852 0329</span>
-                                <span>Tel: +91-22-2852 0329</span>
-                            </p>
-                            <p>
-                                <span>Email: design@inque.co.in</span>
-                                <span>Email: sales.design@inque.co.in</span>
-                            </p>
-                        </div>                    
-                    </li>
-                    <li>
-                        <div>
-                            <p>
-                                <b>Ghatkopar - Mumbai</b>
-                                <span>904, Peninsula Tower 1,</span>
-                                <span>Ganrao Kadam Marg</span>
-                                <span>Mumbai - 400013</span>
-                            </p>
-                            <p>
-                                <span>Tel: +91-22-2852 0329</span>
-                                <span>Tel: +91-22-2852 0329</span>
-                            </p>
-                            <p>
-                                <span>Email: design@inque.co.in</span>
-                                <span>Email: sales.design@inque.co.in</span>
-                            </p>
-                        </div>
-                        <div>
-                            <p>
-                                <b>Ghatkopar - Mumbai</b>
-                                <span>904, Peninsula Tower 1,</span>
-                                <span>Ganrao Kadam Marg</span>
-                                <span>Mumbai - 400013</span>
-                            </p>
-                            <p>
-                                <span>Tel: +91-22-2852 0329</span>
-                                <span>Tel: +91-22-2852 0329</span>
-                            </p>
-                            <p>
-                                <span>Email: design@inque.co.in</span>
-                                <span>Email: sales.design@inque.co.in</span>
-                            </p>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div>
-                            <p>
-                                <b>Ghatkopar - Mumbai</b>
-                                <span>904, Peninsula Tower 1,</span>
-                                <span>Ganrao Kadam Marg</span>
-                                <span>Mumbai - 400013</span>
-                            </p>
-                            <p>
-                                <span>Tel: +91-22-2852 0329</span>
-                                <span>Tel: +91-22-2852 0329</span>
-                            </p>
-                            <p>
-                                <span>Email: design@inque.co.in</span>
-                                <span>Email: sales.design@inque.co.in</span>
-                            </p>
-
-                        </div>
-                    </li>
-                </ul>
+                    <div class="col-sm-8">
+                        <ul class="distributorMainBox">
+                            <li class="col-sm-4"> No Distributor Available </li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
             <div class="container-fluid footer">
                 <div class="clear0"></div>
@@ -165,18 +111,95 @@ include_once('header.php') ?>
         <script src="assets/gallery/js/classie.js"></script>
         <script src="assets/gallery/js/AnimOnScroll.js"></script>
 
-       <!--  <script type="text/javascript">
-            $(".menubar").on('click', 'li', function () {
-                $(".menubar li.active").removeClass("active");
-                $(this).addClass("active");
+       <script>
+            $(function(){
+                $(document).on('change', '#distributorCountry', function(){
+                    $("#loader-overlay").show();
+                    var strCountryId = $(this).find('option:selected').val();
+                    if( strCountryId != ''){
+                        // var This = $(this);
+                        jQuery.ajax({
+                            url: "loadDistributorDetails.php",
+                            type: "post",
+                            data: {country_id: strCountryId, status : "country"},
+                            success: function(data) {
+                                if( data != ''){
+                                    $("#distributorState").empty();
+                                    $("#distributorState").html(data);
+                                    $("#distributorState").trigger('change');
+                                }
+                                $("#loader-overlay").hide();
+                            }
+                        });
+                    } else {
+                        $("#distributorState").empty();
+                        $("#distributorState").html("<option value='0'>--Select State --</option>");
+                    }
+                });
+
+
+                $(document).on('change', '#distributorState', function(){
+                    $("#loader-overlay").show();
+                    var strStateId = $(this).find('option:selected').val();
+                    if( strStateId != ''){
+                        jQuery.ajax({
+                            url: "loadDistributorDetails.php",
+                            type: "post",
+                            data: {state_id: strStateId, status : "state"},
+                            success: function(data) {
+                                if( data != ''){
+                                    $("#distributorCity").empty();
+                                    $("#distributorCity").html(data);
+                                }
+                                $("#loader-overlay").hide();
+                            }
+                        });
+                    } else {
+                        $("#distributorCity").empty();
+                        $("#distributorCity").html("<option value='0'>--Select State --</option>");
+                    }
+                });
+
+                $(document).on('click', '#strGetDistDetails', function(){
+                    var boolData = true;
+                    var strCountryId    = $("#distributorCountry").find('option:selected').val();
+                    var strStateId      = $("#distributorState").find('option:selected').val();
+                    var strCityId       = $("#distributorCity").find('option:selected').val();
+
+                    console.log(strStateId);
+                    console.log(strCityId);
+
+                    var errorMsg = '';
+                    if( strStateId == '0' && strCityId == '0'){
+                        errorMsg = 'Please select state and city';
+                        boolData = false;
+                    } else if(strCityId == '0'){
+                        errorMsg = 'Please select city';
+                        boolData = false;
+                    }
+
+                    if(boolData === false){
+                        alert(errorMsg);
+                        return false;
+                    }
+                    if( boolData == true ){
+                        $("#loader-overlay").show();
+                        jQuery.ajax({
+                            url: "loadDistridutorData.php",
+                            type: "post",
+                            data: {country_id: strCountryId, state_id: strStateId, city_id: strCityId},
+                            success: function(data) {
+                                if( data != ''){
+                                    $('.distributorMainBox').empty();
+                                    $('.distributorMainBox').html(data);
+                                }
+                                $("#loader-overlay").hide();
+                            }
+                        });
+                    }
+                });
+
             });
         </script>
-        <script>
-            new AnimOnScroll( document.getElementById( 'grid1' ), {
-                minDuration : 0.4,
-                maxDuration : 0.7,
-                viewportFactor : 0.2
-            } );
-        </script> -->
     </body>
 </html>

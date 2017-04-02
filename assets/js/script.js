@@ -89,6 +89,7 @@ $(function(){
     $(document).on('click','.commonPdfRequest',function(){
         $("#requested_pdf_status").val($(this).attr('pdf_status'));
         $("#requested_name").val($(this).attr('requested_pdf_name'));
+        $("#requested_id").val($(this).attr('sub_cat_id'));
     })
 
     $(document).on('click','#strProductCatalogueBtn',function(){

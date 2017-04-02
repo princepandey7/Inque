@@ -12,11 +12,17 @@ while($rowProductDesc = $arrProductDescQuery->fetch()){
         <span class="title-band"> 
             '. $rowProductDesc['title'] .'
         </span>
-        <div class="left-sec">
-            <img src="assets/images/kitchen-banner.png">
-        </div>
+        <div class="left-sec" style="width:65%">';
+
+       if( !empty($rowProductDesc['product_main_image']) ) {
+            $LoadedData .='
+                <img src="assets/images/products/'. $rowProductDesc['product_main_image'] .'" class="responsive-img">';
+        }
+
+
+$LoadedData .='</div>
         <div class="right-sec">
-            <span class="title">EBDS - 4040-95</span>';
+            <span class="title">EBDS -'. $rowProductDesc['ebds'] .' </span>';
             if( !empty($rowProductDesc['size']) ) {
 				$LoadedData .='<span>
 				    <b>Available Size -</b>
@@ -54,7 +60,7 @@ while($rowProductDesc = $arrProductDescQuery->fetch()){
  $LoadedData .='
         <div class="link pull-right">
             <a href="'. $filename .'"  target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-            <a class="active commonPdfRequest" requested_pdf_name="'. $rowProductDesc['upload_product_pdf'] .'" pdf_status="get_product_pdf" data-toggle="modal" data-target="#productPdfRequest" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+            <a class="active commonPdfRequest" requested_pdf_name="'. $rowProductDesc['upload_product_pdf'] .'" pdf_status="get_product_pdf" data-toggle="modal" sub_cat_id="'.  $rowProductDesc['id'] .'" data-target="#productPdfRequest" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
         </div> ';
             }
         }

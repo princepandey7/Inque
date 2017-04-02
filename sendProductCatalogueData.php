@@ -25,6 +25,7 @@ if(!empty($_POST))
 				'state'			=>$state,
 				'city'			=>$city,
 				'requested_by'	=>$status,
+				'requested_id'	=>$_POST['requested_id'],
 				'status'		=>1,
 			);
 
@@ -38,7 +39,7 @@ if(!empty($_POST))
 			$UrlLink = DIR.'assets/pdfProductCatalogue/pdf-product-catalogue.pdf';
 			break;
 		case 'get_category_pdf':
-			$UrlLink = DIR.'assets/pdfProduct/category/'. $requestedPdfName ;
+			$UrlLink = DIR.'assets/pdfProduct/sub-category/'. $requestedPdfName ;
 			break;
 		case 'get_product_pdf':
 			$UrlLink = DIR.'assets/pdfProduct/product/'. $requestedPdfName ;

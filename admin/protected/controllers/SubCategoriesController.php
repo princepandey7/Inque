@@ -62,12 +62,21 @@ class SubcategoriesController extends Controller
 	 */
 	public function actionCreate()
 	{
+		ini_set('upload_max_filesize', '40M');
 		$model = new Subcategories;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Subcategories']))
 		{
+			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
+			if(!empty($letterUpload))
+			{
+				$uniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/sub-category/".$uniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_pdf = $uniqueName;
+			}
 			$model->attributes=$_POST['Subcategories'];
 			if($model->save()){
 				$this->redirect(array('index'));
@@ -86,14 +95,36 @@ class SubcategoriesController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		ini_set('upload_max_filesize', '40M');
 		$model=$this->loadModel($id);
-
+		$removePro = str_replace('protected', '', Yii::app()->basePath);
+		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+		$oldProductPdf 	= $model->upload_pdf;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Subcategories']))
 		{
-			$model->attributes=$_POST['Subcategories'];
+			// $model->attributes=$_POST['Subcategories'];
+			$model->categories_id 				= $_POST['Subcategories']['categories_id'];
+			$model->sub_categories_name 		= $_POST['Subcategories']['sub_categories_name'];
+			$model->sub_categories_slug 		= $_POST['Subcategories']['sub_categories_slug'];
+			$model->sub_categories_description 	= $_POST['Subcategories']['sub_categories_description'];
+
+			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
+			if(!empty($letterUpload))
+			{
+				if( !empty( $oldProductPdf ) &&  file_exists($changeBaseUrl."/pdfProduct/product/sub-category/". $oldProductPdf)){
+					unlink($changeBaseUrl."/pdfProduct/product/sub-category/". $oldProductPdf );
+				}
+
+				$uniqueName = time()."_".$letterUpload->name;
+				$rootPath = "../assets/pdfProduct/sub-category/".$uniqueName;
+				$letterUpload->saveAs($rootPath);
+				$model->upload_pdf = $uniqueName;
+			}
+
+
 			if($model->save())
 				$this->redirect(array('index'));
 		}

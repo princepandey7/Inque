@@ -27,6 +27,13 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'ebds', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php echo $form->textField($model,'ebds',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php echo $form->error($model,'ebds'); ?>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'categories_id', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php

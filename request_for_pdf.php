@@ -9,6 +9,7 @@
           <form id="strSendProductCatalogueFrm" method="post" class="contact-form">
               <input type="hidden" name="requested_pdf_status" id="requested_pdf_status" value="" />
               <input type="hidden" name="requested_name" id="requested_name" value="" />
+              <input type="hidden" name="requested_id" id="requested_id" value="0" />
               <div class="col-sm-12 padding0"> 
                   <input type="text" class="validate[required]" name="name" id="name" placeholder="Name *">
               </div>

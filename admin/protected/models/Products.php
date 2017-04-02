@@ -46,7 +46,7 @@ class Products extends CActiveRecord
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, categories_id, subcategories_id, title, size, finish, height, material, features, upload_product_pdf, product_main_image, product_thum_image, kit_package_image, planning_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('id, categories_id, subcategories_id, title, ebds, size, finish, height, material, features, upload_product_pdf, product_main_image, product_thum_image, kit_package_image, planning_image, product_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +69,7 @@ class Products extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'title' => 'Title',
+			'ebds' => 'Product Id',
 			'size' => 'Size',
 			'finish' => 'Finish',
 			'height' => 'Height',
@@ -105,6 +106,7 @@ class Products extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
+		$criteria->compare('ebds',$this->ebds,true);
 		$criteria->compare('size',$this->size,true);
 		$criteria->compare('finish',$this->finish,true);
 		$criteria->compare('height',$this->height,true);
@@ -132,5 +134,12 @@ class Products extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getProductName($product_id){
+		$data = self::model()->findByPk($product_id);
+		if( !empty( $data ) ){
+			return $data->title;
+		}
 	}
 }

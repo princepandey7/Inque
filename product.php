@@ -11,23 +11,35 @@ include_once('header.php');
             <div class="clear0"></div>
             <div class="container product-block">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <?php
+                        $strSubCatPdfFile = '';
+                        $catId = isset($_GET['cat']) ? $_GET['cat'] : "1";
+                        $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
+                        $current_cat = urlencode($catId);
+                        $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
+                        $SubCategoryQuery = $connection->tableDataCondition("*", "subcategories", "categories_id=". $current_cat);
+
+                        $strCategoryName = '';
+                        $strIsDisplay = '';
+                        $strLeftBox = 'col-sm-3';
+                        $strRightBox = 'col-sm-9';
+                        while($rowCategory = $CategoryQuery->fetch()){
+                            $strCategoryName = $rowCategory['categories_name'];
+                            if( $rowCategory['show_list'] == 0 ){
+                                $strIsDisplay = 'style="display:none"';
+                                //$strLeftBox = 'col-sm-3';
+                                $strRightBox = 'col-sm-12';
+                            }
+                        }
+                    ?>
+                    <div class="<?php echo $strLeftBox; ?>" <?php echo $strIsDisplay; ?> >
                         <div class="menu-list">
                             <?php
-                                // $getUrl = explode("&",$_SERVER['QUERY_STRING']);
-                            $strCatPdfFile = '';
-                            $catId = isset($_GET['cat']) ? $_GET['cat'] : "1";
-                            $subId = isset($_GET['subid']) ? $_GET['subid'] : "1";
-                                $current_cat = urlencode($catId);
-                                $CategoryQuery = $connection->tableDataCondition("*", "categories", "categories_id=". $current_cat);
-                                $SubCategoryQuery = $connection->tableDataCondition("*", "subcategories", "categories_id=". $current_cat);
-
-                                while($rowCategory = $CategoryQuery->fetch()){
-                                    $strCatPdfFile = $rowCategory['upload_pdf'];
+                                // while($rowCategory = $CategoryQuery->fetch()){
                             ?>
                             <div class="heading">
                                 <h2>products /</h2>
-                                <h4><?php echo $rowCategory['categories_name']?></h4>
+                                <h4><?php echo $strCategoryName ?></h4>
                             </div>
                             <ul>
                                 <?php 
@@ -39,17 +51,18 @@ include_once('header.php');
                                             $strActiveClass = 'active';
                                             $strActiveTitle = $rowSubCategory['sub_categories_name'];
                                             $strActiveDesc = $rowSubCategory['sub_categories_description'];
+                                            $strSubCatPdfFile = $rowSubCategory['upload_pdf'];
                                         }
                                     ?>
                                     <li class="<?php echo $strActiveClass; ?>"><a href=<?php echo 'product?cat='. $catId .'&subid='. $rowSubCategory['sub_categories_id']; ?>><?php echo $rowSubCategory['sub_categories_name']?></a> </li>
                                 <?php } ?>
                             </ul>
                             <?php 
-                                }
+                                // }
                             ?>
                         </div>
                     </div>
-                    <div class="col-sm-9 rt-sec">
+                    <div class="<?php echo $strRightBox; ?> rt-sec">
                         <?php
                             $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,1");
                         ?>
@@ -59,12 +72,12 @@ include_once('header.php');
                                 <?php echo $strActiveDesc; ?>
                             </p>
                             <?php 
-                                $filename = 'assets/pdfProduct/category/'. $strCatPdfFile;
-                                if(!empty($strCatPdfFile) && file_exists($filename)){ 
+                                $filename = 'assets/pdfProduct/sub-category/'. $strSubCatPdfFile;
+                                if(!empty($strSubCatPdfFile) && file_exists($filename)){ 
                             ?>
                                 <div class="link">
                                     <a href="<?php echo $filename; ?>" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View &nbsp;/&nbsp;&nbsp;</a>
-                                    <a class="active commonPdfRequest" requested_pdf_name="<?php echo $strCatPdfFile; ?>"  pdf_status="get_category_pdf" data-toggle="modal" data-target="#productPdfRequest"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
+                                    <a class="active commonPdfRequest" requested_pdf_name="<?php echo $strSubCatPdfFile; ?>"  pdf_status="get_category_pdf" sub_cat_id="<?php echo $subId; ?>" data-toggle="modal" data-target="#productPdfRequest"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download</a>
                                 </div>
                             <?php } ?>
                             <div class="backToProductBox" style="display: none;">

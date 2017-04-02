@@ -14,6 +14,7 @@
 				<?php $form=$this->beginWidget('CActiveForm', array(
 					'id'=>'sub-categories-form',
 					'enableAjaxValidation'=>false,
+					'htmlOptions'=>array('enctype'=>'multipart/form-data')
 				)); ?>
 
 				<div class="form-group col-md-12">
@@ -38,6 +39,20 @@
 
 							echo $form->dropDownList($model, 'categories_id', CHtml::listData(Categories::getActiveCategory(), 'categories_id', 'categories_name'), array('prompt' => '--Select Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'categories_id'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
+					<?php echo $form->labelEx($model,'upload_pdf', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php 
+							echo $form->fileField($model,'upload_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); 
+							
+							if(!empty($model->upload_pdf)){
+								echo '<img src="../../images/pdfIcon.png" style="width:30px" />'. RandomHelper::getChopedPdfString($model->upload_pdf);
+							}
+						?>
+						<?php echo $form->error($model,'upload_pdf'); ?>
 					</div>
 				</div>
 

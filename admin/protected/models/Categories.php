@@ -36,13 +36,13 @@ class Categories extends CActiveRecord
 			array('categories_name, categories_slug', 'required'),
 			array('categories_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('categories_name, categories_slug', 'length', 'max'=>50),
-			array('categories_description, modified_date', 'safe'),
+			array('categories_description, modified_date, show_list', 'safe'),
 			
 			array('upload_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB', 'allowEmpty'=>true, 'on'=>'insert,update'),
 
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('categories_id, categories_name, categories_slug, upload_pdf, categories_description, categories_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('categories_id, categories_name, categories_slug, upload_pdf, categories_description, categories_status, created_date, modified_date, delete_flag, show_list', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +69,7 @@ class Categories extends CActiveRecord
 			'categories_description' => 'Categories Description',
 			'categories_status' => 'Categories Status',
 			'upload_pdf' => 'Upload Pdf',
+			'show_list' => 'Show On Product List',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',
 			'delete_flag' => 'Delete Flag',
@@ -130,6 +131,13 @@ class Categories extends CActiveRecord
  //        else
  //            return isset($_items[$type]) ? $_items[$type] : false;
  //    }
+
+	public function getListOptions() {
+	        return array(
+	                1=>'Show',
+	                0=>'Hide',
+	        );
+	}
 
 	public static function getActiveCategory(){
 		$criteria=new CDbCriteria();

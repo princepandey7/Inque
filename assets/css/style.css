@@ -744,29 +744,29 @@ h5.white{color: #ffffff!important; }
 
 .distributor{ padding-bottom: 50px; }
 
-.find-contact ul li:first-child div{ margin-bottom: 0px; }
+/*.find-contact ul li:first-child div{ margin-bottom: 0px; }*/
 
-.find-contact ul li:first-child{background: #323232; padding: 20px 30px; }
+.find-contact .distributorFormBox{background: #323232; padding: 20px 30px; }
 
-.find-contact ul li:first-child p{ color: #ffffff; font-weight: 600;}
+.find-contact .distributorFormBox p{ color: #ffffff; font-weight: 600;}
 
-.find-contact ul li{ background: #ffffff; list-style: none; float: left;width: 25%;font-family: 'latoregular'!important; padding: 20px 15px; color: #000;}
+.find-contact ul li{ background: #ffffff; list-style: none; float: left;font-family: 'latoregular'!important; padding: 20px 15px; color: #000;}
 
-.find-contact ul li form input{ width: 100%; margin: 10px 0px; height: 34px; padding: 0px 5px; }
+.find-contact .distributorFormBox form input{ width: 100%; margin: 10px 0px; height: 34px; padding: 0px 5px; }
 
-.find-contact ul li form input[type="button"] {border: 1px solid #ffffff; color: #ffffff; text-align: center; border-radius: 0px;
+.find-contact .distributorFormBox form input[type="button"] {border: 1px solid #ffffff; color: #ffffff; text-align: center; border-radius: 0px;
 
   font-family: 'bebas_neuebold'; font-size: 20px;-webkit-transition: width 2s; /* Safari */
 
     transition: width 2s; padding: 4px 25px; letter-spacing: 2px; background: transparent; max-width: 120px;}
 
-    .find-contact ul li form input[type="button"]:hover{ border: 1px solid #323232; color: #323232; background: #ffffff; }
+    .find-contact .distributorFormBox form input[type="button"]:hover{ border: 1px solid #323232; color: #323232; background: #ffffff; }
 
-.find-contact ul li span{ display: block; }
+.find-contact .distributorFormBox span{ display: block; }
 
-.find-contact ul li div{ margin-bottom: 60px; }
+.find-contact .distributorFormBox { margin-bottom: 60px; }
 
-.find-contact ul li div p{ margin-bottom: 20px; }
+.find-contact .distributorFormBox p{ margin-bottom: 20px; }
 
 .banner{ position: relative; }
 

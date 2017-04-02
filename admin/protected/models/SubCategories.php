@@ -41,7 +41,9 @@ class Subcategories extends CActiveRecord
 			array('sub_categories_description, modified_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('sub_categories_id, categories_id, sub_categories_name, sub_categories_slug, sub_categories_description, sub_categories_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('upload_pdf', 'file', 'allowEmpty'=>true,'types'=>'pdf', 'message'=>'pdf files only', 'maxSize'=>1024 * 1024 * 10, 'tooLarge'=>'File has to be smaller than 10MB', 'allowEmpty'=>true, 'on'=>'insert,update'),
+
+			array('sub_categories_id, categories_id, sub_categories_name, sub_categories_slug, upload_pdf, sub_categories_description, sub_categories_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +70,7 @@ class Subcategories extends CActiveRecord
 			'sub_categories_slug' => 'Sub Categories Slug',
 			'sub_categories_description' => 'Sub Categories Description',
 			'sub_categories_status' => 'Sub Categories Status',
+			'upload_pdf' => 'Upload Pdf',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',
 			'delete_flag' => 'Delete Flag',
