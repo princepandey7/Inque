@@ -32,7 +32,7 @@ class EventsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','ChangeStatus'),
+				'actions'=>array('create','update','ChangeStatus','RemovePdf'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -65,24 +65,40 @@ class EventsController extends Controller
 		ini_set('upload_max_filesize', '40M');
 		$model = new Events;
 
-		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Events']))
 		{
 			$model->attributes=$_POST['Events'];
 			$model->event_start_date = date('Y-m-d', strtotime($model->event_start_date));
-			
-			$sfile = CUploadedFile::getInstancesByName('event_images');
+			$model->event_images=CUploadedFile::getInstance($model,'event_images');
+			$model->event_images1=CUploadedFile::getInstance($model,'event_images1');
+			$model->event_images2=CUploadedFile::getInstance($model,'event_images2');
 
-			$ffile = array();
-			foreach ($sfile as $i=>$file){
-	        	$fileName = "{$sfile[$i]}";
-				$formatName=time().$i.'_'.$fileName;
-				$file->saveAs('../assets/images/events/'.$formatName);
-				$ffile[$i]=$formatName;
-         	}
+			$uploadedEventImg1	=	CUploadedFile::getInstance($model,'event_images');
+			$uploadedEventImg2	=	CUploadedFile::getInstance($model,'event_images1');
+			$uploadedEventImg3	=	CUploadedFile::getInstance($model,'event_images2');
+
+			if(!empty($uploadedEventImg1)){
+				$uniqueName = rand(1000,9999) . time()."_". $uploadedEventImg1->name;
+				$rootPath = "../assets/images/events/".$uniqueName;
+				$uploadedEventImg1->saveAs($rootPath);
+				$model->event_images = $uniqueName;
+			}
+
+			if(!empty($uploadedEventImg2)){
+				$uniqueName1 = rand(1000,9999) . time()."_". $uploadedEventImg2->name;
+				$rootPath1 = "../assets/images/events/".$uniqueName1;
+				$uploadedEventImg2->saveAs($rootPath1);
+				$model->event_images1 = $uniqueName1;
+			}
 			
-         	$model->event_images = implode(",", $ffile);
+			if(!empty($uploadedEventImg3)){
+				$uniqueName2 = rand(1000,9999) . time()."_". $uploadedEventImg3->name;
+				$rootPath2 = "../assets/images/events/".$uniqueName2;
+				$uploadedEventImg3->saveAs($rootPath2);
+				$model->event_images2 = $uniqueName2;
+			}
+
 			if($model->save()){
 				$this->redirect(array('index'));
 			}
@@ -105,7 +121,9 @@ class EventsController extends Controller
 		$model=$this->loadModel($id);
 		$removePro = str_replace('protected', '', Yii::app()->basePath);
 		$changeBaseUrl = str_replace('admin', 'assets', $removePro);
-		$oldMainImg = $model->event_images;
+		$oldMainImg 	= $model->event_images;
+		$oldMainImg1 	= $model->event_images1;
+		$oldMainImg2 	= $model->event_images2;
 
 		if(isset($_POST['Events']))
 		{
@@ -113,25 +131,44 @@ class EventsController extends Controller
 			$model->event_description 	= $_POST['Events']['event_description'];
 			$model->event_evenue 		= $_POST['Events']['event_evenue'];
 			$model->event_start_date	= date('Y-m-d', strtotime($_POST['Events']['event_start_date']));
-			$EventMainImage 		= CUploadedFile::getInstancesByName('event_images');
-			if(!empty($EventMainImage)){
-				$arrayPreviousEventImg = explode(",", $oldMainImg);
-				foreach ($arrayPreviousEventImg as $key => $value) {
-					if( !empty( $value ) && file_exists($changeBaseUrl."/images/events/". $value)){
-						unlink($changeBaseUrl."/images/events/". $value );
-					}
-				}
 
-				$ffile = array();
-				foreach ($EventMainImage as $i=>$file){
-		        	$fileName = "{$EventMainImage[$i]}";
-					$formatName=time().$i.'_'.$fileName;
-					$file->saveAs('../assets/images/events/'.$formatName);
-					$ffile[$i]=$formatName;
-	         	}
-				
-	         	$model->event_images = implode(",", $ffile);
+			$uploadedMainFile1 			= 	CUploadedFile::getInstance($model,'event_images');
+			$uploadedMainFile2		=	CUploadedFile::getInstance($model,'event_images1');
+			$uploadedMainFile3		=	CUploadedFile::getInstance($model,'event_images2');
+
+			if(!empty($uploadedMainFile1))
+			{
+				if( !empty( $oldMainImg ) &&  file_exists($changeBaseUrl."/images/events/". $oldMainImg)){
+					unlink($changeBaseUrl."/images/events/". $oldMainImg );
+				}
+				$UniqueName = time()."_".$uploadedMainFile1->name;
+				$rootPath = "../assets/images/events/".$UniqueName;
+				$uploadedMainFile1->saveAs($rootPath);
+				$model->event_images = $UniqueName;
 			}
+
+			if(!empty($uploadedMainFile2))
+			{
+				if( !empty( $oldMainImg1 ) &&  file_exists($changeBaseUrl."/images/events/". $oldMainImg1)){
+					unlink($changeBaseUrl."/images/events/". $oldMainImg1 );
+				}
+				$UniqueName1 = time()."_".$uploadedMainFile2->name;
+				$rootPath1 = "../assets/images/events/".$UniqueName1;
+				$uploadedMainFile2->saveAs($rootPath1);
+				$model->event_images1 = $UniqueName1;
+			}
+
+			if(!empty($uploadedMainFile3))
+			{
+				if( !empty( $oldMainImg2 ) &&  file_exists($changeBaseUrl."/images/events/". $oldMainImg2)){
+					unlink($changeBaseUrl."/images/events/". $oldMainImg2 );
+				}
+				$UniqueName2 = time()."_".$uploadedMainFile3->name;
+				$rootPath2 = "../assets/images/events/".$UniqueName2;
+				$uploadedMainFile3->saveAs($rootPath2);
+				$model->event_images2 = $UniqueName2;
+			}
+
 			if($model->save())
 				$this->redirect(array('index'));
 		}
@@ -238,6 +275,36 @@ class EventsController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+
+	public function actionRemovePdf(){
+		$strEventId 		= $_POST['event_id'];
+		$strEventStatus 	= $_POST['event_status'];
+		$model=$this->loadModel($strEventId);
+
+		if( !empty( $model ) ){
+			$removePro = str_replace('protected', '', Yii::app()->basePath);
+			$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+
+			if( $strEventStatus == 'main_img1'){
+				$oldProductPdf 	= $model->event_images;
+				unlink($changeBaseUrl."/images/events/". $oldProductPdf );
+				$model->event_images = '';
+			} elseif (  $strEventStatus == 'main_img2' ) {
+				$oldMainImg 	= $model->event_images1;
+				unlink($changeBaseUrl."/images/events/". $oldMainImg );
+				$model->event_images1 = '';
+			} elseif (  $strEventStatus == 'main_img3' ) {
+				$oldThumImg 	= $model->event_images2;
+				unlink($changeBaseUrl."/images/events/". $oldThumImg );
+				$model->event_images2 = '';
+			}
+
+			$model->save();
+			$send = array('status' => 'success');
+            echo CJSON::encode($send);
+            Yii::app()->end();
 		}
 	}
 }

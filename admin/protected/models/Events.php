@@ -40,17 +40,17 @@ class Events extends CActiveRecord
 			array('event_title, event_start_date', 'required'),
 			array('event_status, delete_flag', 'numerical', 'integerOnly'=>true),
 
-			// array('event_images', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
-			
-			// array('event_images', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update'),
+			array('event_images', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			array('event_images1', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
+			array('event_images2', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 
 
 			//, 'width' => 603, 'height' => 260, 'dimensionError' => 'Image dimension error', 
 			// array('event_title, event_images', 'length', 'max'=>100),
-			array('event_description, event_evenue, event_start_date, event_images, event_end_date, modified_date', 'safe'),
+			array('event_description, event_evenue, event_start_date, event_images, event_images1, event_images2 , event_end_date, modified_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('event_id, event_title, event_description, event_evenue, event_start_date, event_end_date, event_images, event_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
+			array('event_id, event_title, event_description, event_evenue, event_start_date, event_end_date, event_images , event_images1, event_images2  , event_status, created_date, modified_date, delete_flag', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,7 +77,11 @@ class Events extends CActiveRecord
 			'event_evenue' => 'Event Evenue',
 			'event_start_date' => 'Event Start Date',
 			'event_end_date' => 'Event End Date',
-			'event_images' => 'Event Image',
+
+			'event_images' => 'Event Image 1',
+			'event_images1' => 'Event Image 2',
+			'event_images2' => 'Event Image 3',
+
 			'event_status' => 'Event Status',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',

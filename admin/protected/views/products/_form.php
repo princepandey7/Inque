@@ -48,7 +48,8 @@
 						<?php
 							$subCatDetails = array();
 							if( !empty( $model->subcategories_id ) ){
-								$subCatDetails = CHtml::listData(Subcategories::getActiveSubCategory($model->subcategories_id), 'sub_categories_id','sub_categories_name');
+								$subCatDetails = CHtml::listData(Subcategories::getActiveSubCategory($model->categories_id), 'sub_categories_id','sub_categories_name');
+
 							}
 							echo $form->dropDownList($model, 'subcategories_id', $subCatDetails, array('prompt' => '--Select Sub Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'subcategories_id'); ?>
@@ -97,7 +98,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php echo $form->fileField($model,'upload_product_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); 
 							if(!empty($model->upload_product_pdf)){
-								echo '<img src="../../images/pdfIcon.png" style="width:30px" />'. RandomHelper::getChopedPdfString($model->upload_product_pdf);
+								echo '<div class="productIconDivBox"> <img src="../../images/pdfIcon.png" style="width:30px" />'. RandomHelper::getChopedPdfString($model->upload_product_pdf) .'<a product_id= "'. $model->id .'" status="pdf" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
 							}
 						?>
 						<?php echo $form->error($model,'upload_product_pdf'); ?>
@@ -110,7 +111,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_main_image)){
-							echo '<img src="../../../assets/images/products/'.$model->product_main_image.'" width="200" />';
+							echo '<div class="productIconDivBox"> <img src="../../../assets/images/products/'.$model->product_main_image.'" width="200" /> <a product_id= "'. $model->id .'" status="main_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
 						}
 						echo $form->fileField($model,'product_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_main_image'); ?>
@@ -122,7 +123,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->product_thum_image)){
-							echo '<img src="../../../assets/images/products/thum/'.$model->product_thum_image.'" width="200" />';
+							echo '<div class="productIconDivBox"> <img src="../../../assets/images/products/thum/'.$model->product_thum_image.'" width="200" /> <a product_id= "'. $model->id .'" status="thum_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div> ';
 						}
 						echo $form->fileField($model,'product_thum_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'product_thum_image'); ?>
@@ -134,7 +135,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->kit_package_image)){
-							echo '<img src="../../../assets/images/products/kit-package/'.$model->kit_package_image.'" width="200" />';
+							echo '<div class="productIconDivBox"> <img src="../../../assets/images/products/kit-package/'.$model->kit_package_image.'" width="200" /> <a product_id= "'. $model->id .'" status="kit_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
 						}
 						echo $form->fileField($model,'kit_package_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'kit_package_image'); ?>
@@ -146,7 +147,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->planning_image)){
-							echo '<img src="../../../assets/images/products/planning/'.$model->planning_image.'" width="200" />';
+							echo ' <div class="productIconDivBox"> <img src="../../../assets/images/products/planning/'.$model->planning_image.'" width="200" /> <a product_id= "'. $model->id .'" status="plan_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
 						}
 						echo $form->fileField($model,'planning_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'planning_image'); ?>
@@ -173,28 +174,47 @@
 			if( strCatId != ''){
 				$("#loader-overlay").show();
 				$.ajax({
-	                type: "POST",
-	                dataType: "json",
-	                data: {cat_id: strCatId},
-	                url: "<?php echo Yii::app()->baseUrl; ?>/products/getSubCatDetails/",
-	                success: function(data) {
-	                    if(data.status =="success"){
-	                    	$("#Products_subcategories_id").empty();
-	                    	var items="";
+				    type: "POST",
+				    dataType: "json",
+				    data: {cat_id: strCatId},
+				    url: "<?php echo Yii::app()->baseUrl; ?>/products/getSubCatDetails/",
+				    success: function(data) {
+				        if(data.status =="success"){
+				        	$("#Products_subcategories_id").empty();
+				        	var items="";
 							$.each(data.update, function(index, item)
 							{
 								items += "<option value='"+ item.sub_categories_id +"' >" + item.sub_categories_name + "</option>";
 							});
 							$("#Products_subcategories_id").html(items);
 							$("#loader-overlay").hide();
-	                    }
-	                },
-	            });
+				        }
+				    },
+				});
 			} else {
 				$("#Products_subcategories_id").empty();
 				$("#Products_subcategories_id").html("<option value=''>--Select Sub Category Type--</option>");
 			}
+		});
+
+
+		$(".removeImgIcon").on('click',function(){
+			$("#loader-overlay").show();
+			var This = $(this);
+			$.ajax({
+			    type: "POST",
+			    dataType: "json",
+			    data: {product_id : $(this).attr('product_id'), product_status: $(this).attr('status') },
+			    url: "<?php echo Yii::app()->baseUrl; ?>/products/RemovePdf/",
+			    success: function(data) {
+			        if(data.status =="success"){
+			        	This.parents('.productIconDivBox').hide();
+						$("#loader-overlay").hide();
+			        }
+			    },
+			});
 		})
+
 	});
 
 </script>

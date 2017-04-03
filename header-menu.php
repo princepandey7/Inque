@@ -49,20 +49,15 @@
                                         if( !empty( $strAddSubMenus ) ){
                                         echo "<ul class='dropdown-menu'>";
                                             foreach ($strAddSubMenus as $strProIndex => $strAddSubCat) {
+                                                $getSubCatQuery = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $strAddSubCat['categories_id']);
+                                                $strAddSubMenus1 = $getSubCatQuery->fetch(PDO::FETCH_ASSOC);
                                     ?>
-                                            <li><a href="<?php echo $strIndexUrl .'?cat='. $strAddSubCat['categories_id'] .'&subid=1' ; ?>"> <?php echo $strAddSubCat['categories_name']; ?> </a></li>
+                                            <li><a href="<?php echo $strIndexUrl .'?cat='. $strAddSubCat['categories_id'] .'&subid='. $strAddSubMenus1['sub_categories_id'] ; ?>"> <?php echo $strAddSubCat['categories_name']; ?> </a></li>
                                         
                                     <?php } echo "</ul>"; } ?>
                             </li>        
                 <?php    }
                 ?>
-                 <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Page 1-1</a></li>
-                      <li><a href="#">Page 1-2</a></li>
-                      <li><a href="#">Page 1-3</a></li>
-                    </ul>
-                </li> -->
             </ul>
         </div>
     </nav>

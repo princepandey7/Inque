@@ -31,7 +31,7 @@ class ProductsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','ChangeStatus','GetSubCatDetails'),
+				'actions'=>array('create','update','ChangeStatus','GetSubCatDetails','RemovePdf'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -325,6 +325,44 @@ class ProductsController extends Controller
                                   ));
                Yii::app()->end();
 		}
+	}
 
+
+	public function actionRemovePdf(){
+		$strProductId 		= $_POST['product_id'];
+		$strProductStatus 	= $_POST['product_status'];
+		$model=$this->loadModel($strProductId);
+
+		if( !empty( $model ) ){
+			$removePro = str_replace('protected', '', Yii::app()->basePath);
+			$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+
+			if( $strProductStatus == 'pdf'){
+				$oldProductPdf 	= $model->upload_product_pdf;
+				unlink($changeBaseUrl."pdfProduct/product/". $oldProductPdf );
+				$model->upload_product_pdf = '';
+			} elseif (  $strProductStatus == 'main_img' ) {
+				$oldMainImg 	= $model->product_main_image;
+				unlink($changeBaseUrl."/images/products/". $oldMainImg );
+				$model->product_main_image = '';
+			} elseif (  $strProductStatus == 'thum_img' ) {
+				$oldThumImg 	= $model->product_thum_image;
+				unlink($changeBaseUrl."/images/products/thum/". $oldThumImg );
+				$model->product_thum_image = '';
+			} elseif (  $strProductStatus == 'kit_img' ) {
+				$oldKitPackImg 	= $model->kit_package_image;
+				unlink($changeBaseUrl."/images/products/kit-package/". $oldKitPackImg );
+				$model->kit_package_image = '';
+			} elseif (  $strProductStatus == 'plan_img' ) {
+				$oldPlanImg 	= $model->planning_image;
+				unlink($changeBaseUrl."/images/products/planning/". $oldPlanImg );
+				$model->planning_image = '';
+			}
+
+			$model->save();
+			$send = array('status' => 'success');
+            echo CJSON::encode($send);
+            Yii::app()->end();
+		}
 	}
 }

@@ -36,7 +36,6 @@
 					<?php echo $form->labelEx($model,'categories_id', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php
-
 							echo $form->dropDownList($model, 'categories_id', CHtml::listData(Categories::getActiveCategory(), 'categories_id', 'categories_name'), array('prompt' => '--Select Category Type--', 'class' => 'form-control')); ?>
 						<?php echo $form->error($model,'categories_id'); ?>
 					</div>
@@ -49,7 +48,7 @@
 							echo $form->fileField($model,'upload_pdf',array('size'=>60,'maxlength'=>100, 'class'=>'form-control col-md-7 col-xs-12', 'readonly'=>true)); 
 							
 							if(!empty($model->upload_pdf)){
-								echo '<img src="../../images/pdfIcon.png" style="width:30px" />'. RandomHelper::getChopedPdfString($model->upload_pdf);
+								echo '<div class="pdfIconDivBox"> <img src="../../images/pdfIcon.png" style="width:30px" />'. RandomHelper::getChopedPdfString($model->upload_pdf) .' <a sub_cat_id= "'. $model->sub_categories_id .'" id="removePdfSubCat"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
 							}
 						?>
 						<?php echo $form->error($model,'upload_pdf'); ?>
@@ -81,5 +80,22 @@
 			txtVal = txtVal.toLowerCase().replace(/\s/g, '-');
 			$('#Subcategories_sub_categories_slug').val(txtVal);
 		});
+
+		$("#removePdfSubCat").on('click',function(){
+			$("#loader-overlay").show();
+			var This = $(this);
+			$.ajax({
+			    type: "POST",
+			    dataType: "json",
+			    data: {cat_id: $(this).attr('sub_cat_id')},
+			    url: "<?php echo Yii::app()->baseUrl; ?>/subcategories/RemovePdf/",
+			    success: function(data) {
+			        if(data.status =="success"){
+			        	This.parents('.pdfIconDivBox').hide();
+						$("#loader-overlay").hide();
+			        }
+			    },
+			});
+		})
 	});
 </script>

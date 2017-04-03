@@ -105,6 +105,7 @@ class CategoriesController extends Controller
 			$model->categories_name 		= $_POST['Categories']['categories_name'];
 			$model->categories_slug 		= $_POST['Categories']['categories_slug'];
 			$model->categories_description 	= $_POST['Categories']['categories_description'];
+			$model->show_list 				= $_POST['Categories']['show_list'];
 
 			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
 			if(!empty($letterUpload))

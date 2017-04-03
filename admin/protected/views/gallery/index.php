@@ -27,7 +27,13 @@
 						<tr>
 							<td><?php echo $keyGallery + 1; ?></td>
 							<td>
-								<?php  echo '<img src="../../assets/images/gallery/thumbnail/'.$objGallery->gallery_thumnail_image.'" width="100" />'; ?>
+								<?php
+								   if( !empty( $objGallery->gallery_thumnail_image ) ) {
+								   		echo '<img src="../../assets/images/gallery/thumbnail/'.$objGallery->gallery_thumnail_image.'" width="100" />';
+								   	} else {
+								   		echo "No Image";
+								   	}
+								?>
 							</td>
 							<td><?php echo $objGallery->gallery_title; ?></td>
 							<td><?php echo $result = substr($objGallery->gallery_description, 0, 10); ?></td>

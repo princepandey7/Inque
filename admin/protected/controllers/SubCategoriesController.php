@@ -32,7 +32,7 @@ class SubcategoriesController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','ChangeStatus'),
+				'actions'=>array('create','update','ChangeStatus','RemovePdf'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -114,8 +114,8 @@ class SubcategoriesController extends Controller
 			$letterUpload = CUploadedFile::getInstance($model,'upload_pdf');
 			if(!empty($letterUpload))
 			{
-				if( !empty( $oldProductPdf ) &&  file_exists($changeBaseUrl."/pdfProduct/product/sub-category/". $oldProductPdf)){
-					unlink($changeBaseUrl."/pdfProduct/product/sub-category/". $oldProductPdf );
+				if( !empty( $oldProductPdf ) &&  file_exists($changeBaseUrl."/pdfProduct/sub-category/". $oldProductPdf)){
+					unlink($changeBaseUrl."/pdfProduct/sub-category/". $oldProductPdf );
 				}
 
 				$uniqueName = time()."_".$letterUpload->name;
@@ -229,5 +229,22 @@ class SubcategoriesController extends Controller
                 Yii::app()->end();
             }
         }
+	}
+
+	public function actionRemovePdf(){
+		$model=$this->loadModel($_POST['cat_id']);
+		if( !empty( $model ) ){
+
+			$removePro = str_replace('protected', '', Yii::app()->basePath);
+			$changeBaseUrl = str_replace('admin', 'assets', $removePro);
+			$oldProductPdf 	= $model->upload_pdf;
+			unlink($changeBaseUrl."/pdfProduct/sub-category/". $oldProductPdf );
+			$model->upload_pdf = '';
+			$model->save();
+
+			$send = array('status' => 'success');
+            echo CJSON::encode($send);
+            Yii::app()->end();
+		}
 	}
 }

@@ -21,18 +21,14 @@ include_once('header.php');
 
                         $strCategoryName = '';
                         $strIsDisplay = '';
-                        $strLeftBox = 'col-sm-3';
-                        $strRightBox = 'col-sm-9';
                         while($rowCategory = $CategoryQuery->fetch()){
                             $strCategoryName = $rowCategory['categories_name'];
                             if( $rowCategory['show_list'] == 0 ){
                                 $strIsDisplay = 'style="display:none"';
-                                //$strLeftBox = 'col-sm-3';
-                                $strRightBox = 'col-sm-12';
                             }
                         }
                     ?>
-                    <div class="<?php echo $strLeftBox; ?>" <?php echo $strIsDisplay; ?> >
+                    <div class="col-sm-3">
                         <div class="menu-list">
                             <?php
                                 // while($rowCategory = $CategoryQuery->fetch()){
@@ -41,7 +37,7 @@ include_once('header.php');
                                 <h2>products /</h2>
                                 <h4><?php echo $strCategoryName ?></h4>
                             </div>
-                            <ul>
+                            <ul <?php echo $strIsDisplay; ?>>
                                 <?php 
                                     $strActiveTitle = '';
                                     $strActiveDesc = '';
@@ -62,7 +58,7 @@ include_once('header.php');
                             ?>
                         </div>
                     </div>
-                    <div class="<?php echo $strRightBox; ?> rt-sec">
+                    <div class="col-sm-9 rt-sec">
                         <?php
                             $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,1");
                         ?>
@@ -117,8 +113,8 @@ include_once('header.php');
                                             </span>
                                             <div>
                                                 <?php 
-                                                    if( !empty( $rowProduct['product_main_image'] ) ){
-                                                        echo "<img src=assets/images/products/". $rowProduct['product_main_image'] ."";
+                                                    if( !empty( $rowProduct['product_thum_image'] ) ){
+                                                        echo "<img src=assets/images/products/thum/". $rowProduct['product_thum_image'] ."";
                                                     }
                                                 ?>
                                             <div>

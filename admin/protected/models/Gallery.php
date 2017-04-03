@@ -34,14 +34,15 @@ class Gallery extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gallery_title', 'required'),
+			array('gallery_title, gallery_main_image, gallery_thumnail_image', 'required'),
 
 			array('gallery_status, delete_flag', 'numerical', 'integerOnly'=>true),
 
 			array('gallery_title', 'length', 'max'=>255),
 			
-			array('gallery_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert'),
-			array('gallery_thumnail_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert'),
+			array('gallery_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 1200, 'height' => 1200, 'allowEmpty' => 'false', 'on' => 'insert, update'),
+
+			array('gallery_thumnail_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'width' => 390, 'height' => 390, 'allowEmpty' => 'false', 'on' => 'insert, update'),
 			
 			//'width' => 1024, 'height' => 1024, 'dimensionError' => 'Image dimension error', 
 			//  'width' => 300, 'height' => 300, 'dimensionError' => 'Image dimension error',
@@ -76,8 +77,8 @@ class Gallery extends CActiveRecord
 			'gallery_id' => 'Gallery',
 			'gallery_title' => 'Gallery Title',
 			'gallery_description' => 'Gallery Description',
-			'gallery_main_image' => 'Main Image', // (1920 * 1080)
-			'gallery_thumnail_image' => 'Thumnail Image ', // (300 * 300) 
+			'gallery_main_image' => 'Main Image ( Max Width 1200 * 1200 )',
+			'gallery_thumnail_image' => 'Thumnail Image ( Max Width 390 * 390 ) ',
 			'gallery_status' => 'Gallery Status',
 			'created_date' => 'Created Date',
 			'modified_date' => 'Modified Date',

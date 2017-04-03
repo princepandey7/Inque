@@ -73,36 +73,48 @@
 				</div>
 
 				<div class="form-group col-md-12">
-					<?php echo $form->labelEx($model,'event_images', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
-					<div class="col-md-9 col-sm-9 col-xs-12">
-						<?php
-
-
-							 $this->widget('CMultiFileUpload', array(
-								'name' => 'event_images',
-								'model'=> $model,
-								'id'=>'event_images',
-								'remove'=>'[x]',
-								'max' => 3,
-								'accept' => 'jpeg|jpg|gif|png', // useful for verifying files
-								'duplicate' => 'Duplicate file!', // useful, i think
-								'denied' => 'Invalid file type', // useful, i think
-							));
-
-							if(!empty($model->event_images)){
-								$eventImage = explode(',', $model->event_images);
-								foreach ($eventImage as $key => $value) {
-									echo '<img src="../../../assets/images/events/'. $value .'" width="200" /> ';
-								}
-							}
-						?>
+					<?php
+					 echo $form->labelEx($model,'event_images', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php 
+						if(!empty($model->event_images)){
+							echo '<div class="galleryIconDivBox"> <img src="../../../assets/images/events/'.$model->event_images.'" width="200" /> <a event_id= "'. $model->event_id .'" status="main_img1" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
+						}
+						echo $form->fileField($model,'event_images',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'event_images'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
+					<?php
+					 echo $form->labelEx($model,'event_images1', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php 
+						if(!empty($model->event_images1)){
+							echo '<div class="galleryIconDivBox"> <img src="../../../assets/images/events/'.$model->event_images1.'" width="200" /> <a event_id= "'. $model->event_id .'" status="main_img2" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
+						}
+						echo $form->fileField($model,'event_images1',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php echo $form->error($model,'event_images1'); ?>
+					</div>
+				</div>
+
+				<div class="form-group col-md-12">
+					<?php
+					 echo $form->labelEx($model,'event_images2', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<?php 
+						if(!empty($model->event_images2)){
+							echo '<div class="galleryIconDivBox"> <img src="../../../assets/images/events/'.$model->event_images2.'" width="200" /> <a event_id= "'. $model->event_id .'" status="main_img3" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';
+						}
+						echo $form->fileField($model,'event_images2',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
+						<?php echo $form->error($model,'event_images2'); ?>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-						<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+						<?php 
+							echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save' , array( 'class'=> 'btn btn-success' )); ?>
 						<!-- <button class="btn btn-primary" type="button">Cancel</button>
 						<button type="submit" class="btn btn-success">Submit</button> -->
 					</div>
@@ -112,3 +124,27 @@
 	    </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".removeImgIcon").on('click',function(){
+			$("#loader-overlay").show();
+			var This = $(this);
+			$.ajax({
+			    type: "POST",
+			    dataType: "json",
+			    data: {event_id : $(this).attr('event_id'), event_status: $(this).attr('status') },
+			    url: "<?php echo Yii::app()->baseUrl; ?>/events/RemovePdf/",
+			    success: function(data) {
+			        if(data.status =="success"){
+			        	This.parents('.galleryIconDivBox').hide();
+						$("#loader-overlay").hide();
+			        }
+			    },
+			});
+		})
+
+	});
+
+</script>

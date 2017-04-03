@@ -40,7 +40,6 @@ $this->breadcrumbs=array(
 							<td><?php echo Categories::getCategoryName($objProduct->categories_id); ?></td>
 							<td><?php echo Subcategories::getSubCategoryName($objProduct->subcategories_id); ?></td>
 							<td><?php echo $objProduct->size; ?></td>
-							<!-- <td><?php //echo $objProduct->event_end_date; ?></td> -->
 							<td>
 								<a href="<?php echo Yii::app()->createUrl("/products/update", array('id' => $objProduct->id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
 								<a id="strCurrentProductstatus" product_status="<?php echo $objProduct->product_status; ?>" event_id="<?php echo $objProduct->id; ?>" class="btn btn-danger btn-xs">

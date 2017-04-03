@@ -71,6 +71,12 @@ class GalleryController extends Controller
 			$model->attributes=$_POST['Gallery'];
 			$model->gallery_main_image=CUploadedFile::getInstance($model,'gallery_main_image');
 			$model->gallery_thumnail_image=CUploadedFile::getInstance($model,'gallery_thumnail_image');
+			$file =  getimagesize(CUploadedFile::getInstance($model,'gallery_main_image')->getTempName());
+			
+			// $image_width = $file[0];
+   //  		$image_height = $file[1];
+   //  		echo $image_width ."===>>>>>". $image_height;
+			// echo "<pre>"; print_r($model); echo "</pre>". __LINE__ . ".\n"; exit(); 
 
 			if($model->save()){
 				$uniqueName 	= rand(1000,9999) . time()."_".$model->gallery_main_image;
@@ -83,6 +89,9 @@ class GalleryController extends Controller
 				$model->gallery_thumnail_image 	= $uniqueThumName;
     			$model->save();
 				$this->redirect(array('index'));
+			} else {
+				$model->gallery_main_image = '';
+				$model->gallery_thumnail_image = '';
 			}
 		}
 

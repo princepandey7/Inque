@@ -39,7 +39,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php
 						if(!empty($model->gallery_main_image)){
-							echo '<img src="../../../assets/images/gallery/'.$model->gallery_main_image.'" width="200" />';	
+							echo '<div class="productIconDivBox"> <img src="../../../assets/images/gallery/'.$model->gallery_main_image.'" width="200" />  <a gallery_id= "'. $model->gallery_id .'" status="main_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div> ';	
 						} 
 						echo $form->fileField($model,'gallery_main_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'gallery_main_image'); ?>
@@ -52,7 +52,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<?php 
 						if(!empty($model->gallery_main_image)){
-							echo '<img src="../../../assets/images/gallery/thumbnail/'. $model->gallery_thumnail_image .'" width="200" />';	
+							echo '<div class="productIconDivBox"> <img src="../../../assets/images/gallery/thumbnail/'. $model->gallery_thumnail_image .'" width="200" />  <a gallery_id= "'. $model->gallery_id .'" status="thum_img" class="removeImgIcon"> <img src="../../images/remove.png" style="width:20px" /> </a> </div>';	
 						}
 						echo $form->fileField($model,'gallery_thumnail_image',array('rows'=>6, 'cols'=>50, 'class'=>'form-control col-md-7 col-xs-12')); ?>
 						<?php echo $form->error($model,'gallery_thumnail_image'); ?>
@@ -71,3 +71,26 @@
 	    </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".removeImgIcon").on('click',function(){
+			$("#loader-overlay").show();
+			var This = $(this);
+			$.ajax({
+			    type: "POST",
+			    dataType: "json",
+			    data: {gallery_id : $(this).attr('gallery_id'), gallery_status: $(this).attr('status') },
+			    url: "<?php echo Yii::app()->baseUrl; ?>/gallery/RemovePdf/",
+			    success: function(data) {
+			        if(data.status =="success"){
+			        	This.parents('.productIconDivBox').hide();
+						$("#loader-overlay").hide();
+			        }
+			    },
+			});
+		})
+	});
+
+</script>
