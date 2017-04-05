@@ -61,6 +61,7 @@ include_once('header.php') ?>
                                 <div class="form-group">
                                     <div class="col-md-12" style="margin-bottom: 10px">
                                         <select name="country" id="distributorCountry" placeholder="Country" class="form-control">
+                                            <option value="0">Select Country </option>
                                             <?php
                                                 if( !empty( $rowCountrys ) ){
                                                     foreach ($rowCountrys as $strCtyIndex => $rowCountry) {

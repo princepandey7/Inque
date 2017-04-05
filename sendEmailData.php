@@ -4,11 +4,12 @@ require_once("db.php");
 
 if(!empty($_POST))
 {
-	$name    	= 	filter_var($_POST["name"], FILTER_SANITIZE_STRING);
-	$emailId   	= 	filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-	$phone 		= 	filter_var($_POST["mobile"], FILTER_SANITIZE_NUMBER_INT);
-	$city       = 	filter_var($_POST["city"], FILTER_SANITIZE_STRING);
-	$message    = 	filter_var($_POST["message"], FILTER_SANITIZE_STRING);
+	$name    	= 	filter_var($_POST['form_value']["name"], FILTER_SANITIZE_STRING);
+	$emailId   	= 	filter_var($_POST['form_value']["email"], FILTER_SANITIZE_EMAIL);
+	$phone 		= 	filter_var($_POST['form_value']["mobile"], FILTER_SANITIZE_NUMBER_INT);
+	$city       = 	filter_var($_POST['form_value']["city"], FILTER_SANITIZE_STRING);
+	$message    = 	filter_var($_POST['form_value']["message"], FILTER_SANITIZE_STRING);
+	$frmStatus 	= 	$_POST['form_status'] 
 
 	$insetQuery = 
 			array(
@@ -17,19 +18,24 @@ if(!empty($_POST))
 				'phone'		=>$phone,
 				'city'		=>$city,
 				'message'	=>$message
+				'sended_by'	=>$frmStatus
 			);
 
 	$connection->InsertQuery("contactus",$insetQuery);
 
 	$to = "contact@m9creative.com";
-	$subject = "User contact details";
+	$subject = "Contact Form";
+	if( $frmStatus == 'enquiry'){
+		$subject = 'Enquiry Form'
+	}
+
 
 	$message = " <html>
 	<head>
-		<title>Contact Details</title>
+		<title>". $subject ."</title>
 	</head>
 	<body>
-		<p>Hi Sir, <br/> Below are contact details send by user. </p>
+		<p>Hi Admin, <br/> Below are ". $subject ." details send by website user. </p>
 		<table>
 			<tr>
 				<td>Name :</td> <td>".$name."</td>
@@ -44,16 +50,38 @@ if(!empty($_POST))
 				<td>Message :</td> <td>".$message."</td>
 			</tr>
 		</table>
+		<p> Thanks </p>
 	</body>
-	</html>
-	";
-
-
-	// Always set content-type when sending HTML email
+	</html>";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 	mail($to,$subject,$message,$headers);
+
+###################################################
+				// USER MAIL //
+###################################################
+
+	$toUser = $emailId;
+
+	$Usermessage = " <html>
+	<head>
+		<title>". $subject ."</title>
+	</head>
+	<body>
+		<p>Hi ". $name .", <br/></p>
+		
+		<p> Thank you for taking the time to go through our website.</p>
+		<p> We will get in touch soon.</p>
+		<br/>
+		<p>Regards, <br/> Team Inque.</p>
+	</body>
+	</html>";
+	$Userheaders = "MIME-Version: 1.0" . "\r\n";
+	$Userheaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+	mail($toUser,$subject,$Usermessage,$Userheaders);
+
 	echo "success";
 }
 else

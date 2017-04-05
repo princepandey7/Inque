@@ -7,6 +7,10 @@ $(function(){
         if($("#strSendContactFrm").validationEngine('validate')){
             $("#loader-overlay").show();
             var form_value = $("#strSendContactFrm").serializeArray();
+            var data = {
+                form_value:form_value,
+                form_status:"contact",
+            }
             jQuery.ajax({
                 url: "sendEmailData.php",
                 type: "post",
@@ -35,10 +39,15 @@ $(function(){
         if($("#strSendEnquiryFrm").validationEngine('validate')){
             $("#loader-overlay").show();
             var form_value = $("#strSendEnquiryFrm").serializeArray();
+
+            var data = {
+                form_value:form_value,
+                form_status:"enquiry",
+            }
             jQuery.ajax({
                 url: "sendEmailData.php",
                 type: "post",
-                data: form_value,
+                data: data,
                 success: function(data) {
                     if(data == "success")
                     {

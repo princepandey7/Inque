@@ -34,6 +34,7 @@ require_once("db.php");
     if(empty($errorArray)){
         //upload resume
         $move = 'admin/uploads/resume/';
+        $uploadfile = tempnam(sys_get_temp_dir(), sha1($_FILES['upload_resume_name']['name']));
         move_uploaded_file($_FILES['upload_resume']['tmp_name'], $move.$upload_resume_name);
 
         date_default_timezone_set('Asia/Kolkata');
@@ -55,19 +56,81 @@ require_once("db.php");
 
         $connection->InsertQuery("careersmail",$insetQuery);
 
-        //mail
-        $to_email= "contact@m9creative.com";
-        //email body
-        $message_body = "Name : ".$name."\r\n\r\nEmail : ".$email."\r\n\r\nPhone Number : ". $phone."\r\n\r\nCity : ". $city."\r\n\r\nState : ". $state."\r\n\r\nCountry : ".$country."\r\n\r\nMessage : ".$message;
+        $message_body = " <html>
+            <head>
+                <title>Inque - Career </title>
+            </head>
+            <body>
+                <p>Hi Admin, <br/> Below are career details send by website user. </p>
+                <table>
+                    <tr>
+                        <td>Name :</td> <td>".$name."</td>
+                    </tr>
+                    <tr>
+                        <td>Email :</td> <td>".$email."</td>
+                    </tr>
+                    <tr>
+                        <td>Contact No :</td> <td>".$phone."</td>
+                    </tr>
+                    <tr>
+                        <td>Country  :</td> <td>".$country."</td>
+                    </tr>
+                    <tr>
+                        <td>State  :</td> <td>".$state."</td>
+                    </tr>
+                    <tr>
+                        <td>City  :</td> <td>".$city."</td>
+                    </tr>
+                    <tr>
+                        <td>Message :</td> <td>".$message."</td>
+                    </tr>
+                </table>
+                <p> Thanks </p>
+            </body>
+            </html>";
 
-        //proceed with PHP email.
-        $headers = 'From: '.$name.'<'.$email.'>'. "\r\n" .
-        'Reply-To: '.$email.'' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-        $subject='Career';
-        $send_mail = mail($to_email, $subject, $message_body, $headers);
-        //resume sent succussfully.
-        $resume_sent = 'Resume sent succussfully.';
+        require 'PHPMailer/PHPMailerAutoload.php';
+        $mail = new PHPMailer;
+        $mail->setFrom($email, $name );
+        $mail->addAddress('contact@m9creative.com', 'M9Creative');
+        $mail->Subject = 'Inque - Career';
+        $mail->Body = $message_body;
+        // Attach the uploaded file
+        $mail->addAttachment($uploadfile, 'My uploaded file');
+        if (!$mail->send()) {
+            $resume_sent .= "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+            $resume_sent .= "Resume sent succussfully";
+        }
+
+        ###################################################
+                // USER MAIL //
+        ###################################################
+
+        $subject = "Contact Form";
+        $Usermessage = " <html>
+        <head>
+            <title>Inque - Career</title>
+        </head>
+        <body>
+            <p>Hi ". $name .", <br/></p>
+            <p> Thank you for taking the time to go through our website.</p>
+            <p> We will get in touch soon.</p>
+            <br/>
+            <p>Regards, <br/> Team Inque.</p>
+        </body>
+        </html>";
+
+        $userMail = new PHPMailer;
+        $userMail->setFrom('contact@m9creative.com', 'M9Creative' );
+        $userMail->addAddress($email, $name);
+        $userMail->Subject = 'Inque - Career';
+        $userMail->Body = $Usermessage;
+        $userMail->send()
+
+        // $Userheaders = "MIME-Version: 1.0" . "\r\n";
+        // $Userheaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // mail($toUser,$subject,$Usermessage,$Userheaders);
         $name = $email = $phone = $city = $state = $country = $message = '';
     }
 }
@@ -164,25 +227,11 @@ include_once('header.php') ?>
         </div>
 
         <?php include_once('enquiry-slider.php') ?>
-
-        <!-- <script src="assets/js/bootstrap.min.js"></script> -->
-       <!--  <script src="assets/gallery/js/masonry.pkgd.min.js"></script>
-        <script src="assets/gallery/js/imagesloaded.js"></script>
-        <script src="assets/gallery/js/classie.js"></script>
-        <script src="assets/gallery/js/AnimOnScroll.js"></script> -->
-
         <script type="text/javascript">
             // $(".menubar").on('click', 'li', function () {
             //     $(".menubar li.active").removeClass("active");
             //     $(this).addClass("active");
             // });
-        </script>
-        <script>
-            // new AnimOnScroll( document.getElementById( 'grid1' ), {
-            //     minDuration : 0.4,
-            //     maxDuration : 0.7,
-            //     viewportFactor : 0.2
-            // } );
         </script>
     </body>
 </html>
