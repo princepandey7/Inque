@@ -17,13 +17,28 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'categories_id'); ?>
+		<?php echo $form->textField($model,'categories_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'subcategories_id'); ?>
+		<?php echo $form->textField($model,'subcategories_id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'ebds'); ?>
+		<?php echo $form->textField($model,'ebds',array('size'=>60,'maxlength'=>100)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'size'); ?>
-		<?php echo $form->textField($model,'size',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'size',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
@@ -47,13 +62,28 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'upload_product_pdf'); ?>
+		<?php echo $form->textArea($model,'upload_product_pdf',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'product_main_image'); ?>
 		<?php echo $form->textArea($model,'product_main_image',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'product_thum_image'); ?>
+		<?php echo $form->textArea($model,'product_thum_image',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'kit_package_image'); ?>
 		<?php echo $form->textArea($model,'kit_package_image',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'planning_image'); ?>
+		<?php echo $form->textArea($model,'planning_image',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">

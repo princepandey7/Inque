@@ -26,10 +26,10 @@ class Products extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, size, categories_id, subcategories_id', 'required'),
-			array('product_status, delete_flag', 'numerical', 'integerOnly'=>true),
+			// array('product_status, delete_flag', 'numerical', 'integerOnly'=>true),
 			array('title, finish, height, material', 'length', 'max'=>100),
 			array('size', 'length', 'max'=>100),
-			array('features, modified_date', 'safe'),
+			array('features, modified_date, ebds', 'safe'),
 			//  'width' => 515, 'height' => 450, 'dimensionError' => 'Image dimension error',
 			array('product_main_image', 'ext.EImageValidator', 'types' => "gif, jpg, png", 'typesError' => 'Types error message', 'on' => 'insert,update', 'allowEmpty' => 'true'),
 

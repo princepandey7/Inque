@@ -122,7 +122,7 @@ class ContactusController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$objContactus = Contactus::model()->findAll();
+		$objContactus = Contactus::model()->findAll(array('order'=>'id DESC'));
 		$this->render('index',array(
 			'objContactus'=>$objContactus,
 		));

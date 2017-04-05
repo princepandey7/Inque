@@ -56,6 +56,7 @@ class EventsController extends Controller
 		));
 	}
 
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -78,29 +79,35 @@ class EventsController extends Controller
 			$uploadedEventImg2	=	CUploadedFile::getInstance($model,'event_images1');
 			$uploadedEventImg3	=	CUploadedFile::getInstance($model,'event_images2');
 
-			if(!empty($uploadedEventImg1)){
-				$uniqueName = rand(1000,9999) . time()."_". $uploadedEventImg1->name;
-				$rootPath = "../assets/images/events/".$uniqueName;
-				$uploadedEventImg1->saveAs($rootPath);
-				$model->event_images = $uniqueName;
-			}
+			if( $model->validate() ){
+				if(!empty($uploadedEventImg1)){
+					$uniqueName = rand(1000,9999) . time()."_". $uploadedEventImg1->name;
+					$rootPath = "../assets/images/events/".$uniqueName;
+					$uploadedEventImg1->saveAs($rootPath);
+					$model->event_images = $uniqueName;
+				}
 
-			if(!empty($uploadedEventImg2)){
-				$uniqueName1 = rand(1000,9999) . time()."_". $uploadedEventImg2->name;
-				$rootPath1 = "../assets/images/events/".$uniqueName1;
-				$uploadedEventImg2->saveAs($rootPath1);
-				$model->event_images1 = $uniqueName1;
-			}
-			
-			if(!empty($uploadedEventImg3)){
-				$uniqueName2 = rand(1000,9999) . time()."_". $uploadedEventImg3->name;
-				$rootPath2 = "../assets/images/events/".$uniqueName2;
-				$uploadedEventImg3->saveAs($rootPath2);
-				$model->event_images2 = $uniqueName2;
-			}
+				if(!empty($uploadedEventImg2)){
+					$uniqueName1 = rand(1000,9999) . time()."_". $uploadedEventImg2->name;
+					$rootPath1 = "../assets/images/events/".$uniqueName1;
+					$uploadedEventImg2->saveAs($rootPath1);
+					$model->event_images1 = $uniqueName1;
+				}
+				
+				if(!empty($uploadedEventImg3)){
+					$uniqueName2 = rand(1000,9999) . time()."_". $uploadedEventImg3->name;
+					$rootPath2 = "../assets/images/events/".$uniqueName2;
+					$uploadedEventImg3->saveAs($rootPath2);
+					$model->event_images2 = $uniqueName2;
+				}
 
-			if($model->save()){
-				$this->redirect(array('index'));
+				if($model->save()){
+					$this->redirect(array('index'));
+				}
+			}else {
+				$model->event_images = '';
+				$model->event_images1 = '';
+				$model->event_images2 = '';
 			}
 		}
 

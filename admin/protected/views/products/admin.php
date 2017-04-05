@@ -46,15 +46,21 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		'categories_id',
+		'subcategories_id',
 		'title',
+		'ebds',
 		'size',
+		/*
 		'finish',
 		'height',
 		'material',
-		/*
 		'features',
+		'upload_product_pdf',
 		'product_main_image',
+		'product_thum_image',
 		'kit_package_image',
+		'planning_image',
 		'product_status',
 		'created_date',
 		'modified_date',

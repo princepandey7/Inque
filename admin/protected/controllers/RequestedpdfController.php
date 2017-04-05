@@ -122,7 +122,7 @@ class RequestedpdfController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$objRequestedpdf = Requestedpdf::model()->findAll();
+		$objRequestedpdf = Requestedpdf::model()->findAll(array('order'=>'id DESC'));
 		$this->render('index',array(
 			'objRequestedpdf'=>$objRequestedpdf,
 		));

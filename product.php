@@ -60,7 +60,10 @@ include_once('header.php');
                     </div>
                     <div class="col-sm-9 rt-sec">
                         <?php
-                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,1");
+                            $ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId ." LIMIT 0,6");
+
+                             $totalProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $current_cat ." AND subcategories_id=". $subId);
+                             $rowCountProducts = $totalProductQuery->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         <div class="heading">
                             <h2><?php echo $strActiveTitle; ?></h2>
@@ -126,7 +129,7 @@ include_once('header.php');
                                 ?>
                             </ul>
                             <div class="clear0"></div>
-                            <?php if( !empty( $rowProducts ) ){ ?>
+                            <?php if( !empty( $rowProducts ) && count($rowCountProducts) > 6 ){ ?>
                                 <div class="col-sm-12" style="text-align:center"><a class="btn" id="productViewMore">view more</a></div>
                             <?php } ?>
                         </div>

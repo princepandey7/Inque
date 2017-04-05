@@ -4,21 +4,16 @@
 			<div class="x_title">
 				<h2><?php echo $product_title; ?> <small></small></h2>
 				<div class="navbar-right">
-					<a href="<?php echo Yii::app()->createUrl("/products/index"); ?>" class="btn btn-success btn-sm">Back To Gallery</a> 
+					<a href="<?php echo Yii::app()->createUrl("/products/index"); ?>" class="btn btn-success btn-sm">Back To Product</a> 
 				</div>
-
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<br />
 				<?php $form=$this->beginWidget('CActiveForm', array(
 					'id'=>'products-form',
 					'enableAjaxValidation'=>false,
 					'htmlOptions'=>array('enctype'=>'multipart/form-data')
 				)); ?>
-				<!-- <p class="note">Fields with <span class="required">*</span> are required.</p> -->
-				<?php //echo $form->errorSummary($model); ?>
-
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'title', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
@@ -92,7 +87,6 @@
 						<?php echo $form->error($model,'features'); ?>
 					</div>
 				</div>
-
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'upload_product_pdf', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
@@ -104,7 +98,6 @@
 						<?php echo $form->error($model,'upload_product_pdf'); ?>
 					</div>
 				</div>
-
 				<div class="form-group col-md-12">
 					<?php
 					 echo $form->labelEx($model,'product_main_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
@@ -129,7 +122,6 @@
 						<?php echo $form->error($model,'product_thum_image'); ?>
 					</div>
 				</div>
-
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'kit_package_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
@@ -141,7 +133,6 @@
 						<?php echo $form->error($model,'kit_package_image'); ?>
 					</div>
 				</div>
-				
 				<div class="form-group col-md-12">
 					<?php echo $form->labelEx($model,'planning_image', array('class'=>'control-label col-md-3 col-sm-3 col-xs-12')); ?>
 					<div class="col-md-6 col-sm-6 col-xs-12">
@@ -153,12 +144,9 @@
 						<?php echo $form->error($model,'planning_image'); ?>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-						<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-						<!-- <button class="btn btn-primary" type="button">Cancel</button>
-						<button type="submit" class="btn btn-success">Submit</button> -->
+						<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
 					</div>
 				</div>
 				<?php $this->endWidget(); ?>
@@ -197,7 +185,6 @@
 			}
 		});
 
-
 		$(".removeImgIcon").on('click',function(){
 			$("#loader-overlay").show();
 			var This = $(this);
@@ -214,7 +201,5 @@
 			    },
 			});
 		})
-
 	});
-
 </script>

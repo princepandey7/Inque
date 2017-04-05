@@ -67,6 +67,7 @@ class ProductsController extends Controller
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
+			$model->ebds=$_POST['Products']['ebds'];
 			$model->product_main_image=CUploadedFile::getInstance($model,'product_main_image');
 			$model->product_thum_image=CUploadedFile::getInstance($model,'product_thum_image');
 			$model->kit_package_image=CUploadedFile::getInstance($model,'kit_package_image');
@@ -365,4 +366,10 @@ class ProductsController extends Controller
             Yii::app()->end();
 		}
 	}
+	public function actionError() {
+        $this->layout = 'full-page';
+        $data = Yii::app()->errorHandler->error;
+        $requested_url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
+        echo "<pre>"; print_r($data); echo "</pre>". __LINE__ . ".\n"; exit();
+    }
 }

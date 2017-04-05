@@ -65,7 +65,7 @@ require_once("db.php");
         'Reply-To: '.$email.'' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
         $subject='Career';
-        // $send_mail = mail($to_email, $subject, $message_body, $headers);
+        $send_mail = mail($to_email, $subject, $message_body, $headers);
         //resume sent succussfully.
         $resume_sent = 'Resume sent succussfully.';
         $name = $email = $phone = $city = $state = $country = $message = '';

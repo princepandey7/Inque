@@ -38,15 +38,15 @@
 
             <div class="clearfix"></div>
 
-            <div class="profile clearfix">
+            <!-- <div class="profile clearfix">
               	<div class="profile_pic">
-                	<img src="<?php echo Yii::app()->baseUrl ?>/images/img.jpg" alt="..." class="img-circle profile_img">
+                	<img src="<?php //echo Yii::app()->baseUrl ?>/images/img.jpg" alt="..." class="img-circle profile_img">
               	</div>
               	<div class="profile_info">
                 	<span>Welcome,</span>
-                	<h2><?php echo Users::getFullName(); ?></h2>
+                	<h2><?php// echo Users::getFullName(); ?></h2>
               	</div>
-            </div>
+            </div> -->
             <br />
 
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
