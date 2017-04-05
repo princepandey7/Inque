@@ -1,11 +1,14 @@
 <?php
 require_once("db.php");
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
-$strAddSubMenus = array();
 include_once('header.php');
+
+$getCatQuery = $connection->tableDataCondition("categories_id,  categories_slug", "categories", "categories_status=1");
+$strCatMenusList = $getCatQuery->fetchAll(PDO::FETCH_ASSOC);
+
 $resetCatMenu = array();
-foreach ($strAddSubMenus as $key => $value) {
-    $resetCatMenu[$value['categories_name']] = $value['categories_id'];
+foreach ($strCatMenusList as $key => $value) {
+    $resetCatMenu[$value['categories_slug']] = $value['categories_id'];
 }
 ?>
             <a name="myAnchor" id="myAnchor">
@@ -38,7 +41,7 @@ foreach ($strAddSubMenus as $key => $value) {
                         <hr/>
                         <p>Design Your Dream Kitchen with Us</p>
                         <?php
-                            $getKitchenData = $resetCatMenu['Kitchen'];
+                            $getKitchenData = $resetCatMenu['kitchen'];
                             $getSubCatQuery1 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getKitchenData );
                             $strAddSubMenus1 = $getSubCatQuery1->fetch(PDO::FETCH_ASSOC);
                         ?>
@@ -76,7 +79,7 @@ foreach ($strAddSubMenus as $key => $value) {
                         <hr/>
                         <p>Fittings Accessories</p>
                         <?php
-                            $getBathroomData = $resetCatMenu['Bathroom'];
+                            $getBathroomData = $resetCatMenu['bathroom'];
                             $getSubCatQuery2 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getBathroomData );
                             $strAddSubMenus2 = $getSubCatQuery2->fetch(PDO::FETCH_ASSOC);
                         ?>
@@ -91,7 +94,7 @@ foreach ($strAddSubMenus as $key => $value) {
                        <h3>furniture fitting</h3>
                        <p>Hardware and Accessories <br/> and Equipemnt Fittings</p>
                        <?php
-                            $getFFData = $resetCatMenu['Furniture-Fitting'];
+                            $getFFData = $resetCatMenu['furniture-fitting'];
                             $getSubCatQuery3 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getFFData );
                             $strAddSubMenus3 = $getSubCatQuery3->fetch(PDO::FETCH_ASSOC);
                         ?>
@@ -103,7 +106,7 @@ foreach ($strAddSubMenus as $key => $value) {
                         <h3>office furniture</h3>
                        <p>Keyboard Drawers and<br/> Fitting Accessories</p>
                        <?php
-                            $getOfData = $resetCatMenu['Office Furniture'];
+                            $getOfData = $resetCatMenu['office-peripheral'];
                             $getSubCatQuery4 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getOfData );
                             $strAddSubMenus4 = $getSubCatQuery4->fetch(PDO::FETCH_ASSOC);
                         ?>

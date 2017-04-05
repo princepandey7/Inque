@@ -1,6 +1,5 @@
 <?php 
-
-if (isset($_POST['careerSubmit'])){
+if (isset($_POST['careerSubmit'])) {
 ob_start();
 require_once("db.php");
     $name = $_POST['name'];
@@ -89,7 +88,7 @@ require_once("db.php");
             </body>
             </html>";
 
-        require 'PHPMailer/PHPMailerAutoload.php';
+        required('PHPMailer/PHPMailerAutoload.php');
         $mail = new PHPMailer;
         $mail->setFrom($email, $name );
         $mail->addAddress('contact@m9creative.com', 'M9Creative');
@@ -106,7 +105,7 @@ require_once("db.php");
         ###################################################
                 // USER MAIL //
         ###################################################
-
+        $toUser = $email;
         $subject = "Contact Form";
         $Usermessage = " <html>
         <head>
@@ -121,16 +120,9 @@ require_once("db.php");
         </body>
         </html>";
 
-        $userMail = new PHPMailer;
-        $userMail->setFrom('contact@m9creative.com', 'M9Creative' );
-        $userMail->addAddress($email, $name);
-        $userMail->Subject = 'Inque - Career';
-        $userMail->Body = $Usermessage;
-        $userMail->send()
-
-        // $Userheaders = "MIME-Version: 1.0" . "\r\n";
-        // $Userheaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        // mail($toUser,$subject,$Usermessage,$Userheaders);
+        $Userheaders = "MIME-Version: 1.0" . "\r\n";
+        $Userheaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        mail($toUser,$subject,$Usermessage,$Userheaders);
         $name = $email = $phone = $city = $state = $country = $message = '';
     }
 }
@@ -190,16 +182,9 @@ include_once('header.php') ?>
                                         <input type="text" value="<?php if(isset($country)){ echo $country; } ?>" placeholder="Country" name="country" id="country" required>
                                     </div>
                                     <div class="col-md-12">
-                                                    <textarea rows="4" cols="50" type="text" placeholder="Message" name="message" id="message"><?php if(isset($message)){ echo $message; } ?></textarea>
-                                                </div>
-                                    <!-- <div class="col-sm-6">
-                                        <select>
-                                            <option>Select</option>
-                                            <option>Example 1</option>
-                                            <option>Example 1</option>
-                                            <option>Example 1</option>
-                                        </select>
-                                    </div> -->
+                                        <textarea rows="4" cols="50" type="text" placeholder="Message" name="message" id="message"><?php if(isset($message)){ echo $message; } ?></textarea>
+                                    </div>
+                                    
                                     <div class="col-sm-12 pr0">
                                         <input type="file" name="upload_resume" id="upload_resume" style=" background:transparent; border:none; outline:none; color:#ffffff">
                                     </div>

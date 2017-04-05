@@ -32,7 +32,7 @@
                             <li class=" dropdown nav-item <?php echo $strActiveClass; ?>">
                                 <?php
                                     $strAddSpanTag = '';
-                                    
+                                    $strAddSubMenus = array();
                                     $bootstrapToogle = '';
                                     if( $strIndexUrl == 'index' ){
                                         $strAddSpanTag = '<span class="sr-only">(current)</span>';
