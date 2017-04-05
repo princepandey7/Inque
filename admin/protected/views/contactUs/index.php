@@ -16,10 +16,10 @@
 				<th>Email</th>
 				<th>Phone No</th>
 				<th>City</th>
-				<!-- <th>State</th>
-				<th>Country</th>
-				<th>Resume</th> -->
-				<th>Action</th>
+				<!-- <th>State</th> -->
+				<!-- <th>Country</th> -->
+				<th>Created Date</th>
+				<!-- <th>Action</th> -->
 			</tr>
 		</thead>
 
@@ -34,21 +34,22 @@
 							<td><?php echo $objContactDetail->email; ?></td>
 							<td><?php echo $objContactDetail->phone; ?></td>
 							<td><?php echo $objContactDetail->city; ?></td>
+							<td><?php echo date('d-M-Y', strtotime($objContactDetail->created_on)); ?></td>
 							<!-- <td><?php //echo $objContactDetail->state; ?></td>
 							<td><?php //echo $objContactDetail->country; ?></td> -->
-							<td>
+							<!-- <td> -->
 								<!-- <a href="<?php //echo Yii::app()->createUrl("/ContactUs/update", array('id' => $objContactDetail->id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a> -->
 
-								<a id="strCurrentContactStatus" status="<?php echo $objContactDetail->status; ?>" cont_id="<?php echo $objContactDetail->id; ?>" class="btn btn-danger btn-xs">
+								<!-- <a id="strCurrentContactStatus" status="<?php //echo $objContactDetail->status; ?>" cont_id="<?php //echo $objContactDetail->id; ?>" class="btn btn-danger btn-xs"> -->
 									<?php 
-										$strFaIcon = 'fa-eye-slash';
-										if( $objContactDetail->status == Events::STATUS_ACTIVE ){
-											$strFaIcon = 'fa-eye';
-										}
+										// $strFaIcon = 'fa-eye-slash';
+										// if( $objContactDetail->status == Events::STATUS_ACTIVE ){
+										// 	$strFaIcon = 'fa-eye';
+										// }
 									?>
-									<i class="changeFaIcon fa <?php echo $strFaIcon ;?>"></i>
-								</a>
-							</td>
+									<!-- <i class="changeFaIcon fa <?php //echo $strFaIcon ;?>"></i> -->
+								<!-- </a> -->
+							<!-- </td> -->
 						</tr>
 			<?php
 					}

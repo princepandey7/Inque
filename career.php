@@ -20,7 +20,7 @@ require_once("db.php");
     }
 
     //file- type
-    $upload_resume_name = $_FILES['upload_resume']['name'];
+    $upload_resume_name = time() .'_'. $_FILES['upload_resume']['name'];
     $ext = pathinfo($upload_resume_name, PATHINFO_EXTENSION);
     $validExtentionArray = array('doc','docx','rtf','txt','pdf');
     if(!in_array($ext, $validExtentionArray)){
@@ -33,8 +33,8 @@ require_once("db.php");
 
     if(empty($errorArray)){
         //upload resume
-        $move = 'admin/uploads/';
-        move_uploaded_file($_FILES['upload_resume']['tmp_name'], $move.$_FILES['upload_resume']['name']);
+        $move = 'admin/uploads/resume/';
+        move_uploaded_file($_FILES['upload_resume']['tmp_name'], $move.$upload_resume_name);
 
         date_default_timezone_set('Asia/Kolkata');
         $timestamp = time();

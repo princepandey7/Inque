@@ -7,7 +7,7 @@ $start = $_POST['productCount'];
 $categories_id = $_POST['catId'];
 $subcategories_id = $_POST['subId'];
 
-$ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $categories_id ." AND subcategories_id=". $subcategories_id ." LIMIT  ". $start .",1");
+$ProductQuery = $connection->tableDataCondition("*", "products", "product_status=1 AND categories_id=". $categories_id ." AND subcategories_id=". $subcategories_id ." LIMIT  ". $start .",6");
 
 $LoadedData = '';
 	$rowProducts = $ProductQuery->fetchAll(PDO::FETCH_ASSOC);

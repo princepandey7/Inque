@@ -16,6 +16,7 @@
 				<th>State</th>
 				<th>Country</th>
 				<th>Requested PDF</th>
+				<th>Requested Date</th>
 			</tr>
 		</thead>
 
@@ -46,6 +47,7 @@
 							 		echo $strRequestedData;
 							 	?>
 							</td>
+							<td><?php echo date('d-M-Y', strtotime($objCareersMails->creted_date)); ?></td>
 
 							 <!-- <td><?php //echo CHtml::link('Download Resume',array('careersmail/download', 'id' => $objCareersMails->id )); ?></td> -->
 							<!-- <td> -->

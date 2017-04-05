@@ -1,32 +1,8 @@
-<?php
-/* @var $this CareersMailController */
-/* @var $dataProvider CActiveDataProvider */
-
-// $this->breadcrumbs=array(
-// 	'Careers Mails',
-// );
-
-// $this->menu=array(
-// 	array('label'=>'Create CareersMail', 'url'=>array('create')),
-// 	array('label'=>'Manage CareersMail', 'url'=>array('admin')),
-// );
-?>
-
 <h1>Careers Mails</h1>
-
-<?php
- // $this->widget('zii.widgets.CListView', array(
-	// 'dataProvider'=>$dataProvider,
-	// 'itemView'=>'_view',
-// )); 
-?>
 <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
   	<div class="x_title">
     <h2>Careers Mails <small></small></h2>
-    	<!-- <div class="navbar-right">
-    		<a href="<?php //echo Yii::app()->createUrl("/gallery/create"); ?>" class="btn btn-success btn-sm"> Add Gallery</a> 
-    	</div> -->
     	<div class="clearfix"></div>
   	</div>
   	<div class="x_content">
@@ -38,10 +14,10 @@
 				<th>Email</th>
 				<th>Phone No</th>
 				<th>City</th>
-				<th>State</th>
-				<th>Country</th>
+				<!-- <th>State</th> -->
+				<th>Creted Date</th>
 				<th>Resume</th>
-				<th>Action</th>
+				<!-- <th>Action</th> -->
 			</tr>
 		</thead>
 
@@ -56,30 +32,28 @@
 							<td><?php echo $objCareersMails->email; ?></td>
 							<td><?php echo $objCareersMails->phone; ?></td>
 							<td><?php echo $objCareersMails->city; ?></td>
-							<td><?php echo $objCareersMails->state; ?></td>
-							<td><?php echo $objCareersMails->country; ?></td>
+							<!-- <td><?php// echo $objCareersMails->state; ?></td> -->
+							<td><?php echo date('d-M-Y', strtotime($objCareersMails->created_on)); ?></td>
 							 <!-- <td> -->
 							 <?php 
 							 // 	$link = '../protected/uploads/' . $objCareersMails->resume;
 								// $download_link = '<a href = "' . $link . '" target = "_blank"> Click here </a>';
 								// echo $download_link;
 							 ?>
-							 <!-- </td> -->
-
 							 <td><?php echo CHtml::link('Download Resume',array('careersmail/download', 'id' => $objCareersMails->id )); ?></td>
-							<td>
+							<!-- <td> -->
 								<!-- <a href="<?php //echo Yii::app()->createUrl("/careersMail/update", array('id' => $objCareersMails->id)); ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a> -->
 
-								<a id="strCurrentCarMailStatus" status="<?php echo $objCareersMails->status; ?>" car_id="<?php echo $objCareersMails->id; ?>" class="btn btn-danger btn-xs">
+								<!-- <a id="strCurrentCarMailStatus" status="<?php //echo $objCareersMails->status; ?>" car_id="<?php //echo $objCareersMails->id; ?>" class="btn btn-danger btn-xs"> -->
 									<?php 
-										$strFaIcon = 'fa-eye-slash';
-										if( $objCareersMails->status == Events::STATUS_ACTIVE ){
-											$strFaIcon = 'fa-eye';
-										}
+										// $strFaIcon = 'fa-eye-slash';
+										// if( $objCareersMails->status == Events::STATUS_ACTIVE ){
+										// 	$strFaIcon = 'fa-eye';
+										// }
 									?>
-									<i class="changeFaIcon fa <?php echo $strFaIcon ;?>"></i>
-								</a>
-							</td>
+									<!-- <i class="changeFaIcon fa <?php //echo $strFaIcon ;?>"></i> -->
+								<!-- </a> -->
+							<!-- </td> -->
 						</tr>
 			<?php
 					}

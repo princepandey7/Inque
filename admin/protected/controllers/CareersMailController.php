@@ -32,7 +32,7 @@ class CareersmailController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','ChangeStatus'),
+				'actions'=>array('create','update','ChangeStatus','Download'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -170,7 +170,6 @@ class CareersmailController extends Controller
 			Yii::app()->end();
 		}
 	}
-
 	public function actionChangeStatus()
 	{
 		if (Yii::app()->request->isAjaxRequest) {
@@ -196,5 +195,20 @@ class CareersmailController extends Controller
                 Yii::app()->end();
             }
         }
+	}
+
+	public function actionDownload($id){
+		$getData = $this->loadModel($id);
+		if(!empty( $getData )){
+			$strBasePath = Yii::getPathOfAlias('webroot.uploads.resume') .'/'. $getData->resume ;
+			if(file_exists($strBasePath)){
+				header('Content-Disposition: attachment; charset=UTF-8; filename="'.  $getData->resume .'"');
+				header("Content-type: application/pdf");
+				readfile($strBasePath);
+			} else {
+				echo "File Not exist";
+			}
+		}
+		Yii::app()->end();
 	}
 }
