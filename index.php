@@ -1,8 +1,13 @@
 <?php
 require_once("db.php");
-// require_once 'routing.php';
 $pgTitle = "INQUE - Modular kitchen and bathroom accessories";
-include_once('header.php') ?>
+$strAddSubMenus = array();
+include_once('header.php');
+$resetCatMenu = array();
+foreach ($strAddSubMenus as $key => $value) {
+    $resetCatMenu[$value['categories_name']] = $value['categories_id'];
+}
+?>
             <a name="myAnchor" id="myAnchor">
             <div class="kitchenBlock">
                 <div class="container kitchenContainer">
@@ -32,7 +37,12 @@ include_once('header.php') ?>
                         <h4>KITCHEN</h4>
                         <hr/>
                         <p>Design Your Dream Kitchen with Us</p>
-                        <a href="#">view more</a>
+                        <?php
+                            $getKitchenData = $resetCatMenu['Kitchen'];
+                            $getSubCatQuery1 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getKitchenData );
+                            $strAddSubMenus1 = $getSubCatQuery1->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <a href="<?php echo DIR .'product?cat='. $getKitchenData .'&subid='. $strAddSubMenus1['sub_categories_id'] ; ?>">view more</a>
                     </div>
                 </div>
             </div>
@@ -61,12 +71,16 @@ include_once('header.php') ?>
                             </div>
                         </div>
                     </div>
-                   
                     <div class="kitchenAbsolute">
                         <h4>BATHROOM</h4>
                         <hr/>
                         <p>Fittings Accessories</p>
-                        <a href="#">view more</a>
+                        <?php
+                            $getBathroomData = $resetCatMenu['Bathroom'];
+                            $getSubCatQuery2 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getBathroomData );
+                            $strAddSubMenus2 = $getSubCatQuery2->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <a href="<?php echo DIR .'product?cat='. $getBathroomData .'&subid='. $strAddSubMenus2['sub_categories_id'] ; ?>">view more</a>
                     </div>
                 </div>
             </div> <!-- /bathroomBlock -->
@@ -76,14 +90,24 @@ include_once('header.php') ?>
                    <div class="furnitureFitting">
                        <h3>furniture fitting</h3>
                        <p>Hardware and Accessories <br/> and Equipemnt Fittings</p>
-                       <a href="#">view more</a>
+                       <?php
+                            $getFFData = $resetCatMenu['Furniture-Fitting'];
+                            $getSubCatQuery3 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getFFData );
+                            $strAddSubMenus3 = $getSubCatQuery3->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <a href="<?php echo DIR .'product?cat='. $getFFData .'&subid='. $strAddSubMenus3['sub_categories_id'] ; ?>">view more</a>
                    </div>
                </div>
                <div class="col-sm-6">
                    <div class="officeFurniture">
                         <h3>office furniture</h3>
                        <p>Keyboard Drawers and<br/> Fitting Accessories</p>
-                       <a href="#">view more</a>
+                       <?php
+                            $getOfData = $resetCatMenu['Office Furniture'];
+                            $getSubCatQuery4 = $connection->tableDataCondition("sub_categories_id", "subcategories", "  sub_categories_status=1 AND categories_id=". $getOfData );
+                            $strAddSubMenus4 = $getSubCatQuery4->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <a href="<?php echo DIR .'product?cat='. $getOfData .'&subid='. $strAddSubMenus4['sub_categories_id'] ; ?>">view more</a>
                    </div>
                </div>
             </div>

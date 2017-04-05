@@ -47,8 +47,7 @@ if(!empty($_POST))
 		default:
 			break;
 	}
-	
-	// $pdfname = 'test.pdf';
+
 	$pdfname = $requestedPdfName;
 	$download_link = $UrlLink;
 
@@ -82,9 +81,6 @@ if(!empty($_POST))
 					Inque Team
 					</p>
 					<hr style="border-top: dashed 1px;"/>
-					<p style="font-size: 12px;text-align: justify;">
-					Disclaimer: This email and any files transmitted with it are privileged and confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient or an agent responsible for delivering it to the intended recipient, you are hereby notified that you have received this email in error and you should not review, disseminate, distribute or copy this e-mail or any attachments contained herein. Please notify the sender immediately by e-mail and delete this e-mail from your system. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. The sender also confirms that it shall not be responsible if this email message is used for any indecent, unsolicited or illegal purposes, which are in violation of any existing laws and the same shall solely be the responsibility of misuser and that the sender shall at all times be indemnified of any civil and/ or criminal liabilities or consequences thereof. If verification is required please request a hard-copy version.
-					</p>
 				</div>';
 	// Always set content-type when sending HTML email
 	$headers = "MIME-Version: 1.0" . "\r\n";
@@ -93,24 +89,30 @@ if(!empty($_POST))
 
 	$mail = mail($to,$subject,$message,$headers);
 
+	/////////////////////////////////////////////// MAIL SEND TO ADMIN ////////////////////////////////
 
 	//send email to admin
 	$adminEmail = 'contact@m9creative.com';
 	//$adminEmail = 'info@jesons.net';
 
 	$toEmail = $emailId;
-	$adminSubject = 'PDF requested';
+	$adminSubject = 'PDF Requested';
 
 	$adminMessage = '<div style="width: 900px;">
 				<img src="'.$image_link.'"/>
 				<p>
 				Hello Admin
 				</p>
-				<p><b>User Details</b></p>
+				<p><b>User Details</b></p> <br/>
+				<p>Below User requested for the PDF</p>
 				<p><b>Name:</b> '.$name.'</p>
 				<p><b>Email:</b> '.$toEmail.'</p>
 				<p><b>Mobile No.:</b> '.$mobile.'</p>
-				<p><b>Company Name:</b> '.$companyName.'</p>';
+				<p><b>Company Name:</b> '.$companyName.'</p>
+				<p><b>Country :</b> '.$country.'</p>
+				<p><b>State:</b> '.$state.'</p>
+				<p><b>City:</b> '.$city.'</p>
+				';
 
 	$adminMessage .= '<br/><p>Requested PDF for</p>
 				<p><b>PDF Details</b></p>
@@ -119,8 +121,12 @@ if(!empty($_POST))
 				</p>
 				<hr style="border-top: dashed 1px;"/>
 				<p style="font-size: 12px;text-align: justify;">
-				Disclaimer: This email and any files transmitted with it are privileged and confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient or an agent responsible for delivering it to the intended recipient, you are hereby notified that you have received this email in error and you should not review, disseminate, distribute or copy this e-mail or any attachments contained herein. Please notify the sender immediately by e-mail and delete this e-mail from your system. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. The sender also confirms that it shall not be responsible if this email message is used for any indecent, unsolicited or illegal purposes, which are in violation of any existing laws and the same shall solely be the responsibility of misuser and that the sender shall at all times be indemnified of any civil and/ or criminal liabilities or consequences thereof. If verification is required please request a hard-copy version.
+					Simply click on the link below to begin the download immediately. In case you are unable to do that, copy and paste the link in your browser URL window to start the same
 				</p>
+				<p style="font-size: 12px;text-align: justify;">
+					If you need more information on a particular product or are facing a challenge in your operations where our expertise can help, please feel free to reach out to us at (contact@m9creative.com). We would be really happy to help you.
+				</p>
+				<p>Regards, <br/> Inque Team </p>
 				</div>';
 				
  
