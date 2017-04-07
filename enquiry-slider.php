@@ -10,7 +10,7 @@
                 <input type="email" class="validate[required,custom[email]]" name="email" id="email" placeholder="Email ID *">
             </div>
             <div class="col-sm-12 padding0"> 
-                <input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="mobile" id="mobile" placeholder="Mobile *">
+                <input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="phone" id="phone" placeholder="Mobile *">
             </div>
             <div class="col-sm-12 padding0"> 
                 <input type="text" class="validate[required]" name="city" id="city" placeholder="City *">

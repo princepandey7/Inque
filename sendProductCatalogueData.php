@@ -48,9 +48,9 @@ if(!empty($_POST))
 			break;
 	}
 
-	$pdfname = $requestedPdfName;
+	$strArrayData = explode("_", $requestedPdfName);
+	$pdfname = $strArrayData[1];
 	$download_link = $UrlLink;
-
 
 	$to = $emailId;
 
@@ -72,7 +72,7 @@ if(!empty($_POST))
 					</p>
 					<p><a href='. $download_link .' target="_blank">Click Here</a></p>
 					<p>
-					If you need more information on a particular product or are facing a challenge in your operations where our expertise can help, please feel free to reach out to us at (<a href="mailto:contact@m9creative.com">contact@m9creative.com</a>). We would be really happy to help you. 
+					If you need more information on a particular product or are facing a challenge in your operations where our expertise can help, please feel free to reach out to us at (<a href="mailto:prince.pandey7@gmail.com">prince.pandey7@gmail.com</a>). We would be really happy to help you. 
 					</p>
 					<p>
 					Regards,
@@ -85,14 +85,14 @@ if(!empty($_POST))
 	// Always set content-type when sending HTML email
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	$headers .= 'From: Inque<contact@m9creative.com>' . "\r\n";
+	$headers .= 'From: Inque<prince.pandey7@gmail.com>' . "\r\n";
 
 	$mail = mail($to,$subject,$message,$headers);
 
 	/////////////////////////////////////////////// MAIL SEND TO ADMIN ////////////////////////////////
 
 	//send email to admin
-	$adminEmail = 'contact@m9creative.com';
+	$adminEmail = 'prince.pandey7@gmail.com';
 	//$adminEmail = 'info@jesons.net';
 
 	$toEmail = $emailId;
@@ -112,9 +112,8 @@ if(!empty($_POST))
 				<p><b>Country :</b> '.$country.'</p>
 				<p><b>State:</b> '.$state.'</p>
 				<p><b>City:</b> '.$city.'</p>
-				';
 
-	$adminMessage .= '<br/><p>Requested PDF for</p>
+				<br/><p>Requested PDF for</p>
 				<p><b>PDF Details</b></p>
 				<p>
 					<b>PDF Name:</b> '.$pdfname.'
@@ -124,10 +123,11 @@ if(!empty($_POST))
 					Simply click on the link below to begin the download immediately. In case you are unable to do that, copy and paste the link in your browser URL window to start the same
 				</p>
 				<p style="font-size: 12px;text-align: justify;">
-					If you need more information on a particular product or are facing a challenge in your operations where our expertise can help, please feel free to reach out to us at (contact@m9creative.com). We would be really happy to help you.
+					If you need more information on a particular product or are facing a challenge in your operations where our expertise can help, please feel free to reach out to us at (prince.pandey7@gmail.com). We would be really happy to help you.
 				</p>
 				<p>Regards, <br/> Inque Team </p>
-				</div>';
+				</div>
+				';
 				
  
 	// Always set content-type when sending HTML email

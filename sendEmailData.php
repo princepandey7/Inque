@@ -1,32 +1,32 @@
 <?php
 ob_start();
 require_once("db.php");
-
 if(!empty($_POST))
 {
-	$name    	= 	filter_var($_POST['form_value']["name"], FILTER_SANITIZE_STRING);
-	$emailId   	= 	filter_var($_POST['form_value']["email"], FILTER_SANITIZE_EMAIL);
-	$phone 		= 	filter_var($_POST['form_value']["mobile"], FILTER_SANITIZE_NUMBER_INT);
-	$city       = 	filter_var($_POST['form_value']["city"], FILTER_SANITIZE_STRING);
-	$message    = 	filter_var($_POST['form_value']["message"], FILTER_SANITIZE_STRING);
-	$frmStatus 	= 	$_POST['form_status'] 
 
-	$insetQuery = 
-			array(
-				'name'		=>$name,
-				'email'		=>$emailId,
-				'phone'		=>$phone,
-				'city'		=>$city,
-				'message'	=>$message
-				'sended_by'	=>$frmStatus
-			);
+	$insetQuery = array();
+	$formData = $_POST['form_value'];
+	
+	if(!empty($formData)){
+		foreach ($formData as $key => $value) {
+			$strValue = '';
+			if( $value['name'] == 'email' ){
+				$strValue = filter_var( $value['value'], FILTER_SANITIZE_EMAIL);
+			} else if( $value['name'] == 'mobile' ){
+				$strValue = filter_var( $value['value'], FILTER_SANITIZE_NUMBER_INT);
+			} else {
+				$strValue = filter_var( $value['value'], FILTER_SANITIZE_STRING);
+			}
+			$insetQuery[$value['name']] = $strValue;
+		}
+	}
 
-	$connection->InsertQuery("contactus",$insetQuery);
-
+	$insetQuery['sended_by'] = $_POST['form_status'] ;
+	$connection->InsertQuery("contactus", $insetQuery);
 	$to = "contact@m9creative.com";
 	$subject = "Contact Form";
-	if( $frmStatus == 'enquiry'){
-		$subject = 'Enquiry Form'
+	if( $insetQuery['sended_by'] == 'enquiry'){
+		$subject = 'Enquiry Form';
 	}
 
 
@@ -38,21 +38,22 @@ if(!empty($_POST))
 		<p>Hi Admin, <br/> Below are ". $subject ." details send by website user. </p>
 		<table>
 			<tr>
-				<td>Name :</td> <td>".$name."</td>
+				<td>Name :</td> <td>". $insetQuery['name'] ."</td>
 			</tr>
 			<tr>
-				<td>Email :</td> <td>".$emailId."</td>
+				<td>Email :</td> <td>". $insetQuery['email'] ."</td>
 			</tr>
 			<tr>
-				<td>Contact No :</td> <td>".$phone."</td>
+				<td>Contact No :</td> <td>". $insetQuery['phone'] ."</td>
 			</tr>
 			<tr>
-				<td>Message :</td> <td>".$message."</td>
+				<td>Message :</td> <td>". $insetQuery['message'] ."</td>
 			</tr>
 		</table>
 		<p> Thanks </p>
 	</body>
 	</html>";
+
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
@@ -62,14 +63,14 @@ if(!empty($_POST))
 				// USER MAIL //
 ###################################################
 
-	$toUser = $emailId;
+	$toUser = $insetQuery['email'] ;
 
 	$Usermessage = " <html>
 	<head>
 		<title>". $subject ."</title>
 	</head>
 	<body>
-		<p>Hi ". $name .", <br/></p>
+		<p>Hi ". $insetQuery['name'] .", <br/></p>
 		
 		<p> Thank you for taking the time to go through our website.</p>
 		<p> We will get in touch soon.</p>

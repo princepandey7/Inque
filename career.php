@@ -2,6 +2,7 @@
 if (isset($_POST['careerSubmit'])) {
 ob_start();
 require_once("db.php");
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -20,6 +21,7 @@ require_once("db.php");
 
     //file- type
     $upload_resume_name = time() .'_'. $_FILES['upload_resume']['name'];
+
     $ext = pathinfo($upload_resume_name, PATHINFO_EXTENSION);
     $validExtentionArray = array('doc','docx','rtf','txt','pdf');
     if(!in_array($ext, $validExtentionArray)){
@@ -33,74 +35,75 @@ require_once("db.php");
     if(empty($errorArray)){
         //upload resume
         $move = 'admin/uploads/resume/';
-        $uploadfile = tempnam(sys_get_temp_dir(), sha1($_FILES['upload_resume_name']['name']));
-        move_uploaded_file($_FILES['upload_resume']['tmp_name'], $move.$upload_resume_name);
+        $uploadfile = tempnam(sys_get_temp_dir(), sha1($upload_resume_name));
+        if(move_uploaded_file($_FILES['upload_resume']['tmp_name'], $move.$upload_resume_name)){
+            $insetQuery = 
+                        array(
+                            'name'=>$name,
+                            'email'=>$email,
+                            'phone'=>$phone,
+                            'city'=>$city,
+                            'state'=>$state,
+                            'country'=>$country,
+                            'message'=>$message,
+                            'resume' => $upload_resume_name
+                        );
 
-        date_default_timezone_set('Asia/Kolkata');
-        $timestamp = time();
-        $datetime = date('Y-m-d H:i:s a',$timestamp);        
-        //insert
+            $connection->InsertQuery("careersmail",$insetQuery);
 
-        $insetQuery = 
-                    array(
-                        'name'=>$name,
-                        'email'=>$email,
-                        'phone'=>$phone,
-                        'city'=>$city,
-                        'state'=>$state,
-                        'country'=>$country,
-                        'message'=>$message,
-                        'resume' => $upload_resume_name
-                    );
+            $message_body = " <html>
+                <head>
+                    <title>Inque - Career </title>
+                </head>
+                <body>
+                    <p>Hi Admin, <br/> Below are career details send by website user. </p>
+                    <table>
+                        <tr>
+                            <td>Name :</td> <td>".$name."</td>
+                        </tr>
+                        <tr>
+                            <td>Email :</td> <td>".$email."</td>
+                        </tr>
+                        <tr>
+                            <td>Contact No :</td> <td>".$phone."</td>
+                        </tr>
+                        <tr>
+                            <td>Country  :</td> <td>".$country."</td>
+                        </tr>
+                        <tr>
+                            <td>State  :</td> <td>".$state."</td>
+                        </tr>
+                        <tr>
+                            <td>City  :</td> <td>".$city."</td>
+                        </tr>
+                        <tr>
+                            <td>Message :</td> <td>".$message."</td>
+                        </tr>
+                    </table>
+                    <p> Thanks </p>
+                </body>
+                </html>";
 
-        $connection->InsertQuery("careersmail",$insetQuery);
 
-        $message_body = " <html>
-            <head>
-                <title>Inque - Career </title>
-            </head>
-            <body>
-                <p>Hi Admin, <br/> Below are career details send by website user. </p>
-                <table>
-                    <tr>
-                        <td>Name :</td> <td>".$name."</td>
-                    </tr>
-                    <tr>
-                        <td>Email :</td> <td>".$email."</td>
-                    </tr>
-                    <tr>
-                        <td>Contact No :</td> <td>".$phone."</td>
-                    </tr>
-                    <tr>
-                        <td>Country  :</td> <td>".$country."</td>
-                    </tr>
-                    <tr>
-                        <td>State  :</td> <td>".$state."</td>
-                    </tr>
-                    <tr>
-                        <td>City  :</td> <td>".$city."</td>
-                    </tr>
-                    <tr>
-                        <td>Message :</td> <td>".$message."</td>
-                    </tr>
-                </table>
-                <p> Thanks </p>
-            </body>
-            </html>";
 
-        required('PHPMailer/PHPMailerAutoload.php');
-        $mail = new PHPMailer;
-        $mail->setFrom($email, $name );
-        $mail->addAddress('contact@m9creative.com', 'M9Creative');
-        $mail->Subject = 'Inque - Career';
-        $mail->Body = $message_body;
-        // Attach the uploaded file
-        $mail->addAttachment($uploadfile, 'My uploaded file');
-        if (!$mail->send()) {
-            $resume_sent .= "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            $resume_sent .= "Resume sent succussfully";
+            include('PHPMailer/PHPMailerAutoload.php');
+            $mail = new PHPMailer;
+            $mail->setFrom($email, $name );
+            $mail->addAddress('contact@m9creative.com', 'M9Creative');
+            $mail->Subject = 'Inque - Career';
+            $mail->IsHTML(true); 
+            $mail->Body = $message_body;
+            // Attach the uploaded file
+            // $mail->addAttachment($uploadfile, $upload_resume_name);
+            $mail->addAttachment($move.$upload_resume_name, $upload_resume_name);
+            if (!$mail->send()) {
+                $resume_sent .= "Mailer Error: " . $mail->ErrorInfo;
+            } else {
+                $resume_sent .= "Resume sent succussfully";
+            }
+
         }
+
 
         ###################################################
                 // USER MAIL //

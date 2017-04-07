@@ -7,14 +7,11 @@ $(function(){
         if($("#strSendContactFrm").validationEngine('validate')){
             $("#loader-overlay").show();
             var form_value = $("#strSendContactFrm").serializeArray();
-            var data = {
-                form_value:form_value,
-                form_status:"contact",
-            }
+
             jQuery.ajax({
                 url: "sendEmailData.php",
                 type: "post",
-                data: form_value,
+                data: {'form_value' : form_value ,  form_status:"contact"},
                 success: function(data) {
                     if(data == "success")
                     {
@@ -39,15 +36,10 @@ $(function(){
         if($("#strSendEnquiryFrm").validationEngine('validate')){
             $("#loader-overlay").show();
             var form_value = $("#strSendEnquiryFrm").serializeArray();
-
-            var data = {
-                form_value:form_value,
-                form_status:"enquiry",
-            }
             jQuery.ajax({
                 url: "sendEmailData.php",
                 type: "post",
-                data: data,
+                data: {'form_value' : form_value ,  form_status:"enquiry"},
                 success: function(data) {
                     if(data == "success")
                     {
@@ -114,7 +106,7 @@ $(function(){
                     {
                         $("#strSendProductCatalogueFrm").find("input[type=text]").val("");
                         $("#strSendProductCatalogueFrm").find("input[type=email]").val("");
-                        $('#productCatalogueForm').modal('hide');
+                        $('#productPdfRequest').modal('hide');
                         alert("Pdf Link has been sent to your email.");
                     }
                     else

@@ -46,7 +46,7 @@ include_once('header.php') ?>
                                 <div class="row">
                                     <div class="col-sm-6"><input type="text" class="validate[required]" name="name" id="name" placeholder="Name *" required=""></div>
                                     <div class="col-sm-6"><input type="email" class="validate[required,custom[email]]" name="email" id="email" placeholder="Email ID *" required=""></div>
-                                    <div class="col-sm-6"><input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="mobile" id="mobile" placeholder="Mobile *" required=""></div>
+                                    <div class="col-sm-6"><input type="text" class="validate[required],custom[onlyNumberSp],minSize[10],maxSize[10]" name="phone" id="phone" placeholder="Mobile *" required=""></div>
                                     <div class="col-sm-6"><input type="text" class="validate[required]" name="city" id="city" placeholder="City *" required=""></div>
                                     <div class="col-sm-12"><textarea placeholder="Message" class="validate[required]" name="message" id="message" rows="4"></textarea></div>
                                     <div class="col-sm-12 alert alert-success" style="display: none">
